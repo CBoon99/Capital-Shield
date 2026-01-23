@@ -41,7 +41,7 @@
                 <li><a href="#overview" aria-label="Overview section">Overview</a></li>
                 <li><a href="#capabilities" aria-label="Capabilities section">Capabilities</a></li>
                 <li><a href="#architecture" aria-label="Architecture section">Architecture</a></li>
-                <li><a href="demo.html" aria-label="Interactive demo">Interactive Demo</a></li>
+                <li><a href="/demo" aria-label="Interactive demo">Interactive Demo</a></li>
                 <li><a href="#quickstart" aria-label="Quickstart section">Quickstart</a></li>
                 <li><a href="#beta" aria-label="Beta section">Beta</a></li>
                 <li><a href="#licensing" aria-label="Licensing section">Licensing</a></li>
@@ -62,6 +62,10 @@
             <div class="hero-content">
                 <h1 class="hero-title">Protect Your Capital from Runaway Algorithms</h1>
                 <p class="hero-subtitle">Capital Shield: Risk-First Trading Infrastructure</p>
+                <p class="hero-description" style="margin-bottom: 24px;">
+                    Capital Shield is not a trading strategy. It does not predict markets or generate alpha.
+                    It is a deterministic safety layer that evaluates proposed trades and blocks those that violate predefined risk, regime, or capital-preservation rules.
+                </p>
                 <p class="hero-description">
                     Algorithmic trading systems can spiral out of control—unchecked drawdowns, regime-blind execution, and silent failures. 
                     Capital Shield sits between your strategy and capital, enforcing deterministic execution constraints, regime awareness, 
@@ -74,7 +78,7 @@
                     <span class="badge">Q1 2026 public release</span>
                 </div>
                 <div class="hero-ctas">
-                    <a href="demo.html" class="btn btn-primary" aria-label="Try the interactive demo">Interactive Demo</a>
+                    <a href="/demo" class="btn btn-primary" aria-label="View risk demo">View Risk Demo</a>
                     <a href="#contact" class="btn btn-secondary" aria-label="Join the controlled beta">Join Controlled Beta</a>
                     <a href="#quickstart" class="btn btn-secondary" aria-label="Read the documentation">Read the Docs</a>
                     <a href="https://github.com/CBoon99/Capital-Shield" id="github-link-hero" class="btn btn-secondary" target="_blank" rel="noopener noreferrer" aria-label="View on GitHub">View on GitHub</a>
@@ -83,9 +87,13 @@
         </div>
     </section>
 
-    <!-- Where Capital Shield Sits Diagram -->
+    <!-- System Positioning -->
     <section class="section diagram-section">
         <div class="container">
+            <h2 class="section-title section-title-center">System Positioning</h2>
+            <p class="section-subtitle" style="text-align: center; color: var(--text-muted); margin-bottom: 48px; font-size: 16px;">
+                High-level view of where Capital Shield sits in a trading stack.
+            </p>
             <div class="diagram-container">
                 <svg viewBox="0 0 900 280" class="capital-shield-diagram" aria-label="Where Capital Shield Sits in the Trading Stack">
                     <title>Where Capital Shield Sits: Strategy Engine → Capital Shield → Execution</title>
@@ -320,11 +328,18 @@
         </div>
     </section>
 
-    <!-- Architecture -->
+    <!-- Technical Architecture (Modules) -->
     <section class="section architecture-section" id="architecture">
         <div class="container">
-            <h2 class="section-title section-title-center">Architecture: Strategy-Agnostic Execution Safety Framework</h2>
-            <div class="architecture-diagram">
+            <p class="section-intro" style="text-align: center; color: var(--text-muted); margin-bottom: 24px; font-size: 16px;">
+                Below is the internal module breakdown for technical readers.
+            </p>
+            <details class="architecture-details" style="max-width: 1000px; margin: 0 auto;">
+                <summary style="cursor: pointer; padding: 24px; background: var(--bg-surface); border: 1px solid var(--border); border-radius: 12px; font-size: 24px; font-weight: 600; color: var(--text-primary); list-style: none; user-select: none;">
+                    <span style="margin-right: 12px;">▶</span> Technical Architecture (Modules)
+                </summary>
+                <div style="padding: 32px 24px;">
+                    <div class="architecture-diagram">
                 <!-- Inline SVG Architecture Visual -->
                 <div style="max-width: 900px; margin: 0 auto 48px; padding: 32px; background: var(--bg-surface); border: 1px solid var(--border); border-radius: 16px;">
                     <svg viewBox="0 0 800 200" style="width: 100%; height: auto;">
@@ -379,20 +394,22 @@
                     <div class="arch-arrow">→</div>
                     <div class="arch-block">Market</div>
                 </div>
-                <div class="arch-side">
-                    <div class="arch-side-item">Metrics/Dashboard</div>
-                    <div class="arch-side-item">Config</div>
-                    <div class="arch-side-item">Simulation</div>
+                        <div class="arch-side">
+                            <div class="arch-side-item">Metrics/Dashboard</div>
+                            <div class="arch-side-item">Config</div>
+                            <div class="arch-side-item">Simulation</div>
+                        </div>
+                    </div>
+                    <ul class="architecture-features">
+                        <li><strong>Separation of concerns</strong> — Risk enforcement before execution</li>
+                        <li><strong>Integrates anywhere</strong> — REST API works with any trading stack</li>
+                        <li><strong>Deterministic decisions</strong> — Same inputs produce same outputs</li>
+                    </ul>
+                    <div style="text-align: center; margin-top: 32px;">
+                        <a href="technical.html" class="btn btn-secondary" aria-label="View technical appendix">Technical Appendix</a>
+                    </div>
                 </div>
-            </div>
-            <ul class="architecture-features">
-                <li><strong>Separation of concerns</strong> — Risk enforcement before execution</li>
-                <li><strong>Integrates anywhere</strong> — REST API works with any trading stack</li>
-                <li><strong>Deterministic decisions</strong> — Same inputs produce same outputs</li>
-            </ul>
-            <div style="text-align: center; margin-top: 32px;">
-                <a href="technical.html" class="btn btn-secondary" aria-label="View technical appendix">Technical Appendix</a>
-            </div>
+            </details>
         </div>
     </section>
 

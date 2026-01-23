@@ -464,6 +464,23 @@ body {
     background: linear-gradient(180deg, rgba(11, 27, 51, 0.3) 0%, transparent 100%);
 }
 
+.architecture-details summary::-webkit-details-marker {
+    display: none;
+}
+
+.architecture-details summary {
+    list-style: none;
+}
+
+.architecture-details summary span {
+    display: inline-block;
+    transition: transform 0.2s;
+}
+
+.architecture-details[open] summary span {
+    transform: rotate(90deg);
+}
+
 .architecture-diagram {
     margin-bottom: 48px;
 }
