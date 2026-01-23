@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Capital Shield: Risk-first trading infrastructure and execution safety framework for algorithmic trading systems. Strategy-agnostic deterministic risk controls, capital protection API, and trading system safety rails.">
+    <meta name="description" content="API-first safety layer for algorithmic trading. Enforce deterministic max drawdown & volatility rules. Block runaway strategies. Strategy-agnostic infrastructure for quants.">
     <meta name="keywords" content="risk-first trading infrastructure, algorithmic trading risk management, trading execution safety framework, strategy-agnostic trading systems, deterministic risk controls trading, trading system safety rails, capital protection trading API, algorithmic trading infrastructure">
     
     <!-- Open Graph -->
@@ -21,7 +21,7 @@
     <!-- Canonical -->
     <link rel="canonical" href="https://YOUR-NETLIFY-SITE.netlify.app/">
     
-    <title>Capital Shield - Risk-First Trading Infrastructure & Execution Safety Framework</title>
+    <title>Capital Shield | Runaway Algorithm Protection & Risk Gateway</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -60,8 +60,8 @@
         </div>
         <div class="container">
             <div class="hero-content">
-                <h1 class="hero-title">Protect Your Capital from Runaway Algorithms</h1>
-                <p class="hero-subtitle">Capital Shield: Risk-First Trading Infrastructure</p>
+                <h1 class="hero-title">Capital Shield: The Deterministic Safety Layer for Algorithmic Trading</h1>
+                <p class="hero-subtitle">Block runaway algorithms before execution. Enforce max drawdown, volatility, and regime risk rules with our API-first, strategy-agnostic risk gateway.</p>
                 <p class="hero-description" style="margin-bottom: 24px;">
                     Capital Shield is not a trading strategy. It does not predict markets or generate alpha.
                     It is a deterministic safety layer that evaluates proposed trades and blocks those that violate predefined risk, regime, or capital-preservation rules.
@@ -83,6 +83,33 @@
                     <a href="#quickstart" class="btn btn-secondary" aria-label="Read the documentation">Read the Docs</a>
                     <a href="https://github.com/CBoon99/Capital-Shield" id="github-link-hero" class="btn btn-secondary" target="_blank" rel="noopener noreferrer" aria-label="View on GitHub">View on GitHub</a>
                 </div>
+            </div>
+            
+            <!-- The Cost of Being Unshielded Table -->
+            <div style="max-width: 900px; margin: 48px auto 0; padding: 32px; background: var(--bg-surface); border: 1px solid var(--border); border-radius: 16px;">
+                <h3 style="font-size: 24px; font-weight: 600; color: var(--text-primary); margin-bottom: 24px; text-align: center;">The Cost of Being Unshielded</h3>
+                <table style="width: 100%; border-collapse: collapse; margin-top: 24px;">
+                    <thead>
+                        <tr>
+                            <th style="padding: 16px; text-align: left; background: rgba(46, 168, 255, 0.1); border: 1px solid var(--border); color: var(--accent); font-weight: 600;">Unshielded Execution</th>
+                            <th style="padding: 16px; text-align: left; background: rgba(46, 168, 255, 0.1); border: 1px solid var(--border); color: var(--accent); font-weight: 600;">Capital Shield Execution</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="padding: 16px; border: 1px solid var(--border); color: var(--text-muted);">Strategy signal → Immediate Execution</td>
+                            <td style="padding: 16px; border: 1px solid var(--border); color: var(--text-primary);">Strategy signal → → Safety Gates → ALLOW/BLOCK → Execution</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 16px; border: 1px solid var(--border); color: var(--text-muted);">Silent failure → Blown-up account</td>
+                            <td style="padding: 16px; border: 1px solid var(--border); color: var(--text-primary);">Structured log (e.g., DD_BREACH) → Protected capital</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 16px; border: 1px solid var(--border); color: var(--text-muted);">Regime-blind trades in a crash</td>
+                            <td style="padding: 16px; border: 1px solid var(--border); color: var(--text-primary);">Regime Guard → "VOL_BREACH: Blocked"</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </section>
@@ -302,7 +329,25 @@
                         </svg>
                     </div>
                     <h3>Simulation & Validation</h3>
-                    <p>Test deterministic safety rails against historical market crashes. Compare baseline vs. shielded performance for algorithmic trading systems.</p>
+                    <p><strong>Quantify Your Safety: See the Protection in Action</strong><br>Test deterministic safety rails against historical market crashes. Compare baseline vs. shielded performance for algorithmic trading systems.</p>
+                    <div style="margin-top: 16px; padding: 16px; background: rgba(46, 168, 255, 0.05); border: 1px solid var(--border); border-radius: 8px; text-align: center;">
+                        <div style="width: 100%; height: 200px; background: linear-gradient(135deg, rgba(46, 168, 255, 0.1) 0%, rgba(124, 92, 255, 0.1) 100%); border-radius: 8px; display: flex; align-items: center; justify-content: center; margin-bottom: 12px;">
+                            <svg viewBox="0 0 400 200" style="width: 100%; height: 100%;">
+                                <!-- Chart placeholder: Crash visualization -->
+                                <line x1="20" y1="180" x2="380" y2="180" stroke="rgba(120, 170, 255, 0.3)" stroke-width="2"/>
+                                <line x1="20" y1="20" x2="20" y2="180" stroke="rgba(120, 170, 255, 0.3)" stroke-width="2"/>
+                                <!-- Unshielded line (crash) -->
+                                <polyline points="20,100 100,95 150,120 200,140 250,160 300,175 350,190 380,195" fill="none" stroke="#FF4444" stroke-width="3" opacity="0.7"/>
+                                <!-- Shielded line (protected) -->
+                                <polyline points="20,100 100,98 150,105 200,110 250,110 300,110 350,110 380,110" fill="none" stroke="#2EA8FF" stroke-width="3"/>
+                                <!-- -10% threshold line -->
+                                <line x1="20" y1="110" x2="380" y2="110" stroke="#2EA8FF" stroke-width="2" stroke-dasharray="5,5" opacity="0.5"/>
+                                <text x="200" y="15" text-anchor="middle" fill="var(--text-muted)" font-size="12">May 2021 Crypto Crash Simulation</text>
+                                <text x="30" y="105" fill="#2EA8FF" font-size="10">-10% limit</text>
+                            </svg>
+                        </div>
+                        <p style="font-size: 13px; color: var(--text-muted); margin: 0;">Visualization: A -10% max drawdown rule during the May 2021 crypto crash.</p>
+                    </div>
                 </div>
                 <div class="capability-card">
                     <div class="capability-icon">
@@ -533,12 +578,20 @@
                 </article>
                 <article class="faq-item">
                     <h3 class="faq-question">Who is Capital Shield for?</h3>
-                    <p class="faq-answer">
-                        Capital Shield is designed for quantitative trading teams, fund engineers, and system developers who need 
-                        deterministic risk controls in their trading infrastructure. It's for teams building strategy-agnostic 
-                        execution safety frameworks, integrating risk management into existing trading stacks, or validating safety 
-                        rails against historical market crashes. Not for retail traders seeking profitable bots.
-                    </p>
+                    <ul class="faq-answer" style="list-style: none; padding-left: 0;">
+                        <li style="margin-bottom: 12px; padding-left: 24px; position: relative;">
+                            <span style="position: absolute; left: 0; color: var(--accent);">•</span>
+                            <strong>Quant Developers at multi-strategy funds</strong>
+                        </li>
+                        <li style="margin-bottom: 12px; padding-left: 24px; position: relative;">
+                            <span style="position: absolute; left: 0; color: var(--accent);">•</span>
+                            <strong>Trading System Architects building execution stacks</strong>
+                        </li>
+                        <li style="margin-bottom: 12px; padding-left: 24px; position: relative;">
+                            <span style="position: absolute; left: 0; color: var(--accent);">•</span>
+                            <strong>Solo Systematic Traders protecting substantial capital</strong>
+                        </li>
+                    </ul>
                 </article>
                 <article class="faq-item">
                     <h3 class="faq-question">How does Capital Shield integrate with trading strategies?</h3>
@@ -558,6 +611,7 @@
                         execution constraints that cannot be bypassed by trading logic. Unlike black-box strategies or alpha-seeking 
                         bots, risk-first infrastructure provides transparent, testable, strategy-agnostic capital protection. 
                         This matters for funds, quants, and system developers who need deterministic risk controls in production.
+                        <a href="/runaway-algorithm-protection/" style="color: var(--accent); text-decoration: underline; margin-left: 8px;">Learn how we define and prevent a runaway algorithm.</a>
                     </p>
                 </article>
             </div>
@@ -567,10 +621,10 @@
     <!-- Contact Form -->
     <section class="section contact-section" id="contact">
         <div class="container">
-            <h2 class="section-title section-title-center">Get in Touch</h2>
+            <h2 class="section-title section-title-center">Apply for Beta Access</h2>
             <div class="contact-content">
                 <div class="contact-info">
-                    <p>For beta access, licensing inquiries, or general questions, please use the form below.</p>
+                    <p>Apply for early access to Capital Shield. We're prioritizing quant developers, trading system architects, and systematic traders with substantial capital to protect.</p>
                     <p class="contact-email">Email: <a href="mailto:info@boonmind.io">info@boonmind.io</a></p>
                 </div>
                 <form name="contact" method="POST" action="/thanks/" data-netlify="true" netlify-honeypot="bot-field" class="contact-form" id="contact-form">
@@ -592,23 +646,21 @@
                     </div>
                     
                     <div class="form-group">
-                        <label for="subject">Subject <span class="required">*</span></label>
-                        <select id="subject" name="subject" required aria-required="true">
-                            <option value="">Select a topic...</option>
-                            <option value="beta-access">Beta Access Request</option>
-                            <option value="licensing">Licensing Inquiry</option>
-                            <option value="technical">Technical Question</option>
-                            <option value="partnership">Partnership Inquiry</option>
-                            <option value="other">Other</option>
-                        </select>
+                        <label for="tradingStack">Primary Trading Stack <span class="required">*</span></label>
+                        <input type="text" id="tradingStack" name="tradingStack" placeholder="e.g., QuantConnect, custom Python, TradingView, etc." required aria-required="true" />
                     </div>
                     
                     <div class="form-group">
-                        <label for="message">Message <span class="required">*</span></label>
-                        <textarea id="message" name="message" rows="6" required aria-required="true"></textarea>
+                        <label for="painPoint">Biggest Risk Management Pain Point <span class="required">*</span></label>
+                        <textarea id="painPoint" name="painPoint" rows="4" placeholder="Describe your biggest challenge with risk management in algorithmic trading..." required aria-required="true"></textarea>
                     </div>
                     
-                    <button type="submit" class="btn btn-primary" id="submit-btn">Send Message</button>
+                    <div class="form-group">
+                        <label for="message">Additional Information (Optional)</label>
+                        <textarea id="message" name="message" rows="4" placeholder="Any additional context about your use case..."></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary" id="submit-btn">Apply for Beta Access</button>
                 </form>
             </div>
         </div>
