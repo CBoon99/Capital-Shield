@@ -1,0 +1,16 @@
+{
+  "total_assets": 4,
+  "starting_capital": 10000.0,
+  "leverage": 0.05,
+  "timeframe": "30m",
+  "final_equity_min": 10435.366387395274,
+  "final_equity_max": 11489.18776371308,
+  "final_equity_mean": 10921.939735528364,
+  "final_equity_median": 10881.602395502552,
+  "max_drawdown_min": -0.35259716890595005,
+  "max_drawdown_max": -0.16162570888468805,
+  "rsa_min": 0.5845855752319068,
+  "rsa_max": 0.6989885474268148,
+  "rsa_mean": 0.6542535253344736,
+  "rsa_median": 0.6667199893395863
+}

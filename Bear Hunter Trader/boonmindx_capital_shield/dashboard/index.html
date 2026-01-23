@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BoonMindX Capital Shield Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <span class="logo-icon">🛡️</span>
+                <h1>BoonMindX Capital Shield</h1>
+                <p class="tagline">Precision intelligence for a volatile world.</p>
+            </div>
+            <div class="header-status">
+                <span id="system-status" class="status-badge">Checking...</span>
+                <span id="uptime" class="uptime">—</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Top Stats Bar -->
+        <section class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-label">Current Equity</div>
+                <div class="stat-value" id="equity">—</div>
+                <div class="stat-change" id="equity-change"></div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">P&L %</div>
+                <div class="stat-value" id="pnl-percent">—</div>
+                <div class="stat-change" id="pnl-change"></div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Max Drawdown</div>
+                <div class="stat-value" id="max-drawdown">—</div>
+                <div class="stat-change" id="dd-change"></div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Total Trades</div>
+                <div class="stat-value" id="total-trades">—</div>
+                <div class="stat-change" id="trades-change"></div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Blocked Trades</div>
+                <div class="stat-value" id="blocked-trades">—</div>
+                <div class="stat-change" id="blocked-change"></div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Current Preset</div>
+                <div class="stat-value" id="current-preset">—</div>
+                <div class="stat-change" id="preset-change"></div>
+            </div>
+        </section>
+
+        <!-- Charts and Safety Rails -->
+        <div class="content-grid">
+            <!-- Left Column: Charts -->
+            <div class="charts-section">
+                <div class="chart-card">
+                    <h2>Equity Curve</h2>
+                    <div class="chart-container">
+                        <canvas id="equity-chart"></canvas>
+                        <div id="equity-chart-empty" class="chart-empty">Waiting for data...</div>
+                    </div>
+                </div>
+                <div class="chart-card">
+                    <h2>Drawdown Curve</h2>
+                    <div class="chart-container">
+                        <canvas id="drawdown-chart"></canvas>
+                        <div id="drawdown-chart-empty" class="chart-empty">Waiting for data...</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column: Safety Rails & Logs -->
+            <div class="sidebar-section">
+                <!-- Safety Rails Status -->
+                <div class="safety-rails-card">
+                    <h2>Safety Rails Status</h2>
+                    <div class="rail-item">
+                        <div class="rail-label">Max Drawdown Rail</div>
+                        <div class="rail-status" id="dd-rail-status">
+                            <span class="status-indicator"></span>
+                            <span class="status-text">Checking...</span>
+                        </div>
+                    </div>
+                    <div class="rail-item">
+                        <div class="rail-label">Health Rail</div>
+                        <div class="rail-status" id="health-rail-status">
+                            <span class="status-indicator"></span>
+                            <span class="status-text">Checking...</span>
+                        </div>
+                    </div>
+                    <div class="rail-item">
+                        <div class="rail-label">Regime Guard</div>
+                        <div class="rail-status" id="regime-guard-status">
+                            <span class="status-indicator"></span>
+                            <span class="status-text">Checking...</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Events Log -->
+                <div class="events-card">
+                    <h2>Recent Events</h2>
+                    <div id="events-log" class="events-log">
+                        <div class="event-item">
+                            <span class="event-time">—</span>
+                            <span class="event-message">Waiting for data...</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Warning Banner (hidden by default) -->
+    <div id="warning-banner" class="warning-banner hidden">
+        <span class="warning-icon">⚠️</span>
+        <span class="warning-text" id="warning-text">Unable to fetch metrics data</span>
+    </div>
+
+    <script src="app.js" defer></script>
+</body>
+</html>
+

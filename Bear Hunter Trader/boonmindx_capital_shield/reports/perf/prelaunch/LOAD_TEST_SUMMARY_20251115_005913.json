@@ -1,0 +1,64 @@
+{
+  "base_url": "http://localhost:8000",
+  "concurrency": 5,
+  "duration_seconds": 10.0,
+  "endpoints_tested": [
+    "/api/v1/healthz",
+    "/api/v1/dashboard/metrics"
+  ],
+  "total_requests": 36382,
+  "successful_requests": 36382,
+  "error_requests": 0,
+  "error_rate": 0.0,
+  "latency_ms": {
+    "p50": 1.4030933380126953,
+    "p90": 1.7309188842773438,
+    "p95": 1.9860267639160156,
+    "p99": 4.288365840911871,
+    "max": 20.408153533935547,
+    "min": 0.9810924530029297,
+    "mean": 1.5112799066268134
+  },
+  "by_endpoint": {
+    "/api/v1/healthz": {
+      "total_requests": 18800,
+      "successful_requests": 18800,
+      "error_requests": 0,
+      "requests_per_second": 972580.2358281119,
+      "latency_ms": {
+        "p50": 1.363992691040039,
+        "p90": 1.5922307968139664,
+        "p95": 1.7473936080932613,
+        "p99": 2.8669953346252424,
+        "max": 20.31111717224121,
+        "min": 0.9810924530029297,
+        "mean": 1.4270457181524723
+      },
+      "status_codes": {
+        "200": 18800
+      },
+      "error_rate": 0.0
+    },
+    "/api/v1/dashboard/metrics": {
+      "total_requests": 17582,
+      "successful_requests": 17582,
+      "error_requests": 0,
+      "requests_per_second": 905359.5684382404,
+      "latency_ms": {
+        "p50": 1.4569759368896484,
+        "p90": 1.8569469451904292,
+        "p95": 2.3028373718261728,
+        "p99": 5.059773921966547,
+        "max": 20.408153533935547,
+        "min": 0.9882450103759766,
+        "mean": 1.6013494518047007
+      },
+      "status_codes": {
+        "200": 17582
+      },
+      "error_rate": 0.0
+    }
+  },
+  "timestamp": "2025-11-15T00:59:13.680815",
+  "notes": "Local single-node benchmark, not a production SLA"
+}

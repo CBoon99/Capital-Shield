@@ -1,0 +1,77 @@
+{
+  "iteration": 3,
+  "timestamp": "2025-11-16T15:44:59.233994Z",
+  "preset": "BALANCED",
+  "results": [
+    {
+      "timestamp": "2025-11-16T15:44:59.233994Z",
+      "asset": "bitcoin",
+      "current_price": 95343.07810521021,
+      "evaluation": {
+        "decision": "ALLOW",
+        "reason_code": "NORMAL_REGIME",
+        "reason_message": "Normal regime: vol=0.025, dd=-9.98%",
+        "risk_score": 0.49882386590336625,
+        "volatility": 0.024889660763281866,
+        "drawdown": -0.09976477318067326,
+        "rsa": 0.6777543499675796
+      }
+    },
+    {
+      "timestamp": "2025-11-16T15:44:59.233994Z",
+      "asset": "ethereum",
+      "current_price": 3168.6306634614493,
+      "evaluation": {
+        "decision": "ALLOW",
+        "reason_code": "NORMAL_REGIME",
+        "reason_message": "Normal regime: vol=0.030, dd=-11.40%",
+        "risk_score": 0.6022089539066294,
+        "volatility": 0.03011044769533147,
+        "drawdown": -0.11398070743389685,
+        "rsa": 0.6645144694245774
+      }
+    },
+    {
+      "timestamp": "2025-11-16T15:44:59.233994Z",
+      "asset": "cardano",
+      "current_price": 0.4915554383032245,
+      "evaluation": {
+        "decision": "ALLOW",
+        "reason_code": "NORMAL_REGIME",
+        "reason_message": "Normal regime: vol=0.037, dd=-17.09%",
+        "risk_score": 0.8543116249864171,
+        "volatility": 0.036835399273983584,
+        "drawdown": -0.17086232499728343,
+        "rsa": 0.6271546804038403
+      }
+    },
+    {
+      "timestamp": "2025-11-16T15:44:59.233994Z",
+      "asset": "solana",
+      "current_price": 139.56192355151518,
+      "evaluation": {
+        "decision": "ALLOW",
+        "reason_code": "NORMAL_REGIME",
+        "reason_message": "Normal regime: vol=0.040, dd=-16.70%",
+        "risk_score": 0.8351761071573612,
+        "volatility": 0.040056833401309465,
+        "drawdown": -0.16703522143147226,
+        "rsa": 0.6288815874203564
+      }
+    },
+    {
+      "timestamp": "2025-11-16T15:44:59.233994Z",
+      "asset": "polkadot",
+      "current_price": 2.8215814945952844,
+      "evaluation": {
+        "decision": "ALLOW",
+        "reason_code": "NORMAL_REGIME",
+        "reason_message": "Normal regime: vol=0.031, dd=-13.53%",
+        "risk_score": 0.6762951620720601,
+        "volatility": 0.031199268087300572,
+        "drawdown": -0.13525903241441203,
+        "rsa": 0.6509716801141838
+      }
+    }
+  ]
+}

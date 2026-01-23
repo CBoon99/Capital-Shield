@@ -1,0 +1,135 @@
+{
+  "timestamp": "2025-11-15T00:11:16.367609",
+  "scenarios": [
+    {
+      "scenario_name": "bull_2017_conservative",
+      "dataset": "/var/folders/bf/8ygwy1yn64z_tbsk07r33xf40000gn/T/tmpkw62g7lg.csv",
+      "preset": "conservative",
+      "hedge_params": {
+        "drawdown_threshold": 0.1,
+        "reduction": 0.5,
+        "days": 20
+      },
+      "metrics": {
+        "baseline": {
+          "final_equity": 87860.84168519762,
+          "pnl_pct": -12.139158314802378,
+          "max_drawdown": -0.12446597507696337,
+          "total_trades": 5,
+          "win_rate": 0.0
+        },
+        "shielded": {
+          "final_equity": 87860.84168519762,
+          "pnl_pct": -12.139158314802378,
+          "max_drawdown": -0.12446597507696337,
+          "total_trades": 5,
+          "win_rate": 0.0,
+          "blocked_trades": 0
+        },
+        "hedge_v1": {
+          "final_equity": 97140.1338884546,
+          "pnl_pct": -2.8598661115454016,
+          "max_drawdown": -0.041466565510384544,
+          "total_trades": 127,
+          "win_rate": 0.047244094488188976,
+          "hedge_activated": false
+        }
+      },
+      "opportunity_cost": {
+        "shield_vs_baseline_pnl_diff": 0.0,
+        "shield_vs_hedge_pnl_diff": -9.279292203256976,
+        "hedge_vs_baseline_pnl_diff": 9.279292203256976
+      },
+      "execution_costs": {
+        "baseline": {
+          "total_execution_costs": 0.0,
+          "avg_cost_per_trade": 0.0,
+          "slippage_model_used": "none",
+          "latency_ms": 0,
+          "execution_cost_count": 0
+        },
+        "shielded": {
+          "total_execution_costs": 0.0,
+          "avg_cost_per_trade": 0.0,
+          "slippage_model_used": "none",
+          "latency_ms": 0,
+          "execution_cost_count": 0
+        },
+        "hedge_v1": {},
+        "enabled": false
+      },
+      "timestamp": "2025-11-15T00:11:16.261411"
+    },
+    {
+      "scenario_name": "mild_bull_2020_conservative",
+      "dataset": "/var/folders/bf/8ygwy1yn64z_tbsk07r33xf40000gn/T/tmpnghah_s3.csv",
+      "preset": "conservative",
+      "hedge_params": {
+        "drawdown_threshold": 0.1,
+        "reduction": 0.5,
+        "days": 20
+      },
+      "metrics": {
+        "baseline": {
+          "final_equity": 88102.0623045037,
+          "pnl_pct": -11.897937695496294,
+          "max_drawdown": -0.13661815576614725,
+          "total_trades": 7,
+          "win_rate": 0.0
+        },
+        "shielded": {
+          "final_equity": 88102.0623045037,
+          "pnl_pct": -11.897937695496294,
+          "max_drawdown": -0.13661815576614725,
+          "total_trades": 7,
+          "win_rate": 0.0,
+          "blocked_trades": 0
+        },
+        "hedge_v1": {
+          "final_equity": 102409.86225804912,
+          "pnl_pct": 2.409862258049121,
+          "max_drawdown": -0.049217216151407166,
+          "total_trades": 130,
+          "win_rate": 0.6153846153846154,
+          "hedge_activated": false
+        }
+      },
+      "opportunity_cost": {
+        "shield_vs_baseline_pnl_diff": 0.0,
+        "shield_vs_hedge_pnl_diff": -14.307799953545416,
+        "hedge_vs_baseline_pnl_diff": 14.307799953545416
+      },
+      "execution_costs": {
+        "baseline": {
+          "total_execution_costs": 0.0,
+          "avg_cost_per_trade": 0.0,
+          "slippage_model_used": "none",
+          "latency_ms": 0,
+          "execution_cost_count": 0
+        },
+        "shielded": {
+          "total_execution_costs": 0.0,
+          "avg_cost_per_trade": 0.0,
+          "slippage_model_used": "none",
+          "latency_ms": 0,
+          "execution_cost_count": 0
+        },
+        "hedge_v1": {},
+        "enabled": false
+      },
+      "timestamp": "2025-11-15T00:11:16.366911"
+    }
+  ],
+  "aggregate_metrics": {
+    "average_pnl": {
+      "baseline": -12.018548005149336,
+      "shielded": -12.018548005149336,
+      "hedge_v1": -0.22500192674814024
+    },
+    "average_opportunity_cost": {
+      "shield_vs_baseline": 0.0,
+      "shield_vs_hedge": -11.793546078401196,
+      "hedge_vs_baseline": 11.793546078401196
+    }
+  }
+}

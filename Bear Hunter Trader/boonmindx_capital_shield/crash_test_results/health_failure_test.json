@@ -1,0 +1,303 @@
+{
+  "test_name": "health_failure_test",
+  "data_path": "/var/folders/bf/8ygwy1yn64z_tbsk07r33xf40000gn/T/tmpr7un3s6q.csv",
+  "symbols": [
+    "HEALTH_TEST"
+  ],
+  "initial_equity": 100000.0,
+  "baseline": {
+    "portfolio_metrics": {
+      "initial_equity": 100000.0,
+      "final_equity": 90238.90332146852,
+      "total_pnl": -9761.096678531481,
+      "pnl_percent": -9.76109667853148,
+      "max_drawdown": -0.1,
+      "total_trades": 1,
+      "win_rate": 0.0,
+      "open_positions": 1
+    },
+    "equity_curve": [
+      100000.0,
+      100000.0,
+      100000.0,
+      100000.0,
+      100000.0,
+      100000.0,
+      100000.0,
+      100000.0,
+      100000.0,
+      100000.0,
+      100000.0,
+      100000.0,
+      100000.0,
+      100000.0,
+      100000.0,
+      100000.0,
+      100000.0,
+      100000.0,
+      100000.0,
+      100000.0,
+      90000.0,
+      90144.73137551674,
+      90144.73137551674,
+      90141.80086218957,
+      90141.80086218957,
+      90129.5873375905,
+      90129.5873375905,
+      90002.88196027938,
+      90002.88196027938,
+      90208.51104229195,
+      90208.51104229195,
+      90149.83048928759,
+      90149.83048928759,
+      90369.5406930403,
+      90369.5406930403,
+      90362.01480699313,
+      90362.01480699313,
+      90389.67631530145,
+      90389.67631530145,
+      90238.90332146852,
+      90238.90332146852
+    ],
+    "trades": [
+      {
+        "symbol": "HEALTH_TEST",
+        "action": "BUY",
+        "price": 109.76477076014784,
+        "size": 91.103911853936,
+        "timestamp": "1970-01-01 00:00:00.000000009",
+        "equity": 100000.0
+      }
+    ],
+    "blocked_trades": [],
+    "blocked_trades_count": 0,
+    "blocked_by_reason": {},
+    "simulation_config": {
+      "mode": "baseline",
+      "symbols": [
+        "HEALTH_TEST"
+      ],
+      "start_date": null,
+      "end_date": null,
+      "initial_equity": 100000.0,
+      "engine_mode": "LIVE",
+      "capital_shield_mode": null
+    }
+  },
+  "capital_shielded_strict": {
+    "portfolio_metrics": {
+      "initial_equity": 100000.0,
+      "final_equity": 90238.90332146852,
+      "total_pnl": -9761.096678531481,
+      "pnl_percent": -9.76109667853148,
+      "max_drawdown": -0.1,
+      "total_trades": 1,
+      "win_rate": 0.0,
+      "open_positions": 1
+    },
+    "equity_curve": [
+      100000.0,
+      100000.0,
+      100000.0,
+      100000.0,
+      100000.0,
+      100000.0,
+      100000.0,
+      100000.0,
+      100000.0,
+      100000.0,
+      100000.0,
+      100000.0,
+      100000.0,
+      100000.0,
+      100000.0,
+      100000.0,
+      100000.0,
+      100000.0,
+      100000.0,
+      100000.0,
+      90000.0,
+      90144.73137551674,
+      90144.73137551674,
+      90141.80086218957,
+      90141.80086218957,
+      90129.5873375905,
+      90129.5873375905,
+      90002.88196027938,
+      90002.88196027938,
+      90208.51104229195,
+      90208.51104229195,
+      90149.83048928759,
+      90149.83048928759,
+      90369.5406930403,
+      90369.5406930403,
+      90362.01480699313,
+      90362.01480699313,
+      90389.67631530145,
+      90389.67631530145,
+      90238.90332146852,
+      90238.90332146852
+    ],
+    "trades": [
+      {
+        "symbol": "HEALTH_TEST",
+        "action": "BUY",
+        "price": 109.76477076014784,
+        "size": 91.103911853936,
+        "timestamp": "1970-01-01 00:00:00.000000009",
+        "equity": 100000.0
+      }
+    ],
+    "blocked_trades": [],
+    "blocked_trades_count": 0,
+    "blocked_by_reason": {},
+    "simulation_config": {
+      "mode": "capital_shielded",
+      "symbols": [
+        "HEALTH_TEST"
+      ],
+      "start_date": null,
+      "end_date": null,
+      "initial_equity": 100000.0,
+      "engine_mode": "MOCK",
+      "capital_shield_mode": "STRICT"
+    }
+  },
+  "capital_shielded_permissive": {
+    "portfolio_metrics": {
+      "initial_equity": 100000.0,
+      "final_equity": 90238.90332146852,
+      "total_pnl": -9761.096678531481,
+      "pnl_percent": -9.76109667853148,
+      "max_drawdown": -0.1,
+      "total_trades": 1,
+      "win_rate": 0.0,
+      "open_positions": 1
+    },
+    "equity_curve": [
+      100000.0,
+      100000.0,
+      100000.0,
+      100000.0,
+      100000.0,
+      100000.0,
+      100000.0,
+      100000.0,
+      100000.0,
+      100000.0,
+      100000.0,
+      100000.0,
+      100000.0,
+      100000.0,
+      100000.0,
+      100000.0,
+      100000.0,
+      100000.0,
+      100000.0,
+      100000.0,
+      90000.0,
+      90144.73137551674,
+      90144.73137551674,
+      90141.80086218957,
+      90141.80086218957,
+      90129.5873375905,
+      90129.5873375905,
+      90002.88196027938,
+      90002.88196027938,
+      90208.51104229195,
+      90208.51104229195,
+      90149.83048928759,
+      90149.83048928759,
+      90369.5406930403,
+      90369.5406930403,
+      90362.01480699313,
+      90362.01480699313,
+      90389.67631530145,
+      90389.67631530145,
+      90238.90332146852,
+      90238.90332146852
+    ],
+    "trades": [
+      {
+        "symbol": "HEALTH_TEST",
+        "action": "BUY",
+        "price": 109.76477076014784,
+        "size": 91.103911853936,
+        "timestamp": "1970-01-01 00:00:00.000000009",
+        "equity": 100000.0
+      }
+    ],
+    "blocked_trades": [],
+    "blocked_trades_count": 0,
+    "blocked_by_reason": {},
+    "simulation_config": {
+      "mode": "capital_shielded",
+      "symbols": [
+        "HEALTH_TEST"
+      ],
+      "start_date": null,
+      "end_date": null,
+      "initial_equity": 100000.0,
+      "engine_mode": "MOCK",
+      "capital_shield_mode": "PERMISSIVE"
+    }
+  },
+  "comparison_strict": {
+    "baseline": {
+      "final_equity": 90238.90332146852,
+      "total_pnl": -9761.096678531481,
+      "pnl_percent": -9.76109667853148,
+      "max_drawdown": -0.1,
+      "total_trades": 1,
+      "win_rate": 0.0
+    },
+    "shielded": {
+      "final_equity": 90238.90332146852,
+      "total_pnl": -9761.096678531481,
+      "pnl_percent": -9.76109667853148,
+      "max_drawdown": -0.1,
+      "total_trades": 1,
+      "win_rate": 0.0,
+      "blocked_trades": 0
+    },
+    "differences": {
+      "equity_diff": 0.0,
+      "equity_diff_pct": 0.0,
+      "pnl_diff": 0.0,
+      "pnl_diff_pct": -0.0,
+      "drawdown_diff": 0.0,
+      "drawdown_improvement_pct": 0.0,
+      "trades_diff": 0
+    },
+    "shield_effect": []
+  },
+  "comparison_permissive": {
+    "baseline": {
+      "final_equity": 90238.90332146852,
+      "total_pnl": -9761.096678531481,
+      "pnl_percent": -9.76109667853148,
+      "max_drawdown": -0.1,
+      "total_trades": 1,
+      "win_rate": 0.0
+    },
+    "shielded": {
+      "final_equity": 90238.90332146852,
+      "total_pnl": -9761.096678531481,
+      "pnl_percent": -9.76109667853148,
+      "max_drawdown": -0.1,
+      "total_trades": 1,
+      "win_rate": 0.0,
+      "blocked_trades": 0
+    },
+    "differences": {
+      "equity_diff": 0.0,
+      "equity_diff_pct": 0.0,
+      "pnl_diff": 0.0,
+      "pnl_diff_pct": -0.0,
+      "drawdown_diff": 0.0,
+      "drawdown_improvement_pct": 0.0,
+      "trades_diff": 0
+    },
+    "shield_effect": []
+  }
+}

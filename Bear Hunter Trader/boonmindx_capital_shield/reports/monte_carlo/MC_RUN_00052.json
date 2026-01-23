@@ -1,0 +1,10 @@
+{
+  "scenario": {
+    "id": 52,
+    "seed": 1763168405,
+    "market_regime": "BULL",
+    "notes": "Placeholder scenario description; wire actual regimes later."
+  },
+  "status": "SKIPPED_NO_LIVE_SIM",
+  "metrics": {}
+}

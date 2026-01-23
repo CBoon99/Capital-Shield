@@ -1,0 +1,59 @@
+{
+  "scenario_name": "mild_bull_2020_conservative_with_exec_costs",
+  "dataset": "/var/folders/bf/8ygwy1yn64z_tbsk07r33xf40000gn/T/tmpmq4xz4pv.csv",
+  "preset": "conservative",
+  "hedge_params": {
+    "drawdown_threshold": 0.1,
+    "reduction": 0.5,
+    "days": 20
+  },
+  "metrics": {
+    "baseline": {
+      "final_equity": 88054.37381079161,
+      "pnl_pct": -11.945626189208387,
+      "max_drawdown": -0.13708703107339942,
+      "total_trades": 7,
+      "win_rate": 0.0
+    },
+    "shielded": {
+      "final_equity": 88054.37381079161,
+      "pnl_pct": -11.945626189208387,
+      "max_drawdown": -0.13708703107339942,
+      "total_trades": 7,
+      "win_rate": 0.0,
+      "blocked_trades": 0
+    },
+    "hedge_v1": {
+      "final_equity": 102409.86225804912,
+      "pnl_pct": 2.409862258049121,
+      "max_drawdown": -0.049217216151407166,
+      "total_trades": 130,
+      "win_rate": 0.6153846153846154,
+      "hedge_activated": false
+    }
+  },
+  "opportunity_cost": {
+    "shield_vs_baseline_pnl_diff": 0.0,
+    "shield_vs_hedge_pnl_diff": -14.355488447257507,
+    "hedge_vs_baseline_pnl_diff": 14.355488447257507
+  },
+  "execution_costs": {
+    "baseline": {
+      "total_execution_costs": 51.847573063882464,
+      "avg_cost_per_trade": 7.406796151983209,
+      "slippage_model_used": "fixed_bps",
+      "latency_ms": 50,
+      "execution_cost_count": 7
+    },
+    "shielded": {
+      "total_execution_costs": 51.847573063882464,
+      "avg_cost_per_trade": 7.406796151983209,
+      "slippage_model_used": "fixed_bps",
+      "latency_ms": 50,
+      "execution_cost_count": 7
+    },
+    "hedge_v1": {},
+    "enabled": true
+  },
+  "timestamp": "2025-11-15T00:11:23.249174"
+}

@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Capital Shield technical architecture: Algorithmic trading system architecture, risk management API, deterministic safety rails, and strategy-agnostic execution framework. Infrastructure overview for technical due diligence.">
+    <meta name="keywords" content="algorithmic trading system architecture, risk management API, trading infrastructure architecture, deterministic risk controls, trading system safety rails, capital protection API architecture">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Capital Shield - Algorithmic Trading System Architecture & Risk Management API">
+    <meta property="og:description" content="Technical architecture overview: Risk-first trading infrastructure, deterministic safety rails, and strategy-agnostic execution framework for algorithmic trading systems.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://YOUR-NETLIFY-SITE.netlify.app/technical.html">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Capital Shield - Trading System Architecture">
+    <meta name="twitter:description" content="Technical architecture: Risk management API, deterministic safety rails, and strategy-agnostic execution framework.">
+    
+    <!-- Canonical -->
+    <link rel="canonical" href="https://YOUR-NETLIFY-SITE.netlify.app/technical.html">
+    
+    <title>Capital Shield - Algorithmic Trading System Architecture & Risk Management API</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%232EA8FF'/><path d='M50 20 L30 50 L50 45 L70 50 Z' fill='%23071225'/><rect x='40' y='50' width='20' height='30' fill='%23071225'/></svg>">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header" id="header">
+        <nav class="nav container">
+            <div class="nav-brand">
+                <span class="logo-text">BoonMindX</span>
+                <span class="product-name">Capital Shield</span>
+            </div>
+            <ul class="nav-links" role="navigation" aria-label="Main navigation">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#overview">Overview</a></li>
+                <li><a href="index.html#architecture">Architecture</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <section class="section tech-hero-section">
+        <div class="container">
+            <div class="tech-hero-content">
+                <h1 class="hero-title tech-hero-title">Algorithmic Trading System Architecture</h1>
+                <p class="hero-subtitle tech-hero-subtitle">Risk Management API & Infrastructure Overview</p>
+                <p class="hero-description tech-hero-description">
+                    This page exists for technical due diligence.
+                </p>
+                <p class="tech-last-updated">Last updated: 2025-11-16</p>
+                <div class="tech-note-box">
+                    <p>This project is commercially licensed for production use. See README for terms.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- System Overview -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">System Overview: Strategy-Agnostic Risk-First Trading Infrastructure</h2>
+            <p class="tech-text-muted">
+                Capital Shield is a modular execution and risk framework composed of independently testable subsystems. 
+                This strategy-agnostic trading infrastructure enforces deterministic execution constraints and capital protection 
+                rules, sitting between trading signal generators and market execution. Unlike alpha-seeking bots or signal sellers, 
+                this infrastructure provides transparent, testable safety rails for algorithmic trading systems.
+            </p>
+        </div>
+    </section>
+
+    <!-- Subsystems & Maturity -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Subsystems & Maturity</h2>
+            <table class="technical-table">
+                <thead>
+                    <tr>
+                        <th>Subsystem</th>
+                        <th>Description</th>
+                        <th>Location</th>
+                        <th>Maturity</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>API Service</strong></td>
+                        <td>FastAPI REST API with authentication, rate limiting, structured logging</td>
+                        <td><code>app/</code></td>
+                        <td><span class="maturity-badge maturity-production">PRODUCTION</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Safety Rails / Risk Gates</strong></td>
+                        <td>Deterministic hard limits (max drawdown, regime guard, health check)</td>
+                        <td><code>app/core/safety_rails.py</code></td>
+                        <td><span class="maturity-badge maturity-production">PRODUCTION</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Simulation Engine</strong></td>
+                        <td>Historical simulation and validation tooling</td>
+                        <td><code>live_sim/</code></td>
+                        <td><span class="maturity-badge maturity-beta">BETA</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Strategy Plug-in Interface</strong></td>
+                        <td>Plugin interface for external trading strategies</td>
+                        <td><code>strategies/</code></td>
+                        <td><span class="maturity-badge maturity-production">PRODUCTION</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Data Adapters</strong></td>
+                        <td>Market data fetching and normalization (CoinGecko)</td>
+                        <td><code>data/</code></td>
+                        <td><span class="maturity-badge maturity-beta">BETA</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Monitoring / Metrics</strong></td>
+                        <td>Health checks, performance metrics, structured logging</td>
+                        <td><code>app/routes/healthz.py</code>, <code>app/routes/metrics.py</code></td>
+                        <td><span class="maturity-badge maturity-production">PRODUCTION</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Dashboard</strong></td>
+                        <td>Web-based monitoring dashboard</td>
+                        <td><code>dashboard/</code></td>
+                        <td><span class="maturity-badge maturity-beta">BETA</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Deployment Templates</strong></td>
+                        <td>Infrastructure deployment documentation and templates</td>
+                        <td><code>infra/</code></td>
+                        <td><span class="maturity-badge maturity-unverified">UNVERIFIED</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- Codebase Statistics -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Codebase Statistics: Risk Management API & Safety Rails</h2>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-value">67</div>
+                    <div class="stat-label">Production Python Files</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">7</div>
+                    <div class="stat-label">API Endpoints</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">16</div>
+                    <div class="stat-label">Test Files</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">3</div>
+                    <div class="stat-label">Safety Rules</div>
+                </div>
+            </div>
+
+            <div class="tech-note-box">
+                <strong>Counting Method:</strong> File counts derived from repository structure scan (November 2025). 
+                Production files counted from <code>boonmindx_capital_shield/</code> excluding tests, reports, and data files. 
+                API endpoints counted from FastAPI route decorators in <code>app/routes/</code>. 
+                Test count includes all <code>test_*.py</code> files in <code>tests/</code> directory. 
+                Safety rules counted from <code>app/core/safety_rails.py</code>: max drawdown check, health check, regime guard.
+            </div>
+
+            <h3 class="tech-h3">Languages Used</h3>
+            <ul class="tech-ul-languages">
+                <li><strong>Python</strong> - Primary language (API, simulation, safety rails)</li>
+                <li><strong>JavaScript</strong> - Dashboard frontend</li>
+                <li><strong>CSS</strong> - Styling</li>
+                <li><strong>HTML</strong> - Dashboard and landing pages</li>
+                <li><strong>Shell</strong> - Operational scripts</li>
+            </ul>
+
+            <h3 class="tech-h3">Strategy Plugin Interface</h3>
+            <p class="tech-p-muted">
+                Plugin interface for external trading strategies. Includes one example strategy (demo only, not for production).
+            </p>
+        </div>
+    </section>
+
+    <!-- Testing & Reliability -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Testing & Reliability: Deterministic Risk Controls Validation</h2>
+            
+            <h3 class="tech-h3-alt">Test Framework</h3>
+            <p class="tech-p-muted tech-p-muted-mb">
+                <strong>pytest</strong> - Python testing framework
+            </p>
+
+            <h3 class="tech-h3-alt">Test Coverage</h3>
+            <ul class="tech-ul">
+                <li><strong>16 test files</strong> covering major subsystems</li>
+                <li><strong>API endpoints</strong> - Signal, risk, filter, regime, health, metrics</li>
+                <li><strong>Safety rails</strong> - Max drawdown, regime guard, health check</li>
+                <li><strong>Simulation engine</strong> - Data loading, validation, crash tests</li>
+                <li><strong>Strategy plugin interface</strong> - Contract validation, registry, integration</li>
+                <li><strong>Presets</strong> - Conservative, balanced, aggressive configurations</li>
+            </ul>
+
+            <h3 class="tech-h3-alt">Not Covered</h3>
+            <ul class="tech-ul">
+                <li>End-to-end integration tests with live broker APIs</li>
+                <li>Multi-asset portfolio-level risk management</li>
+                <li>Advanced monitoring and alerting systems</li>
+                <li>Deployment automation (Docker, Kubernetes)</li>
+            </ul>
+
+            <h3 class="tech-h3-alt">Deterministic Behavior</h3>
+            <p class="tech-p-muted">
+                In MOCK mode, the system produces deterministic outputs: same inputs produce same outputs. 
+                Safety rail decisions are deterministic and testable. Simulation engine uses deterministic 
+                algorithms for historical validation.
+            </p>
+        </div>
+    </section>
+
+    <!-- Design Principles -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Design Principles: Strategy-Agnostic Risk-First Architecture</h2>
+            <ul class="tech-ul-principles">
+                <li><strong>Strategy-agnostic</strong> - No trading strategy logic; accepts signals from external sources</li>
+                <li><strong>Deterministic risk enforcement</strong> - Same inputs produce same safety decisions</li>
+                <li><strong>Explicit rejection reasons</strong> - Machine-readable codes for all blocked trades</li>
+                <li><strong>Separation of concerns</strong> - Risk enforcement before execution, not during</li>
+                <li><strong>Infrastructure before optimization</strong> - Focus on correctness and safety over performance</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- What This Is / Is Not -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">What This Trading Infrastructure Is and Is Not</h2>
+            
+            <div class="tech-two-col">
+                <div>
+                    <h3 class="tech-h3-accent">Is</h3>
+                    <ul class="tech-ul-no-mb">
+                        <li>Risk-first trading infrastructure</li>
+                        <li>Execution safety framework</li>
+                        <li>Strategy-agnostic capital protection API</li>
+                        <li>Deterministic risk enforcement framework</li>
+                        <li>Safety gateway between signals and execution</li>
+                        <li>Simulation and validation tooling</li>
+                        <li>API-first infrastructure for algorithmic trading</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="tech-h3-muted">Is Not</h3>
+                    <ul class="tech-ul-no-mb">
+                        <li>Trading strategy or signal generator</li>
+                        <li>Alpha-seeking bot or profit engine</li>
+                        <li>Black-box trading system</li>
+                        <li>Backtesting platform</li>
+                        <li>Live trading execution system</li>
+                        <li>Financial advice or investment product</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <span class="logo-text">BoonMindX</span>
+                    <span class="product-name">Capital Shield</span>
+                </div>
+                <div class="footer-links">
+                    <a href="index.html">Home</a>
+                    <a href="index.html#architecture">Architecture</a>
+                    <a href="index.html#faq">FAQ</a>
+                    <a href="README.md">Documentation</a>
+                    <a href="#" id="github-link" aria-label="GitHub repository">GitHub</a>
+                </div>
+            </div>
+            <div class="footer-copyright">
+                <p>&copy; 2025 BoonMindX. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Capital Shield",
+        "applicationCategory": "FinancialTechnology",
+        "operatingSystem": "Web",
+        "description": "Algorithmic trading system architecture: Risk-first trading infrastructure, deterministic safety rails, and strategy-agnostic execution framework for algorithmic trading systems.",
+        "offers": {
+            "@type": "Offer",
+            "priceCurrency": "USD",
+            "availability": "https://schema.org/PreOrder",
+            "description": "Commercial licensing available for production use"
+        },
+        "creator": {
+            "@type": "Organization",
+            "name": "BoonMindX"
+        }
+    }
+    </script>
+
+    <script src="app.js"></script>
+</body>
+</html>

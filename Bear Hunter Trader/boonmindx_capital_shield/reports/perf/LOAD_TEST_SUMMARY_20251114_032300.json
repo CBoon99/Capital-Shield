@@ -1,0 +1,42 @@
+{
+  "base_url": "http://127.0.0.1:8000",
+  "concurrency": 5,
+  "duration_seconds": 10.0,
+  "endpoints_tested": [
+    "/api/v1/healthz"
+  ],
+  "total_requests": 21745,
+  "successful_requests": 0,
+  "error_requests": 21745,
+  "error_rate": 100.0,
+  "latency_ms": {
+    "p50": 1.0480880737304688,
+    "p90": 1.2600421905517578,
+    "p95": 1.3320446014404297,
+    "p99": 1.623554229736329,
+    "max": 8.112907409667969,
+    "min": 0.31113624572753906,
+    "mean": 1.0678017761658516
+  },
+  "by_endpoint": {
+    "/api/v1/healthz": {
+      "total_requests": 21745,
+      "successful_requests": 0,
+      "error_requests": 21745,
+      "requests_per_second": 2787187.6197170187,
+      "latency_ms": {
+        "p50": 1.0480880737304688,
+        "p90": 1.2600421905517578,
+        "p95": 1.3320446014404297,
+        "p99": 1.623554229736329,
+        "max": 8.112907409667969,
+        "min": 0.31113624572753906,
+        "mean": 1.0678017761658516
+      },
+      "status_codes": {},
+      "error_rate": 100.0
+    }
+  },
+  "timestamp": "2025-11-14T03:23:00.862669",
+  "notes": "Local single-node benchmark, not a production SLA"
+}

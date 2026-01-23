@@ -1,0 +1,85 @@
+{
+  "test_date": "1763090768.3166707",
+  "datasets_tested": [
+    "bull_2017",
+    "mild_bull_2020"
+  ],
+  "presets_tested": [
+    "conservative",
+    "balanced",
+    "aggressive"
+  ],
+  "results": [
+    {
+      "dataset": "bull_2017",
+      "preset": "conservative",
+      "total_blocks": 0,
+      "fp_count": 0,
+      "tp_count": 0,
+      "fpr": 0.0,
+      "block_events_count": 0
+    },
+    {
+      "dataset": "bull_2017",
+      "preset": "balanced",
+      "total_blocks": 0,
+      "fp_count": 0,
+      "tp_count": 0,
+      "fpr": 0.0,
+      "block_events_count": 0
+    },
+    {
+      "dataset": "bull_2017",
+      "preset": "aggressive",
+      "total_blocks": 0,
+      "fp_count": 0,
+      "tp_count": 0,
+      "fpr": 0.0,
+      "block_events_count": 0
+    },
+    {
+      "dataset": "mild_bull_2020",
+      "preset": "conservative",
+      "total_blocks": 0,
+      "fp_count": 0,
+      "tp_count": 0,
+      "fpr": 0.0,
+      "block_events_count": 0
+    },
+    {
+      "dataset": "mild_bull_2020",
+      "preset": "balanced",
+      "total_blocks": 0,
+      "fp_count": 0,
+      "tp_count": 0,
+      "fpr": 0.0,
+      "block_events_count": 0
+    },
+    {
+      "dataset": "mild_bull_2020",
+      "preset": "aggressive",
+      "total_blocks": 0,
+      "fp_count": 0,
+      "tp_count": 0,
+      "fpr": 0.0,
+      "block_events_count": 0
+    }
+  ],
+  "preset_averages": {
+    "conservative": {
+      "average_fpr": 0.0,
+      "total_blocks_across_datasets": 0,
+      "datasets_tested": 2
+    },
+    "balanced": {
+      "average_fpr": 0.0,
+      "total_blocks_across_datasets": 0,
+      "datasets_tested": 2
+    },
+    "aggressive": {
+      "average_fpr": 0.0,
+      "total_blocks_across_datasets": 0,
+      "datasets_tested": 2
+    }
+  }
+}

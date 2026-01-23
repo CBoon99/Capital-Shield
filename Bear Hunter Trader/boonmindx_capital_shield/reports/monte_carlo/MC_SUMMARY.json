@@ -1,0 +1,8 @@
+{
+  "generated_at": "2025-11-15T00:59:13.735859Z",
+  "total_runs": 100,
+  "status_counts": {
+    "SKIPPED_NO_LIVE_SIM": 100
+  },
+  "notes": "Template summary; add real performance metrics once available."
+}

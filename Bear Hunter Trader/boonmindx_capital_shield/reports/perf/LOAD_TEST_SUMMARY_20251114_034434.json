@@ -1,0 +1,106 @@
+{
+  "base_url": "http://localhost:8000",
+  "concurrency": 1,
+  "duration_seconds": 15.0,
+  "endpoints_tested": [
+    "/api/v1/healthz",
+    "/api/v1/signal",
+    "/api/v1/filter",
+    "/api/v1/dashboard/metrics"
+  ],
+  "total_requests": 24081,
+  "successful_requests": 12885,
+  "error_requests": 11196,
+  "error_rate": 46.49308583530584,
+  "latency_ms": {
+    "p50": 1.4171600341796875,
+    "p90": 1.6849040985107422,
+    "p95": 1.7480850219726562,
+    "p99": 2.0210742950439453,
+    "max": 8.54182243347168,
+    "min": 0.6568431854248047,
+    "mean": 1.3110510638908544
+  },
+  "by_endpoint": {
+    "/api/v1/healthz": {
+      "total_requests": 5582,
+      "successful_requests": 5582,
+      "error_requests": 0,
+      "requests_per_second": 711024.2021379981,
+      "latency_ms": {
+        "p50": 1.4872550964355469,
+        "p90": 1.7130136489868166,
+        "p95": 1.753079891204834,
+        "p99": 1.93326711654663,
+        "max": 8.54182243347168,
+        "min": 0.6911754608154297,
+        "mean": 1.499510930456683
+      },
+      "status_codes": {
+        "200": 5582
+      },
+      "error_rate": 0.0
+    },
+    "/api/v1/signal": {
+      "total_requests": 5616,
+      "successful_requests": 169,
+      "error_requests": 5447,
+      "requests_per_second": 1505606.3447746884,
+      "latency_ms": {
+        "p50": 1.4641284942626953,
+        "p90": 1.73187255859375,
+        "p95": 1.8646717071533203,
+        "p99": 2.1308660507202175,
+        "max": 4.467010498046875,
+        "min": 0.7369518280029297,
+        "mean": 1.4838515183864496
+      },
+      "status_codes": {
+        "200": 169,
+        "429": 5447
+      },
+      "error_rate": 96.99074074074075
+    },
+    "/api/v1/filter": {
+      "total_requests": 5899,
+      "successful_requests": 150,
+      "error_requests": 5749,
+      "requests_per_second": 902538.8230830962,
+      "latency_ms": {
+        "p50": 1.4147758483886719,
+        "p90": 1.6849040985107422,
+        "p95": 1.766276359558105,
+        "p99": 2.021150588989256,
+        "max": 7.205963134765625,
+        "min": 0.6699562072753906,
+        "mean": 1.3578737523721869
+      },
+      "status_codes": {
+        "200": 150,
+        "429": 5749
+      },
+      "error_rate": 97.45719613493813
+    },
+    "/api/v1/dashboard/metrics": {
+      "total_requests": 6984,
+      "successful_requests": 6984,
+      "error_requests": 0,
+      "requests_per_second": 1020271.6427849953,
+      "latency_ms": {
+        "p50": 0.7832050323486328,
+        "p90": 1.4758110046386719,
+        "p95": 1.5236616134643552,
+        "p99": 1.725318431854248,
+        "max": 7.502079010009766,
+        "min": 0.6568431854248047,
+        "mean": 0.9819220021827934
+      },
+      "status_codes": {
+        "200": 6984
+      },
+      "error_rate": 0.0
+    }
+  },
+  "timestamp": "2025-11-14T03:44:34.868705",
+  "notes": "Local single-node benchmark, not a production SLA"
+}

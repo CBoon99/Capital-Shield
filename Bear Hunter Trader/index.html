@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Capital Shield: Risk-first trading infrastructure and execution safety framework for algorithmic trading systems. Strategy-agnostic deterministic risk controls, capital protection API, and trading system safety rails.">
+    <meta name="keywords" content="risk-first trading infrastructure, algorithmic trading risk management, trading execution safety framework, strategy-agnostic trading systems, deterministic risk controls trading, trading system safety rails, capital protection trading API, algorithmic trading infrastructure">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Capital Shield - Risk-First Trading Infrastructure & Execution Safety Framework">
+    <meta property="og:description" content="Strategy-agnostic risk-first trading infrastructure. Deterministic safety gates, capital protection API, and execution safety framework for algorithmic trading systems.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://YOUR-NETLIFY-SITE.netlify.app/">
+    <!-- <meta property="og:image" content="https://YOUR-NETLIFY-SITE.netlify.app/og-image.png"> -->
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Capital Shield - Risk-First Trading Infrastructure">
+    <meta name="twitter:description" content="Strategy-agnostic execution safety framework for algorithmic trading systems. Deterministic risk controls and capital protection API.">
+    
+    <!-- Canonical -->
+    <link rel="canonical" href="https://YOUR-NETLIFY-SITE.netlify.app/">
+    
+    <title>Capital Shield - Risk-First Trading Infrastructure & Execution Safety Framework</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%232EA8FF'/><path d='M50 20 L30 50 L50 45 L70 50 Z' fill='%23071225'/><rect x='40' y='50' width='20' height='30' fill='%23071225'/></svg>">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header" id="header">
+        <nav class="nav container">
+            <div class="nav-brand">
+                <span class="logo-text">BoonMindX</span>
+                <span class="product-name">Capital Shield</span>
+            </div>
+            <ul class="nav-links" role="navigation" aria-label="Main navigation">
+                <li><a href="#overview" aria-label="Overview section">Overview</a></li>
+                <li><a href="#capabilities" aria-label="Capabilities section">Capabilities</a></li>
+                <li><a href="#architecture" aria-label="Architecture section">Architecture</a></li>
+                <li><a href="#quickstart" aria-label="Quickstart section">Quickstart</a></li>
+                <li><a href="#beta" aria-label="Beta section">Beta</a></li>
+                <li><a href="#licensing" aria-label="Licensing section">Licensing</a></li>
+                <li><a href="#contact" aria-label="Contact section">Contact</a></li>
+                <li><a href="technical.html" aria-label="Technical appendix">Technical</a></li>
+            </ul>
+            <a href="#contact" class="btn btn-primary btn-small" aria-label="Request beta access">Request Beta Access</a>
+        </nav>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero" id="overview">
+        <div class="hero-background">
+            <div class="glow-orb"></div>
+            <div class="grid-overlay"></div>
+        </div>
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">Capital Shield: Risk-First Trading Infrastructure</h1>
+                <p class="hero-subtitle">Execution safety framework for algorithmic trading systems. Strategy-agnostic deterministic risk controls.</p>
+                <p class="hero-description">
+                    Capital Shield sits between strategy and capital. This risk-first trading infrastructure enforces deterministic execution constraints, 
+                    regime awareness, and explicit rejection reasons before trades reach the market. Designed for integration, not returns.
+                </p>
+                <div class="hero-badges">
+                    <span class="badge">Controlled Beta</span>
+                    <span class="badge">API-first</span>
+                    <span class="badge">Strategy-agnostic</span>
+                    <span class="badge">Q1 2026 public release</span>
+                </div>
+                <div class="hero-ctas">
+                    <a href="#quickstart" class="btn btn-primary" aria-label="Read the documentation">Read the Docs</a>
+                    <a href="#" id="github-link-hero" class="btn btn-secondary" aria-label="View on GitHub">View on GitHub</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- What It Is / What It Isn't -->
+    <section class="section what-section">
+        <div class="container">
+            <div class="two-column">
+                <div class="column">
+                    <h2 class="section-title">What Capital Shield Is: Risk-First Trading Infrastructure</h2>
+                    <ul class="feature-list">
+                        <li>
+                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 13l4 4L19 7"/>
+                            </svg>
+                            <span><strong>Execution + risk gateway</strong> - Strategy-agnostic infrastructure that sits between signal generation and market execution</span>
+                        </li>
+                        <li>
+                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 13l4 4L19 7"/>
+                            </svg>
+                            <span><strong>Deterministic safety rails</strong> - Hard execution constraints with structured rejection reasons</span>
+                        </li>
+                        <li>
+                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 13l4 4L19 7"/>
+                            </svg>
+                            <span><strong>Strategy-agnostic design</strong> - Works with any trading strategy, signal generator, or alpha engine</span>
+                        </li>
+                        <li>
+                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 13l4 4L19 7"/>
+                            </svg>
+                            <span><strong>Simulation/validation harness</strong> - Test deterministic risk controls against historical market crashes</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="column">
+                    <h2 class="section-title">What Capital Shield Is Not</h2>
+                    <ul class="feature-list">
+                        <li>
+                            <svg class="icon icon-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M18 6L6 18M6 6l12 12"/>
+                            </svg>
+                            <span><strong>Not a strategy</strong> — Doesn't generate buy/sell signals</span>
+                        </li>
+                        <li>
+                            <svg class="icon icon-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M18 6L6 18M6 6l12 12"/>
+                            </svg>
+                            <span><strong>Not a signal generator</strong> — Infrastructure, not alpha generation</span>
+                        </li>
+                        <li>
+                            <svg class="icon icon-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M18 6L6 18M6 6l12 12"/>
+                            </svg>
+                            <span><strong>No profit claims</strong> — Reduces risk, doesn't guarantee returns</span>
+                        </li>
+                        <li>
+                            <svg class="icon icon-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M18 6L6 18M6 6l12 12"/>
+                            </svg>
+                            <span><strong>Not financial advice</strong> — Infrastructure software only</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="why-now">
+                <p>
+                    <strong>Why now:</strong> The post-alpha era demands risk-first infrastructure. 
+                    Capital Shield provides deterministic safety gates that integrate into any trading stack, 
+                    with validation tooling to measure the cost of safety before deployment.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Key Capabilities -->
+    <section class="section capabilities-section" id="capabilities">
+        <div class="container">
+            <h2 class="section-title section-title-center">Core Risk Management Capabilities for Algorithmic Trading</h2>
+            <div class="capabilities-grid">
+                <div class="capability-card">
+                    <div class="capability-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                        </svg>
+                    </div>
+                    <h3>Deterministic Safety Rails</h3>
+                    <p>Max drawdown protection, regime guards, and health checks with structured rejection reasons. Deterministic execution constraints for algorithmic trading systems.</p>
+                </div>
+                <div class="capability-card">
+                    <div class="capability-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="2" y="3" width="20" height="14" rx="2"/>
+                            <path d="M8 21h8M12 17v4"/>
+                        </svg>
+                    </div>
+                    <h3>Capital Protection API</h3>
+                    <p>FastAPI-based REST API for risk-first trading infrastructure. Authentication, rate limiting, and structured logging for production deployment.</p>
+                </div>
+                <div class="capability-card">
+                    <div class="capability-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M9 11l3 3L22 4"/>
+                            <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
+                        </svg>
+                    </div>
+                    <h3>Explicit Rejection Reasons</h3>
+                    <p>Machine-readable decision codes (DD_BREACH, VOL_BREACH) for integration and logging. Transparent deterministic risk controls.</p>
+                </div>
+                <div class="capability-card">
+                    <div class="capability-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                            <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+                            <line x1="12" y1="22.08" x2="12" y2="12"/>
+                        </svg>
+                    </div>
+                    <h3>Simulation & Validation</h3>
+                    <p>Test deterministic safety rails against historical market crashes. Compare baseline vs. shielded performance for algorithmic trading systems.</p>
+                </div>
+                <div class="capability-card">
+                    <div class="capability-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M3 3v18h18"/>
+                            <path d="M18 17V9M12 17V5M6 17v-3"/>
+                        </svg>
+                    </div>
+                    <h3>Monitoring & Metrics</h3>
+                    <p>Health endpoints, performance metrics calculation, and real-time dashboard for trading infrastructure monitoring.</p>
+                </div>
+                <div class="capability-card">
+                    <div class="capability-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                            <path d="M2 17l10 5 10-5M2 12l10 5 10-5"/>
+                        </svg>
+                    </div>
+                    <h3>Preset Risk Profiles</h3>
+                    <p>Three configurations: Conservative (-5%), Balanced (-10%), Aggressive (-15%) drawdown thresholds. Strategy-agnostic risk controls.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Architecture -->
+    <section class="section architecture-section" id="architecture">
+        <div class="container">
+            <h2 class="section-title section-title-center">Architecture: Strategy-Agnostic Execution Safety Framework</h2>
+            <div class="architecture-diagram">
+                <div class="arch-flow">
+                    <div class="arch-block">Strategy/Signal</div>
+                    <div class="arch-arrow">→</div>
+                    <div class="arch-block arch-block-primary">Capital Shield API</div>
+                    <div class="arch-arrow">→</div>
+                    <div class="arch-block">Safety Gates</div>
+                    <div class="arch-arrow">→</div>
+                    <div class="arch-block">Execution Adapter<br><span class="arch-note">(external)</span></div>
+                    <div class="arch-arrow">→</div>
+                    <div class="arch-block">Market</div>
+                </div>
+                <div class="arch-side">
+                    <div class="arch-side-item">Metrics/Dashboard</div>
+                    <div class="arch-side-item">Config</div>
+                    <div class="arch-side-item">Simulation</div>
+                </div>
+            </div>
+            <ul class="architecture-features">
+                <li><strong>Separation of concerns</strong> — Risk enforcement before execution</li>
+                <li><strong>Integrates anywhere</strong> — REST API works with any trading stack</li>
+                <li><strong>Deterministic decisions</strong> — Same inputs produce same outputs</li>
+            </ul>
+            <div style="text-align: center; margin-top: 32px;">
+                <a href="technical.html" class="btn btn-secondary" aria-label="View technical appendix">Technical Appendix</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Beta Status + Roadmap -->
+    <section class="section beta-section" id="beta">
+        <div class="container">
+            <h2 class="section-title section-title-center">Beta Status & Roadmap</h2>
+            <div class="beta-status">
+                <p class="beta-statement">
+                    <strong>Controlled Beta:</strong> Core API + safety rails are production-grade. 
+                    Simulation adapters and deployment runbooks are under refinement.
+                </p>
+            </div>
+            <div class="roadmap">
+                <h3>Roadmap (Q1 2026 Public Release)</h3>
+                <ul class="roadmap-list">
+                    <li>Additional data adapters (beyond CoinGecko)</li>
+                    <li>Deployment runbooks (systemd/nginx templates)</li>
+                    <li>Strategy-agnostic connector interface</li>
+                    <li>Packaging + installer polish</li>
+                </ul>
+            </div>
+            <div class="beta-cta">
+                <a href="#contact" class="btn btn-primary" aria-label="Join the beta program">Join Beta</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quickstart -->
+    <section class="section quickstart-section" id="quickstart">
+        <div class="container">
+            <h2 class="section-title section-title-center">Quickstart: Getting Started with Capital Shield</h2>
+            <div class="quickstart-content">
+                <div class="code-block">
+                    <div class="code-header">
+                        <span>Install</span>
+                        <button class="copy-btn" aria-label="Copy code" data-copy="pip install -r requirements.txt">Copy</button>
+                    </div>
+                    <pre><code>pip install -r requirements.txt</code></pre>
+                </div>
+                <div class="code-block">
+                    <div class="code-header">
+                        <span>Run API</span>
+                        <button class="copy-btn" aria-label="Copy code" data-copy="python -m app.main">Copy</button>
+                    </div>
+                    <pre><code>python -m app.main</code></pre>
+                </div>
+                <div class="code-block">
+                    <div class="code-header">
+                        <span>Run Tests</span>
+                        <button class="copy-btn" aria-label="Copy code" data-copy="pytest tests/">Copy</button>
+                    </div>
+                    <pre><code>pytest tests/</code></pre>
+                </div>
+                <div class="code-block">
+                    <div class="code-header">
+                        <span>Run Simulation</span>
+                        <button class="copy-btn" aria-label="Copy code" data-copy="python -m live_sim.quick_demo">Copy</button>
+                    </div>
+                    <pre><code>python -m live_sim.quick_demo</code></pre>
+                </div>
+                <div class="code-block">
+                    <div class="code-header">
+                        <span>Open Dashboard</span>
+                        <button class="copy-btn" aria-label="Copy code" data-copy="http://localhost:8000/dashboard/">Copy</button>
+                    </div>
+                    <pre><code>http://localhost:8000/dashboard/</code></pre>
+                </div>
+                <div class="quickstart-docs">
+                    <p>For detailed documentation, see:</p>
+                    <ul>
+                        <li><a href="boonmindx_capital_shield/QUICKSTART.md">Quickstart Guide</a></li>
+                        <li><a href="boonmindx_capital_shield/INFRASTRUCTURE_INVENTORY.md">Infrastructure Inventory</a></li>
+                        <li><a href="boonmindx_capital_shield/PRODUCT_PITCH_ONEPAGER.md">Product Overview</a></li>
+                        <li><a href="technical.html">Technical Architecture</a></li>
+                        <li><a href="README.md">Repository Documentation</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Licensing -->
+    <section class="section licensing-section" id="licensing">
+        <div class="container">
+            <h2 class="section-title section-title-center">Licensing & Commercial Use</h2>
+            <div class="licensing-content">
+                <p class="licensing-text">
+                    Capital Shield is available under a commercial license for production use. 
+                    Evaluation and internal testing are permitted under limited terms. 
+                    Licensing is discussed case-by-case to accommodate different use cases and deployment requirements.
+                </p>
+                <div class="licensing-cta">
+                    <a href="mailto:info@boonmind.io?subject=Licensing%20Inquiry" class="btn btn-primary" aria-label="Discuss licensing">Discuss licensing</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="section faq-section" id="faq">
+        <div class="container">
+            <h2 class="section-title section-title-center">Frequently Asked Questions</h2>
+            <div class="faq-list">
+                <article class="faq-item">
+                    <h3 class="faq-question">Is Capital Shield a trading bot?</h3>
+                    <p class="faq-answer">
+                        No. Capital Shield is risk-first trading infrastructure, not a trading bot. It does not generate buy/sell signals, 
+                        seek alpha, or execute trades. It sits between your trading strategy and execution, enforcing deterministic 
+                        safety gates and capital protection rules. You bring your own strategy; Capital Shield enforces the safety rails.
+                    </p>
+                </article>
+                <article class="faq-item">
+                    <h3 class="faq-question">Does Capital Shield generate alpha or guarantee profits?</h3>
+                    <p class="faq-answer">
+                        No. Capital Shield is infrastructure software designed to reduce risk, not generate returns. It enforces 
+                        deterministic execution constraints (max drawdown limits, regime guards, health checks) but makes no claims 
+                        about profitability, alpha generation, or trading performance. This is capital protection infrastructure, 
+                        not an alpha engine.
+                    </p>
+                </article>
+                <article class="faq-item">
+                    <h3 class="faq-question">Who is Capital Shield for?</h3>
+                    <p class="faq-answer">
+                        Capital Shield is designed for quantitative trading teams, fund engineers, and system developers who need 
+                        deterministic risk controls in their trading infrastructure. It's for teams building strategy-agnostic 
+                        execution safety frameworks, integrating risk management into existing trading stacks, or validating safety 
+                        rails against historical market crashes. Not for retail traders seeking profitable bots.
+                    </p>
+                </article>
+                <article class="faq-item">
+                    <h3 class="faq-question">How does Capital Shield integrate with trading strategies?</h3>
+                    <p class="faq-answer">
+                        Capital Shield is strategy-agnostic. Your trading strategy generates signals (BUY/SELL/HOLD), which are sent 
+                        to the Capital Shield API. The API evaluates each signal against deterministic safety rails (max drawdown, 
+                        regime guard, health check) and returns an allow/block decision with structured rejection reasons. Only 
+                        allowed trades proceed to execution. This infrastructure sits between strategy and capital, enforcing 
+                        deterministic execution constraints regardless of signal source.
+                    </p>
+                </article>
+                <article class="faq-item">
+                    <h3 class="faq-question">Why does risk-first architecture matter for algorithmic trading?</h3>
+                    <p class="faq-answer">
+                        Risk-first architecture separates safety enforcement from signal generation. This allows you to validate 
+                        safety rails independently, measure the cost of safety before deployment, and enforce deterministic 
+                        execution constraints that cannot be bypassed by trading logic. Unlike black-box strategies or alpha-seeking 
+                        bots, risk-first infrastructure provides transparent, testable, strategy-agnostic capital protection. 
+                        This matters for funds, quants, and system developers who need deterministic risk controls in production.
+                    </p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form -->
+    <section class="section contact-section" id="contact">
+        <div class="container">
+            <h2 class="section-title section-title-center">Get in Touch</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <p>For beta access, licensing inquiries, or general questions, please use the form below.</p>
+                    <p class="contact-email">Email: <a href="mailto:info@boonmind.io">info@boonmind.io</a></p>
+                </div>
+                <form name="contact" method="POST" netlify netlify-honeypot="bot-field" class="contact-form">
+                    <input type="hidden" name="form-name" value="contact">
+                    <p class="hidden">
+                        <label>Don't fill this out if you're human: <input name="bot-field" /></label>
+                    </p>
+                    
+                    <div class="form-group">
+                        <label for="name">Name <span class="required">*</span></label>
+                        <input type="text" id="name" name="name" required aria-required="true" />
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email <span class="required">*</span></label>
+                        <input type="email" id="email" name="email" required aria-required="true" />
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="subject">Subject <span class="required">*</span></label>
+                        <select id="subject" name="subject" required aria-required="true">
+                            <option value="">Select a topic...</option>
+                            <option value="beta-access">Beta Access Request</option>
+                            <option value="licensing">Licensing Inquiry</option>
+                            <option value="technical">Technical Question</option>
+                            <option value="partnership">Partnership Inquiry</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Message <span class="required">*</span></label>
+                        <textarea id="message" name="message" rows="6" required aria-required="true"></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Disclaimer -->
+    <section class="section disclaimer-section">
+        <div class="container">
+            <div class="disclaimer">
+                <p><strong>Disclaimer:</strong> No financial advice. No performance guarantees. Infrastructure only.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <span class="logo-text">BoonMindX</span>
+                    <span class="product-name">Capital Shield</span>
+                </div>
+                <div class="footer-links">
+                    <a href="#" id="github-link-footer" aria-label="GitHub repository">GitHub</a>
+                    <a href="boonmindx_capital_shield/README.md">Docs</a>
+                    <a href="technical.html">Technical</a>
+                    <a href="#contact" aria-label="Contact us">Contact</a>
+                </div>
+            </div>
+            <div class="footer-copyright">
+                <p>&copy; 2025 BoonMindX. All rights reserved.</p>
+                <p style="margin-top: 8px; font-size: 12px; color: var(--text-muted);">Commercial licensing available. Contact: <a href="mailto:info@boonmind.io" style="color: var(--accent); text-decoration: none;">info@boonmind.io</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>

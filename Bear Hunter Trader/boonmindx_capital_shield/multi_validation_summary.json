@@ -1,0 +1,18 @@
+{
+  "datasets": [],
+  "total_datasets": 0,
+  "symbols": [
+    "BEAR_000",
+    "BEAR_001",
+    "BULL_150",
+    "BULL_151"
+  ],
+  "presets_tested": [
+    "conservative",
+    "balanced",
+    "aggressive"
+  ],
+  "initial_equity": 100000.0,
+  "start_date": null,
+  "end_date": null
+}

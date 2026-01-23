@@ -1,0 +1,19 @@
+{
+  "scenario": {
+    "id": "COIN003",
+    "seed": 0,
+    "market_regime": "ROUND2_PLACEHOLDER",
+    "notes": "Round 2 scenario for COIN003",
+    "timeframe": "30m"
+  },
+  "status": "TODO_INTEGRATE_LIVE_SIM",
+  "metrics": {
+    "final_equity": 10571.148716238748,
+    "max_drawdown": -0.2019672131147541,
+    "win_rate": 0.5959595959595959,
+    "num_trades": 198,
+    "rsa": 0.6632951113485916
+  },
+  "starting_capital": 10000.0,
+  "leverage": 0.05
+}
