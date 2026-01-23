@@ -41,6 +41,7 @@
                 <li><a href="#overview" aria-label="Overview section">Overview</a></li>
                 <li><a href="#capabilities" aria-label="Capabilities section">Capabilities</a></li>
                 <li><a href="#architecture" aria-label="Architecture section">Architecture</a></li>
+                <li><a href="demo.html" aria-label="Interactive demo">Interactive Demo</a></li>
                 <li><a href="#quickstart" aria-label="Quickstart section">Quickstart</a></li>
                 <li><a href="#beta" aria-label="Beta section">Beta</a></li>
                 <li><a href="#licensing" aria-label="Licensing section">Licensing</a></li>
@@ -59,11 +60,12 @@
         </div>
         <div class="container">
             <div class="hero-content">
-                <h1 class="hero-title">Capital Shield: Risk-First Trading Infrastructure</h1>
-                <p class="hero-subtitle">Execution safety framework for algorithmic trading systems. Strategy-agnostic deterministic risk controls.</p>
+                <h1 class="hero-title">Protect Your Capital from Runaway Algorithms</h1>
+                <p class="hero-subtitle">Capital Shield: Risk-First Trading Infrastructure</p>
                 <p class="hero-description">
-                    Capital Shield sits between strategy and capital. This risk-first trading infrastructure enforces deterministic execution constraints, 
-                    regime awareness, and explicit rejection reasons before trades reach the market. Designed for integration, not returns.
+                    Algorithmic trading systems can spiral out of control—unchecked drawdowns, regime-blind execution, and silent failures. 
+                    Capital Shield sits between your strategy and capital, enforcing deterministic execution constraints, regime awareness, 
+                    and explicit rejection reasons before trades reach the market. This risk-first infrastructure protects capital, not generates returns.
                 </p>
                 <div class="hero-badges">
                     <span class="badge">Controlled Beta</span>
@@ -72,8 +74,105 @@
                     <span class="badge">Q1 2026 public release</span>
                 </div>
                 <div class="hero-ctas">
-                    <a href="#quickstart" class="btn btn-primary" aria-label="Read the documentation">Read the Docs</a>
-                    <a href="#" id="github-link-hero" class="btn btn-secondary" aria-label="View on GitHub">View on GitHub</a>
+                    <a href="demo.html" class="btn btn-primary" aria-label="Try the interactive demo">Interactive Demo</a>
+                    <a href="#contact" class="btn btn-secondary" aria-label="Join the controlled beta">Join Controlled Beta</a>
+                    <a href="#quickstart" class="btn btn-secondary" aria-label="Read the documentation">Read the Docs</a>
+                    <a href="https://github.com/CBoon99/Capital-Shield" id="github-link-hero" class="btn btn-secondary" target="_blank" rel="noopener noreferrer" aria-label="View on GitHub">View on GitHub</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Where Capital Shield Sits Diagram -->
+    <section class="section diagram-section">
+        <div class="container">
+            <div class="diagram-container">
+                <svg viewBox="0 0 900 280" class="capital-shield-diagram" aria-label="Where Capital Shield Sits in the Trading Stack">
+                    <title>Where Capital Shield Sits: Strategy Engine → Capital Shield → Execution</title>
+                    
+                    <!-- Box 1: Strategy / Signal Engine -->
+                    <g>
+                        <rect x="20" y="100" width="200" height="120" rx="8" fill="rgba(46, 168, 255, 0.08)" stroke="rgba(120, 170, 255, 0.3)" stroke-width="1.5"/>
+                        <text x="120" y="135" text-anchor="middle" fill="#EAF2FF" font-size="16" font-weight="600" font-family="Inter, sans-serif">Strategy / Signal Engine</text>
+                        <text x="120" y="160" text-anchor="middle" fill="rgba(234, 242, 255, 0.72)" font-size="13" font-family="Inter, sans-serif">(any logic)</text>
+                        <line x1="20" y1="180" x2="220" y2="180" stroke="rgba(120, 170, 255, 0.2)" stroke-width="1"/>
+                        <text x="120" y="200" text-anchor="middle" fill="rgba(234, 242, 255, 0.72)" font-size="12" font-family="Inter, sans-serif">• Signal generation</text>
+                        <text x="120" y="218" text-anchor="middle" fill="rgba(234, 242, 255, 0.72)" font-size="12" font-family="Inter, sans-serif">• Alpha strategies</text>
+                    </g>
+                    
+                    <!-- Arrow 1: trade intents -->
+                    <g>
+                        <path d="M 240 160 L 300 160" stroke="#2EA8FF" stroke-width="2.5" marker-end="url(#arrowhead-blue)"/>
+                        <text x="270" y="150" text-anchor="middle" fill="#2EA8FF" font-size="12" font-weight="500" font-family="Inter, sans-serif">trade intents</text>
+                    </g>
+                    
+                    <!-- Box 2: Capital Shield (highlighted) -->
+                    <g>
+                        <rect x="320" y="60" width="280" height="200" rx="8" fill="rgba(46, 168, 255, 0.15)" stroke="#2EA8FF" stroke-width="2.5"/>
+                        <text x="460" y="95" text-anchor="middle" fill="#2EA8FF" font-size="18" font-weight="700" font-family="Inter, sans-serif">Capital Shield</text>
+                        <text x="460" y="120" text-anchor="middle" fill="#2EA8FF" font-size="14" font-weight="600" font-family="Inter, sans-serif">Deterministic Risk Gates</text>
+                        <line x1="340" y1="135" x2="580" y2="135" stroke="#2EA8FF" stroke-width="1" opacity="0.5"/>
+                        <text x="350" y="158" text-anchor="start" fill="#EAF2FF" font-size="13" font-family="Inter, sans-serif">• Drawdown limits</text>
+                        <text x="350" y="180" text-anchor="start" fill="#EAF2FF" font-size="13" font-family="Inter, sans-serif">• Regime filters</text>
+                        <text x="350" y="202" text-anchor="start" fill="#EAF2FF" font-size="13" font-family="Inter, sans-serif">• Trade sanity checks</text>
+                        <text x="350" y="224" text-anchor="start" fill="#EAF2FF" font-size="13" font-family="Inter, sans-serif">• Kill switch</text>
+                    </g>
+                    
+                    <!-- Arrow 2: allowed trades only -->
+                    <g>
+                        <path d="M 620 160 L 680 160" stroke="#2EA8FF" stroke-width="2.5" marker-end="url(#arrowhead-blue)"/>
+                        <text x="650" y="150" text-anchor="middle" fill="#2EA8FF" font-size="12" font-weight="500" font-family="Inter, sans-serif">allowed trades only</text>
+                    </g>
+                    
+                    <!-- Box 3: Execution / Exchange -->
+                    <g>
+                        <rect x="700" y="100" width="180" height="120" rx="8" fill="rgba(46, 168, 255, 0.08)" stroke="rgba(120, 170, 255, 0.3)" stroke-width="1.5"/>
+                        <text x="790" y="135" text-anchor="middle" fill="#EAF2FF" font-size="16" font-weight="600" font-family="Inter, sans-serif">Execution / Exchange</text>
+                        <text x="790" y="160" text-anchor="middle" fill="rgba(234, 242, 255, 0.72)" font-size="13" font-family="Inter, sans-serif">(broker / venue / API)</text>
+                        <line x1="700" y1="180" x2="880" y2="180" stroke="rgba(120, 170, 255, 0.2)" stroke-width="1"/>
+                        <text x="790" y="200" text-anchor="middle" fill="rgba(234, 242, 255, 0.72)" font-size="12" font-family="Inter, sans-serif">• Order execution</text>
+                        <text x="790" y="218" text-anchor="middle" fill="rgba(234, 242, 255, 0.72)" font-size="12" font-family="Inter, sans-serif">• Market access</text>
+                    </g>
+                    
+                    <!-- Arrow marker definition -->
+                    <defs>
+                        <marker id="arrowhead-blue" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                            <polygon points="0 0, 10 3, 0 6" fill="#2EA8FF"/>
+                        </marker>
+                    </defs>
+                </svg>
+            </div>
+            
+            <!-- Stats Strip -->
+            <div class="stats-strip">
+                <div class="stat-item">
+                    <svg class="stat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                        <path d="M2 17l10 5 10-5M2 12l10 5 10-5"/>
+                    </svg>
+                    <div class="stat-content">
+                        <strong>Strategy-agnostic integration</strong>
+                        <span>Works with any trading strategy or signal generator</span>
+                    </div>
+                </div>
+                <div class="stat-item">
+                    <svg class="stat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9 11l3 3L22 4"/>
+                        <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
+                    </svg>
+                    <div class="stat-content">
+                        <strong>Deterministic gates (explainable)</strong>
+                        <span>Same inputs produce same outputs with clear rejection reasons</span>
+                    </div>
+                </div>
+                <div class="stat-item">
+                    <svg class="stat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                    </svg>
+                    <div class="stat-content">
+                        <strong>Fail-closed defaults</strong>
+                        <span>Safety gates block trades by default when uncertain</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -226,7 +325,50 @@
         <div class="container">
             <h2 class="section-title section-title-center">Architecture: Strategy-Agnostic Execution Safety Framework</h2>
             <div class="architecture-diagram">
-                <div class="arch-flow">
+                <!-- Inline SVG Architecture Visual -->
+                <div style="max-width: 900px; margin: 0 auto 48px; padding: 32px; background: var(--bg-surface); border: 1px solid var(--border); border-radius: 16px;">
+                    <svg viewBox="0 0 800 200" style="width: 100%; height: auto;">
+                        <!-- Flow boxes -->
+                        <rect x="20" y="80" width="120" height="40" rx="4" fill="rgba(46, 168, 255, 0.1)" stroke="var(--border)" stroke-width="1"/>
+                        <text x="80" y="105" text-anchor="middle" fill="var(--text-primary)" font-size="12" font-weight="500">Strategy/Signal</text>
+                        
+                        <path d="M 150 100 L 200 100" stroke="var(--accent)" stroke-width="2" marker-end="url(#arrowhead)"/>
+                        
+                        <rect x="220" y="60" width="140" height="80" rx="4" fill="rgba(46, 168, 255, 0.2)" stroke="var(--accent)" stroke-width="2"/>
+                        <text x="290" y="95" text-anchor="middle" fill="var(--accent)" font-size="13" font-weight="600">Capital Shield API</text>
+                        <text x="290" y="115" text-anchor="middle" fill="var(--text-muted)" font-size="11">Safety Gates</text>
+                        
+                        <path d="M 370 100 L 420 100" stroke="var(--accent)" stroke-width="2" marker-end="url(#arrowhead)"/>
+                        
+                        <rect x="440" y="80" width="120" height="40" rx="4" fill="rgba(46, 168, 255, 0.1)" stroke="var(--border)" stroke-width="1"/>
+                        <text x="500" y="100" text-anchor="middle" fill="var(--text-primary)" font-size="11" font-weight="500">Execution</text>
+                        <text x="500" y="115" text-anchor="middle" fill="var(--text-muted)" font-size="10">Adapter</text>
+                        
+                        <path d="M 570 100 L 620 100" stroke="var(--accent)" stroke-width="2" marker-end="url(#arrowhead)"/>
+                        
+                        <rect x="640" y="80" width="120" height="40" rx="4" fill="rgba(46, 168, 255, 0.1)" stroke="var(--border)" stroke-width="1"/>
+                        <text x="700" y="105" text-anchor="middle" fill="var(--text-primary)" font-size="12" font-weight="500">Market</text>
+                        
+                        <!-- Side components -->
+                        <rect x="240" y="160" width="100" height="30" rx="4" fill="rgba(124, 92, 255, 0.1)" stroke="rgba(124, 92, 255, 0.3)" stroke-width="1"/>
+                        <text x="290" y="180" text-anchor="middle" fill="var(--accent-2)" font-size="11">Metrics/Dashboard</text>
+                        
+                        <rect x="360" y="160" width="80" height="30" rx="4" fill="rgba(124, 92, 255, 0.1)" stroke="rgba(124, 92, 255, 0.3)" stroke-width="1"/>
+                        <text x="400" y="180" text-anchor="middle" fill="var(--accent-2)" font-size="11">Config</text>
+                        
+                        <rect x="460" y="160" width="100" height="30" rx="4" fill="rgba(124, 92, 255, 0.1)" stroke="rgba(124, 92, 255, 0.3)" stroke-width="1"/>
+                        <text x="510" y="180" text-anchor="middle" fill="var(--accent-2)" font-size="11">Simulation</text>
+                        
+                        <!-- Arrow marker definition -->
+                        <defs>
+                            <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                                <polygon points="0 0, 10 3, 0 6" fill="var(--accent)"/>
+                            </marker>
+                        </defs>
+                    </svg>
+                </div>
+                <!-- Text-based fallback for smaller screens -->
+                <div class="arch-flow" style="display: none;">
                     <div class="arch-block">Strategy/Signal</div>
                     <div class="arch-arrow">→</div>
                     <div class="arch-block arch-block-primary">Capital Shield API</div>
@@ -322,11 +464,11 @@
                 <div class="quickstart-docs">
                     <p>For detailed documentation, see:</p>
                     <ul>
-                        <li><a href="boonmindx_capital_shield/QUICKSTART.md">Quickstart Guide</a></li>
-                        <li><a href="boonmindx_capital_shield/INFRASTRUCTURE_INVENTORY.md">Infrastructure Inventory</a></li>
-                        <li><a href="boonmindx_capital_shield/PRODUCT_PITCH_ONEPAGER.md">Product Overview</a></li>
+                        <li><a href="https://github.com/CBoon99/Capital-Shield/blob/main/boonmindx_capital_shield/QUICKSTART.md" target="_blank" rel="noopener noreferrer">Quickstart Guide</a></li>
+                        <li><a href="https://github.com/CBoon99/Capital-Shield/blob/main/boonmindx_capital_shield/INFRASTRUCTURE_INVENTORY.md" target="_blank" rel="noopener noreferrer">Infrastructure Inventory</a></li>
+                        <li><a href="https://github.com/CBoon99/Capital-Shield/blob/main/boonmindx_capital_shield/PRODUCT_PITCH_ONEPAGER.md" target="_blank" rel="noopener noreferrer">Product Overview</a></li>
                         <li><a href="technical.html">Technical Architecture</a></li>
-                        <li><a href="README.md">Repository Documentation</a></li>
+                        <li><a href="https://github.com/CBoon99/Capital-Shield/blob/main/README.md" target="_blank" rel="noopener noreferrer">Repository Documentation</a></li>
                     </ul>
                 </div>
             </div>
@@ -414,11 +556,13 @@
                     <p>For beta access, licensing inquiries, or general questions, please use the form below.</p>
                     <p class="contact-email">Email: <a href="mailto:info@boonmind.io">info@boonmind.io</a></p>
                 </div>
-                <form name="contact" method="POST" netlify netlify-honeypot="bot-field" class="contact-form">
+                <form name="contact" method="POST" action="/thanks/" data-netlify="true" netlify-honeypot="bot-field" class="contact-form" id="contact-form">
                     <input type="hidden" name="form-name" value="contact">
                     <p class="hidden">
                         <label>Don't fill this out if you're human: <input name="bot-field" /></label>
                     </p>
+                    
+                    <div id="form-messages"></div>
                     
                     <div class="form-group">
                         <label for="name">Name <span class="required">*</span></label>
@@ -447,7 +591,7 @@
                         <textarea id="message" name="message" rows="6" required aria-required="true"></textarea>
                     </div>
                     
-                    <button type="submit" class="btn btn-primary">Send Message</button>
+                    <button type="submit" class="btn btn-primary" id="submit-btn">Send Message</button>
                 </form>
             </div>
         </div>
@@ -471,8 +615,8 @@
                     <span class="product-name">Capital Shield</span>
                 </div>
                 <div class="footer-links">
-                    <a href="#" id="github-link-footer" aria-label="GitHub repository">GitHub</a>
-                    <a href="boonmindx_capital_shield/README.md">Docs</a>
+                    <a href="https://github.com/CBoon99/Capital-Shield" id="github-link-footer" target="_blank" rel="noopener noreferrer" aria-label="GitHub repository">GitHub</a>
+                    <a href="https://github.com/CBoon99/Capital-Shield/blob/main/boonmindx_capital_shield/README.md" target="_blank" rel="noopener noreferrer">Docs</a>
                     <a href="technical.html">Technical</a>
                     <a href="#contact" aria-label="Contact us">Contact</a>
                 </div>

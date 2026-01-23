@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Capital Shield Interactive Demo: Risk Scenario Simulator demonstrating deterministic safety gates for algorithmic trading systems.">
+    <meta name="keywords" content="trading risk simulator, capital shield demo, risk management demo, algorithmic trading safety gates">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Capital Shield - Interactive Risk Scenario Simulator">
+    <meta property="og:description" content="Demonstrate deterministic safety gates: drawdown limits, regime filters, and fail-closed defaults for algorithmic trading systems.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://YOUR-NETLIFY-SITE.netlify.app/demo.html">
+    
+    <title>Capital Shield - Interactive Risk Scenario Simulator</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%232EA8FF'/><path d='M50 20 L30 50 L50 45 L70 50 Z' fill='%23071225'/><rect x='40' y='50' width='20' height='30' fill='%23071225'/></svg>">
+    <style>
+        .demo-section {
+            padding: 120px 0 80px;
+        }
+        
+        .demo-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .demo-header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+        
+        .demo-header h1 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .demo-header p {
+            font-size: 18px;
+            color: var(--text-muted);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .demo-disclaimer {
+            padding: 16px;
+            background: rgba(124, 92, 255, 0.1);
+            border: 1px solid rgba(124, 92, 255, 0.3);
+            border-radius: 8px;
+            margin-bottom: 32px;
+            text-align: center;
+        }
+        
+        .demo-disclaimer p {
+            margin: 0;
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+        
+        .demo-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+            margin-bottom: 32px;
+        }
+        
+        .demo-inputs {
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 32px;
+        }
+        
+        .demo-output {
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 32px;
+        }
+        
+        .presets-section {
+            margin-bottom: 32px;
+        }
+        
+        .presets-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 16px;
+        }
+        
+        .presets-buttons {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        
+        .preset-btn {
+            padding: 10px 20px;
+            background: rgba(46, 168, 255, 0.1);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--accent);
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: var(--font-family);
+        }
+        
+        .preset-btn:hover {
+            background: rgba(46, 168, 255, 0.2);
+            border-color: var(--accent);
+        }
+        
+        .form-group {
+            margin-bottom: 24px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--text-primary);
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        .form-group input[type="number"],
+        .form-group input[type="range"],
+        .form-group select {
+            width: 100%;
+            padding: 12px 16px;
+            background: rgba(46, 168, 255, 0.05);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-family: var(--font-family);
+            font-size: 14px;
+        }
+        
+        .form-group input[type="range"] {
+            padding: 0;
+            height: 8px;
+            -webkit-appearance: none;
+            appearance: none;
+            background: rgba(46, 168, 255, 0.1);
+            border-radius: 4px;
+        }
+        
+        .form-group input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 18px;
+            height: 18px;
+            background: var(--accent);
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        
+        .form-group input[type="range"]::-moz-range-thumb {
+            width: 18px;
+            height: 18px;
+            background: var(--accent);
+            border-radius: 50%;
+            cursor: pointer;
+            border: none;
+        }
+        
+        .form-group input[type="number"]:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--accent);
+            background: rgba(46, 168, 255, 0.1);
+            box-shadow: 0 0 0 3px rgba(46, 168, 255, 0.1);
+        }
+        
+        .range-value {
+            display: inline-block;
+            margin-left: 12px;
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 14px;
+        }
+        
+        .run-button {
+            width: 100%;
+            padding: 16px;
+            background: var(--accent);
+            color: var(--bg-primary);
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: var(--font-family);
+            margin-top: 8px;
+        }
+        
+        .run-button:hover {
+            background: #1E9AE8;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(46, 168, 255, 0.3);
+        }
+        
+        .run-button:active {
+            transform: translateY(0);
+        }
+        
+        .output-panel {
+            min-height: 400px;
+        }
+        
+        .decision-badge {
+            display: inline-block;
+            padding: 16px 32px;
+            border-radius: 12px;
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            text-align: center;
+            width: 100%;
+        }
+        
+        .decision-allow {
+            background: rgba(46, 168, 255, 0.2);
+            color: var(--accent);
+            border: 2px solid var(--accent);
+        }
+        
+        .decision-block {
+            background: rgba(255, 68, 68, 0.2);
+            color: #FF4444;
+            border: 2px solid #FF4444;
+        }
+        
+        .reason-codes {
+            margin-bottom: 32px;
+        }
+        
+        .reason-codes-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 16px;
+        }
+        
+        .reason-list {
+            list-style: none;
+        }
+        
+        .reason-item {
+            padding: 12px 16px;
+            margin-bottom: 8px;
+            background: rgba(46, 168, 255, 0.05);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+        
+        .reason-item.triggered {
+            background: rgba(255, 68, 68, 0.1);
+            border-color: rgba(255, 68, 68, 0.3);
+            color: #FF4444;
+        }
+        
+        .reason-item code {
+            background: rgba(46, 168, 255, 0.1);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-family: 'Monaco', 'Menlo', 'Courier New', monospace;
+        }
+        
+        .inputs-snapshot {
+            margin-top: 32px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border);
+        }
+        
+        .snapshot-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+        }
+        
+        .snapshot-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+        
+        .snapshot-item {
+            font-size: 13px;
+        }
+        
+        .snapshot-label {
+            color: var(--text-muted);
+            margin-bottom: 4px;
+        }
+        
+        .snapshot-value {
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+        
+        .output-empty {
+            text-align: center;
+            color: var(--text-muted);
+            padding: 60px 20px;
+        }
+        
+        .output-empty svg {
+            width: 64px;
+            height: 64px;
+            margin-bottom: 16px;
+            opacity: 0.5;
+        }
+        
+        @media (max-width: 768px) {
+            .demo-layout {
+                grid-template-columns: 1fr;
+            }
+            
+            .demo-header h1 {
+                font-size: 36px;
+            }
+            
+            .snapshot-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header" id="header">
+        <nav class="nav container">
+            <div class="nav-brand">
+                <span class="logo-text">BoonMindX</span>
+                <span class="product-name">Capital Shield</span>
+            </div>
+            <ul class="nav-links" role="navigation" aria-label="Main navigation">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#overview">Overview</a></li>
+                <li><a href="index.html#architecture">Architecture</a></li>
+                <li><a href="demo.html">Interactive Demo</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+            <a href="index.html#contact" class="btn btn-primary btn-small" aria-label="Request beta access">Request Beta Access</a>
+        </nav>
+    </header>
+
+    <!-- Demo Section -->
+    <section class="section demo-section">
+        <div class="container demo-container">
+            <div class="demo-header">
+                <h1>Risk Scenario Simulator</h1>
+                <p>Demonstrate deterministic safety gates: drawdown limits, regime filters, and fail-closed defaults for algorithmic trading systems.</p>
+            </div>
+            
+            <div class="demo-disclaimer">
+                <p><strong>Note:</strong> This demo demonstrates deterministic safety gates only. No claims of profitability or trading performance.</p>
+            </div>
+            
+            <div class="demo-layout">
+                <!-- Inputs Panel -->
+                <div class="demo-inputs">
+                    <div class="presets-section">
+                        <div class="presets-title">Quick Presets</div>
+                        <div class="presets-buttons">
+                            <button class="preset-btn" data-preset="flash-crash">Flash Crash</button>
+                            <button class="preset-btn" data-preset="choppy-noise">Choppy Noise</button>
+                            <button class="preset-btn" data-preset="healthy-trend">Healthy Trend</button>
+                        </div>
+                    </div>
+                    
+                    <form id="demo-form">
+                        <div class="form-group">
+                            <label for="drawdownPercent">
+                                Drawdown Percent
+                                <span class="range-value" id="drawdownValue">12%</span>
+                            </label>
+                            <input type="range" id="drawdownPercent" name="drawdownPercent" min="0" max="100" value="12" step="0.1">
+                            <input type="number" id="drawdownPercentInput" min="0" max="100" value="12" step="0.1" style="margin-top: 8px;">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="volatilityRegime">Volatility Regime</label>
+                            <select id="volatilityRegime" name="volatilityRegime">
+                                <option value="low">Low</option>
+                                <option value="medium" selected>Medium</option>
+                                <option value="high">High</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="slippageBps">
+                                Slippage (basis points)
+                                <span class="range-value" id="slippageValue">50 bps</span>
+                            </label>
+                            <input type="range" id="slippageBps" name="slippageBps" min="0" max="500" value="50" step="1">
+                            <input type="number" id="slippageBpsInput" min="0" max="500" value="50" step="1" style="margin-top: 8px;">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="signalConfidence">
+                                Signal Confidence
+                                <span class="range-value" id="confidenceValue">75%</span>
+                            </label>
+                            <input type="range" id="signalConfidence" name="signalConfidence" min="0" max="100" value="75" step="1">
+                            <input type="number" id="signalConfidenceInput" min="0" max="100" value="75" step="1" style="margin-top: 8px;">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="apiHealth">API Health</label>
+                            <select id="apiHealth" name="apiHealth">
+                                <option value="ok" selected>OK</option>
+                                <option value="degraded">Degraded</option>
+                                <option value="down">Down</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="killSwitch">Kill Switch</label>
+                            <select id="killSwitch" name="killSwitch">
+                                <option value="off" selected>Off</option>
+                                <option value="on">On</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="positionSizePercent">
+                                Position Size Percent
+                                <span class="range-value" id="positionValue">5%</span>
+                            </label>
+                            <input type="range" id="positionSizePercent" name="positionSizePercent" min="0" max="100" value="5" step="0.1">
+                            <input type="number" id="positionSizePercentInput" min="0" max="100" value="5" step="0.1" style="margin-top: 8px;">
+                        </div>
+                        
+                        <button type="submit" class="run-button" id="run-button">Run Capital Shield</button>
+                    </form>
+                </div>
+                
+                <!-- Output Panel -->
+                <div class="demo-output">
+                    <div class="output-panel" id="output-panel">
+                        <div class="output-empty">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M9 11l3 3L22 4"/>
+                                <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
+                            </svg>
+                            <p>Adjust the inputs and click "Run Capital Shield" to see the deterministic safety gate evaluation.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <span class="logo-text">BoonMindX</span>
+                    <span class="product-name">Capital Shield</span>
+                </div>
+                <div class="footer-links">
+                    <a href="https://github.com/CBoon99/Capital-Shield" target="_blank" rel="noopener noreferrer">GitHub</a>
+                    <a href="index.html#contact">Contact</a>
+                    <a href="demo.html">Demo</a>
+                </div>
+            </div>
+            <div class="footer-copyright">
+                <p>&copy; 2025 BoonMindX. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+    <script src="demo.js"></script>
+</body>
+</html>

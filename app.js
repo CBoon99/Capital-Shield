@@ -6,8 +6,8 @@
 (function() {
     'use strict';
 
-    // GitHub repository URL (update this when repo URL is known)
-    const GITHUB_REPO_URL = '#'; // TODO: Set actual GitHub repo URL
+    // GitHub repository URL
+    const GITHUB_REPO_URL = 'https://github.com/CBoon99/Capital-Shield';
 
     // Smooth scroll for anchor links
     function initSmoothScroll() {
@@ -136,45 +136,91 @@
 
     // Handle Netlify form submission
     function initContactForm() {
-        const form = document.querySelector('.contact-form');
+        const form = document.getElementById('contact-form');
         if (!form) return;
+
+        const submitBtn = document.getElementById('submit-btn');
+        const messagesDiv = document.getElementById('form-messages');
 
         form.addEventListener('submit', function(e) {
-            // Netlify will handle the submission
-            // Show success message after redirect
-            const urlParams = new URLSearchParams(window.location.search);
-            if (urlParams.get('form') === 'contact' && urlParams.get('success') === 'true') {
-                showFormSuccess();
+            // Clear previous messages
+            messagesDiv.innerHTML = '';
+            
+            // Validate form before submission
+            if (!validateForm(form)) {
+                e.preventDefault();
+                return false;
             }
+            
+            // Disable submit button and show "Sending..." state
+            // Let Netlify handle the form submission naturally
+            // The form will submit to action="/thanks/" and Netlify will process it
+            submitBtn.disabled = true;
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = 'Sending...';
+            
+            // Form will submit naturally - Netlify processes it and redirects to /thanks/
+            // If there's a network error, the browser will handle it
+            // Button stays disabled to prevent double-submission
         });
     }
 
-    function showFormSuccess() {
-        const form = document.querySelector('.contact-form');
-        if (!form) return;
-
-        const successMsg = document.createElement('div');
-        successMsg.className = 'form-success';
-        successMsg.textContent = 'Thank you! Your message has been sent. We\'ll get back to you soon.';
-        form.insertBefore(successMsg, form.firstChild);
+    function validateForm(form) {
+        const name = form.querySelector('#name').value.trim();
+        const email = form.querySelector('#email').value.trim();
+        const subject = form.querySelector('#subject').value;
+        const message = form.querySelector('#message').value.trim();
+        const messagesDiv = document.getElementById('form-messages');
         
-        // Reset form
-        form.reset();
+        // Clear previous messages
+        messagesDiv.innerHTML = '';
         
-        // Scroll to success message
-        successMsg.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        let isValid = true;
+        let errors = [];
+        
+        if (!name) {
+            errors.push('Name is required');
+            isValid = false;
+        }
+        
+        if (!email) {
+            errors.push('Email is required');
+            isValid = false;
+        } else if (!isValidEmail(email)) {
+            errors.push('Please enter a valid email address');
+            isValid = false;
+        }
+        
+        if (!subject) {
+            errors.push('Please select a subject');
+            isValid = false;
+        }
+        
+        if (!message) {
+            errors.push('Message is required');
+            isValid = false;
+        }
+        
+        if (!isValid) {
+            showFormMessage(messagesDiv, 'error', errors.join('. '));
+        }
+        
+        return isValid;
     }
 
-    // Initialize GitHub links
-    function initGitHubLinks() {
-        const links = document.querySelectorAll('#github-link, #github-link-hero, #github-link-footer');
-        links.forEach(link => {
-            if (GITHUB_REPO_URL !== '#') {
-                link.href = GITHUB_REPO_URL;
-            } else {
-                link.style.display = 'none'; // Hide if not set
-            }
-        });
+    function isValidEmail(email) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+    }
+
+    function showFormMessage(container, type, message) {
+        const msgDiv = document.createElement('div');
+        msgDiv.className = type === 'error' ? 'form-error' : 'form-success';
+        msgDiv.textContent = message;
+        container.appendChild(msgDiv);
+        
+        // Scroll to message
+        msgDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }
 
     // Initialize everything when DOM is ready
@@ -184,7 +230,6 @@
         initHeaderScroll();
         initScrollAnimations();
         initContactForm();
-        initGitHubLinks();
     }
 
     // Run on DOMContentLoaded
