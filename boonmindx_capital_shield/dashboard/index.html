@@ -59,6 +59,28 @@
             </div>
         </section>
 
+        <!-- Usage Stats Section -->
+        <section class="usage-section" style="margin-top: 32px; padding: 24px; background: var(--bg-surface, #0B1B33); border: 1px solid var(--border, rgba(120, 170, 255, 0.18)); border-radius: 12px;">
+            <h2 style="font-size: 20px; font-weight: 600; margin-bottom: 24px; color: var(--text-primary, #EAF2FF);">API Usage Statistics</h2>
+            <div class="usage-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 24px;">
+                <div class="usage-card">
+                    <div class="usage-label" style="color: var(--text-muted, rgba(234, 242, 255, 0.72)); font-size: 14px; margin-bottom: 8px;">Daily Usage</div>
+                    <div class="usage-value" id="daily-usage" style="font-size: 32px; font-weight: 700; color: var(--accent, #2EA8FF);">—</div>
+                    <div class="usage-limit" id="daily-limit" style="color: var(--text-muted, rgba(234, 242, 255, 0.72)); font-size: 14px; margin-top: 4px;">of —</div>
+                </div>
+                <div class="usage-card">
+                    <div class="usage-label" style="color: var(--text-muted, rgba(234, 242, 255, 0.72)); font-size: 14px; margin-bottom: 8px;">Monthly Total</div>
+                    <div class="usage-value" id="monthly-total" style="font-size: 32px; font-weight: 700; color: var(--accent, #2EA8FF);">—</div>
+                    <div class="usage-avg" id="monthly-avg" style="color: var(--text-muted, rgba(234, 242, 255, 0.72)); font-size: 14px; margin-top: 4px;">Avg: —/day</div>
+                </div>
+                <div class="usage-card">
+                    <div class="usage-label" style="color: var(--text-muted, rgba(234, 242, 255, 0.72)); font-size: 14px; margin-bottom: 8px;">Tier</div>
+                    <div class="usage-value" id="usage-tier" style="font-size: 24px; font-weight: 600; color: var(--accent-2, #7C5CFF); text-transform: capitalize;">—</div>
+                    <div class="usage-overage" id="overage-info" style="color: var(--text-muted, rgba(234, 242, 255, 0.72)); font-size: 14px; margin-top: 4px;">—</div>
+                </div>
+            </div>
+        </section>
+
         <!-- Charts and Safety Rails -->
         <div class="content-grid">
             <!-- Left Column: Charts -->

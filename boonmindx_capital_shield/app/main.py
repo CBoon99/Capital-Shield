@@ -9,6 +9,7 @@ from app.core.config import API_TITLE, API_VERSION, API_PREFIX, ALLOWED_ORIGINS
 from app.core.version import API_VERSION as VERSION
 from app.routes import signal, risk, filter, regime, healthz, metrics
 from app.routes import dashboard_metrics
+from app.api import billing
 import os
 
 # Create FastAPI app
@@ -35,6 +36,7 @@ app.include_router(regime.router, prefix=API_PREFIX, tags=["Regime"])
 app.include_router(healthz.router, prefix=API_PREFIX, tags=["Health"])
 app.include_router(metrics.router, prefix=API_PREFIX, tags=["Metrics"])
 app.include_router(dashboard_metrics.router, prefix=API_PREFIX, tags=["Dashboard"])
+app.include_router(billing.router, prefix=API_PREFIX, tags=["Billing"])
 
 # Mount dashboard static files
 dashboard_path = os.path.join(os.path.dirname(__file__), "..", "dashboard")

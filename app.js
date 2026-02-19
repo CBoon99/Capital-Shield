@@ -223,6 +223,26 @@
         msgDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }
 
+    // Pricing toggle function (monthly/annual)
+    function togglePricing() {
+        const toggle = document.getElementById('pricing-toggle');
+        const monthlyElements = document.querySelectorAll('.pricing-monthly');
+        const annualElements = document.querySelectorAll('.pricing-annual');
+        
+        if (toggle && toggle.checked) {
+            // Show annual pricing
+            monthlyElements.forEach(el => el.style.display = 'none');
+            annualElements.forEach(el => el.style.display = 'block');
+        } else {
+            // Show monthly pricing
+            monthlyElements.forEach(el => el.style.display = 'block');
+            annualElements.forEach(el => el.style.display = 'none');
+        }
+    }
+
+    // Make togglePricing available globally
+    window.togglePricing = togglePricing;
+
     // Initialize everything when DOM is ready
     function init() {
         initSmoothScroll();

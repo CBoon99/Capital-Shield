@@ -5,6 +5,7 @@ import time
 from fastapi import APIRouter, Request, Depends
 from app.core.auth import verify_api_key
 from app.core.rate_limit import check_rate_limit
+from app.core.tier_access import TierAccessControl
 from app.core.logging import log_request, setup_logging
 from app.core.safety_rails import set_current_metrics
 from app.models.metrics import MetricsResponse
@@ -30,6 +31,15 @@ async def get_metrics(
     
     # Check rate limit
     check_rate_limit(request)
+    
+    # Check tier access and track usage
+    api_key = request.headers.get("X-API-Key", "")
+    TierAccessControl.check_access(
+        api_key=api_key,
+        api_key_info=api_key_info,
+        endpoint="/api/v1/metrics",
+        allow_overage=True
+    )
     
     # Mock deterministic metrics calculation
     # Phase 1: Deterministic mock, Phase 2: Connect to BearHunter engine

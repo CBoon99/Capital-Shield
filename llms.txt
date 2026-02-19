@@ -1,0 +1,93 @@
+# Capital Shield
+
+> Risk-first trading infrastructure for algorithmic trading systems. Strategy-agnostic, deterministic safety gates that sit between trading signals and market execution.
+
+## About Capital Shield
+
+Capital Shield is a deterministic safety layer for algorithmic trading. It does NOT generate trading signals or predict markets. It enforces hard risk limits (max drawdown, regime guards, health checks) with structured rejection reasons, providing a validation harness to measure the cost of safety before deployment.
+
+**What it is:**
+- Execution and risk gateway
+- Deterministic safety rails
+- Strategy-agnostic design
+- Simulation/validation harness
+
+**What it is NOT:**
+- Not a trading strategy
+- Not a signal generator
+- Not financial advice
+- No profit guarantees
+
+## Core Documentation
+
+- [Product Overview](https://capital-shield.netlify.app/): Main landing page with full product description
+- [Technical Architecture](https://capital-shield.netlify.app/technical): Detailed technical documentation
+- [Interactive Demo](https://capital-shield.netlify.app/demo): Live demonstration of safety gates
+- [GitHub Repository](https://github.com/CBoon99/Capital-Shield): Source code and documentation
+
+## Key Features
+
+### Safety Gates
+- **Max Drawdown Protection**: Configurable thresholds (-5%, -10%, -15%)
+- **Regime Guard**: Blocks trades during adverse market conditions (BEAR regime)
+- **Health Check**: System status validation before execution
+- **Structured Rejection**: Machine-readable codes (DD_BREACH, VOL_BREACH)
+
+### API Endpoints
+- `POST /api/v1/filter` - Binary allow/block decision for trade signals
+- `POST /api/v1/signal` - Trading signal evaluation
+- `POST /api/v1/risk` - Risk assessment for proposed trades
+- `POST /api/v1/regime` - Market regime detection (BULL/BEAR/SIDEWAYS)
+- `GET /api/v1/healthz` - Health check endpoint
+
+### Technical Stack
+- Python 3.8+
+- FastAPI
+- REST API architecture
+- JSON structured responses
+- API key authentication
+
+### Pricing Tiers
+- **Starter**: £49/month (£490/year) - 10,000 API calls/day
+- **Professional**: £199/month (£1,990/year) - 100,000 API calls/day
+- **Enterprise**: Custom pricing - Unlimited calls, SLA, dedicated support
+
+## Target Users
+
+- Quant developers at multi-strategy funds
+- Trading system architects building execution stacks
+- Solo systematic traders protecting substantial capital
+- Prop trading firms requiring risk infrastructure
+- Hedge funds needing deterministic risk controls
+
+## Company Information
+
+- **Company**: BoonMindX
+- **Founder**: Carl Boon
+- **Email**: info@boonmind.io
+- **Location**: Manchester, UK
+- **Status**: Controlled Beta (Public release Q1 2026)
+- **Website**: https://capital-shield.netlify.app/
+
+## Frequently Asked Questions
+
+**Is Capital Shield a trading bot?**
+No. It is risk-first trading infrastructure that sits between your strategy and execution. It does not generate buy/sell signals.
+
+**Does it generate alpha or guarantee profits?**
+No. It reduces risk and enforces deterministic execution constraints. It makes no claims about profitability.
+
+**How does it integrate with trading strategies?**
+Via REST API. Your strategy sends signals, Capital Shield evaluates against safety rails, returns allow/block decision with structured rejection reasons.
+
+**What is a runaway algorithm?**
+An automated trading system that continues executing trades beyond acceptable risk parameters, often leading to catastrophic losses. Capital Shield prevents this by blocking trades before execution.
+
+**Why does risk-first architecture matter?**
+It separates safety enforcement from signal generation, allowing validation of safety rails independently and measuring the cost of safety before deployment.
+
+## Optional Resources
+
+- [Quickstart Guide](https://github.com/CBoon99/Capital-Shield/blob/main/boonmindx_capital_shield/QUICKSTART.md)
+- [Infrastructure Inventory](https://github.com/CBoon99/Capital-Shield/blob/main/boonmindx_capital_shield/INFRASTRUCTURE_INVENTORY.md)
+- [Product Overview Document](https://github.com/CBoon99/Capital-Shield/blob/main/boonmindx_capital_shield/PRODUCT_PITCH_ONEPAGER.md)

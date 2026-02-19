@@ -1,0 +1,138 @@
+# Capital Shield - robots.txt
+# Optimized for search engines AND AI crawlers
+# Last updated: February 2026
+
+# ===========================================
+# TRADITIONAL SEARCH ENGINE CRAWLERS
+# ===========================================
+
+# Google
+User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /
+
+# Bing
+User-agent: Bingbot
+Allow: /
+
+# Yahoo
+User-agent: Slurp
+Allow: /
+
+# DuckDuckGo
+User-agent: DuckDuckBot
+Allow: /
+
+# Yandex
+User-agent: Yandex
+Allow: /
+
+# Baidu
+User-agent: Baiduspider
+Allow: /
+
+# ===========================================
+# AI CRAWLERS - ALLOW FOR VISIBILITY
+# ===========================================
+
+# OpenAI - ChatGPT
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+# Anthropic - Claude
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+# Google AI (Gemini, AI Overviews)
+User-agent: Google-Extended
+Allow: /
+
+# Perplexity
+User-agent: PerplexityBot
+Allow: /
+
+# Apple Intelligence / Siri
+User-agent: Applebot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+# Microsoft Copilot
+User-agent: Bingbot
+Allow: /
+
+# Amazon (Alexa, AWS AI)
+User-agent: Amazonbot
+Allow: /
+
+# You.com
+User-agent: YouBot
+Allow: /
+
+# Phind
+User-agent: PhindBot
+Allow: /
+
+# Exa
+User-agent: ExaBot
+Allow: /
+
+# Common Crawl (used by many AI training)
+User-agent: CCBot
+Allow: /
+
+# DuckDuckGo AI Assistant
+User-agent: DuckAssistBot
+Allow: /
+
+# Cohere AI
+User-agent: cohere-ai
+Allow: /
+
+# Meta AI
+User-agent: Meta-ExternalAgent
+Allow: /
+
+User-agent: Meta-ExternalFetcher
+Allow: /
+
+# ===========================================
+# DEFAULT RULE
+# ===========================================
+
+User-agent: *
+Allow: /
+
+# ===========================================
+# BLOCKED PATHS
+# ===========================================
+
+User-agent: *
+Disallow: /admin/
+Disallow: /private/
+Disallow: /_headers
+Disallow: /_redirects
+
+# ===========================================
+# SITEMAPS
+# ===========================================
+
+Sitemap: https://capital-shield.netlify.app/sitemap.xml

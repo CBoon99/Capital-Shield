@@ -1,0 +1,235 @@
+<!-- 
+  CAPITAL SHIELD - SCHEMA MARKUP
+  Copy and paste this entire block into the <head> section of index.html
+  All JSON-LD structured data for SEO and AI visibility
+-->
+
+<!-- WebApplication Schema (Primary Product) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "@id": "https://capital-shield.netlify.app/#software",
+  "name": "Capital Shield",
+  "alternateName": "BoonMindX Capital Shield",
+  "description": "Risk-first trading infrastructure and deterministic safety layer for algorithmic trading systems. Strategy-agnostic API that enforces max drawdown limits, regime guards, and execution constraints.",
+  "url": "https://capital-shield.netlify.app/",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "All",
+  "browserRequirements": "Requires JavaScript and HTML5 support",
+  "softwareVersion": "1.0.0",
+  "releaseNotes": "Controlled Beta - Public release Q1 2026",
+  "featureList": [
+    "Max Drawdown Protection",
+    "Regime Guard",
+    "Health Check Validation",
+    "Structured Rejection Reasons",
+    "REST API Integration",
+    "Real-time Dashboard",
+    "Historical Simulation"
+  ],
+  "offers": {
+    "@type": "AggregateOffer",
+    "priceCurrency": "GBP",
+    "lowPrice": "49",
+    "highPrice": "999",
+    "offerCount": "3",
+    "offers": [
+      {
+        "@type": "Offer",
+        "name": "Starter",
+        "description": "10,000 API calls/day for solo systematic traders",
+        "price": "49",
+        "priceCurrency": "GBP",
+        "priceSpecification": {
+          "@type": "UnitPriceSpecification",
+          "price": "49",
+          "priceCurrency": "GBP",
+          "billingDuration": "P1M",
+          "unitText": "month"
+        }
+      },
+      {
+        "@type": "Offer",
+        "name": "Professional",
+        "description": "100,000 API calls/day for prop traders and small funds",
+        "price": "199",
+        "priceCurrency": "GBP",
+        "priceSpecification": {
+          "@type": "UnitPriceSpecification",
+          "price": "199",
+          "priceCurrency": "GBP",
+          "billingDuration": "P1M",
+          "unitText": "month"
+        }
+      },
+      {
+        "@type": "Offer",
+        "name": "Enterprise",
+        "description": "Unlimited API calls for funds and institutions",
+        "price": "999",
+        "priceCurrency": "GBP",
+        "priceSpecification": {
+          "@type": "UnitPriceSpecification",
+          "price": "999",
+          "priceCurrency": "GBP",
+          "billingDuration": "P1M",
+          "unitText": "month"
+        }
+      }
+    ]
+  },
+  "creator": {
+    "@type": "Organization",
+    "@id": "https://capital-shield.netlify.app/#organization",
+    "name": "BoonMindX",
+    "url": "https://capital-shield.netlify.app/",
+    "email": "info@boonmind.io"
+  },
+  "audience": {
+    "@type": "Audience",
+    "audienceType": "Quant developers, trading system architects, systematic traders, prop trading firms"
+  }
+}
+</script>
+
+<!-- Organization Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": "https://capital-shield.netlify.app/#organization",
+  "name": "BoonMindX",
+  "url": "https://capital-shield.netlify.app/",
+  "email": "info@boonmind.io",
+  "founder": {
+    "@type": "Person",
+    "name": "Carl Boon"
+  },
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Manchester",
+    "addressCountry": "United Kingdom"
+  },
+  "sameAs": [
+    "https://github.com/CBoon99/Capital-Shield"
+  ],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "email": "info@boonmind.io",
+    "contactType": "sales"
+  }
+}
+</script>
+
+<!-- FAQ Schema (Critical for AI Citations) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is Capital Shield a trading bot?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Capital Shield is risk-first trading infrastructure, not a trading bot. It does not generate buy/sell signals, seek alpha, or execute trades. It sits between your trading strategy and execution, enforcing deterministic safety gates and capital protection rules."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does Capital Shield generate alpha or guarantee profits?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Capital Shield is infrastructure software designed to reduce risk, not generate returns. It enforces deterministic execution constraints (max drawdown limits, regime guards, health checks) but makes no claims about profitability or alpha generation."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is a runaway algorithm and how does Capital Shield prevent it?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A runaway algorithm is an automated trading system that continues executing trades beyond acceptable risk parameters, often leading to catastrophic losses. Capital Shield prevents this by enforcing hard limits (max drawdown, volatility thresholds) and blocking trades that violate predefined safety rules before they reach the market."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does Capital Shield integrate with existing trading strategies?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Capital Shield is strategy-agnostic and integrates via REST API. Your trading strategy generates signals (BUY/SELL/HOLD), sends them to the Capital Shield API, which evaluates each signal against safety rails and returns an allow/block decision with structured rejection reasons."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What are the pricing tiers for Capital Shield?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Capital Shield offers three tiers: Starter at £49/month (10,000 API calls/day), Professional at £199/month (100,000 API calls/day), and Enterprise with custom pricing for unlimited calls. Annual subscriptions include 2 months free."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the difference between max drawdown protection and a stop-loss?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A stop-loss is a reactive mechanism that exits a position after a loss occurs. Max drawdown protection in Capital Shield is proactive - it evaluates proposed trades BEFORE execution and blocks any trade that would cause total portfolio drawdown to exceed the configured threshold, preventing the loss from ever happening."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Who is Capital Shield for?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Capital Shield is designed for quant developers at multi-strategy funds, trading system architects building execution stacks, solo systematic traders protecting substantial capital, and prop trading firms requiring deterministic risk infrastructure."
+      }
+    }
+  ]
+}
+</script>
+
+<!-- WebPage Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "@id": "https://capital-shield.netlify.app/#webpage",
+  "url": "https://capital-shield.netlify.app/",
+  "name": "Capital Shield - Risk-First Trading Infrastructure | Runaway Algorithm Protection",
+  "description": "Block runaway algorithms before execution. Enforce max drawdown, volatility, and regime risk rules with our API-first, strategy-agnostic risk gateway.",
+  "isPartOf": {
+    "@type": "WebSite",
+    "@id": "https://capital-shield.netlify.app/#website",
+    "name": "Capital Shield",
+    "url": "https://capital-shield.netlify.app/"
+  },
+  "mainEntity": {
+    "@id": "https://capital-shield.netlify.app/#software"
+  },
+  "breadcrumb": {
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://capital-shield.netlify.app/"
+      }
+    ]
+  }
+}
+</script>
+
+<!-- WebSite Schema with SearchAction -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": "https://capital-shield.netlify.app/#website",
+  "name": "Capital Shield",
+  "url": "https://capital-shield.netlify.app/",
+  "publisher": {
+    "@id": "https://capital-shield.netlify.app/#organization"
+  }
+}
+</script>

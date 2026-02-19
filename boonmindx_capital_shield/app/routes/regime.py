@@ -5,6 +5,7 @@ import time
 from fastapi import APIRouter, Request, Depends
 from app.core.auth import verify_api_key
 from app.core.rate_limit import check_rate_limit
+from app.core.tier_access import TierAccessControl
 from app.core.logging import log_request, setup_logging
 from app.core.engine_adapter import get_regime
 from app.models.regime import RegimeResponse
@@ -29,6 +30,15 @@ async def get_regime_endpoint(
     
     # Check rate limit
     check_rate_limit(request)
+    
+    # Check tier access and track usage
+    api_key = request.headers.get("X-API-Key", "")
+    TierAccessControl.check_access(
+        api_key=api_key,
+        api_key_info=api_key_info,
+        endpoint="/api/v1/regime",
+        allow_overage=True
+    )
     
     # Get regime from engine adapter (handles MOCK/LIVE mode switching)
     response = get_regime(

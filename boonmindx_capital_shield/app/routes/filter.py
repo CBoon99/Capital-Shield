@@ -5,6 +5,7 @@ import time
 from fastapi import APIRouter, Request, Depends
 from app.core.auth import verify_api_key
 from app.core.rate_limit import check_rate_limit
+from app.core.tier_access import TierAccessControl
 from app.core.logging import log_request, setup_logging
 from app.core.engine_adapter import filter_trade as engine_filter_trade
 from app.core.safety_rails import check_safety_rails
@@ -31,6 +32,15 @@ async def filter_trade_endpoint(
     
     # Check rate limit
     check_rate_limit(request)
+    
+    # Check tier access and track usage
+    api_key = request.headers.get("X-API-Key", "")
+    tier_access = TierAccessControl.check_access(
+        api_key=api_key,
+        api_key_info=api_key_info,
+        endpoint="/api/v1/filter",
+        allow_overage=True  # Allow overages for billing
+    )
     
     # Get filter decision from engine adapter (handles MOCK/LIVE mode switching)
     engine_response = engine_filter_trade(

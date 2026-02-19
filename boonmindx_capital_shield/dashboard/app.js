@@ -9,6 +9,7 @@
 const API_BASE = '/api/v1';
 const HEALTH_URL = `${API_BASE}/healthz`;
 const DASHBOARD_METRICS_URL = `${API_BASE}/dashboard/metrics`;
+const USAGE_STATS_URL = `${API_BASE}/billing/usage`; // Note: Requires API key in production
 const POLL_INTERVAL = 10000; // 10 seconds
 
 // State
@@ -33,9 +34,11 @@ function init() {
     // Start polling
     pollHealth();
     pollMetrics();
+    pollUsageStats();
     
     setInterval(pollHealth, POLL_INTERVAL);
     setInterval(pollMetrics, POLL_INTERVAL);
+    setInterval(pollUsageStats, POLL_INTERVAL);
 }
 
 /**
@@ -97,6 +100,116 @@ async function pollMetrics() {
     } catch (error) {
         console.error('Metrics fetch failed:', error);
         showWarning('Metrics endpoint unavailable');
+    }
+}
+
+/**
+ * Poll usage stats endpoint
+ * Note: In production, this would require API key authentication
+ */
+async function pollUsageStats() {
+    try {
+        // For demo purposes, try to get usage stats
+        // In production, this would require the user's API key
+        // For now, we'll skip if no API key is available
+        const apiKey = getApiKeyFromStorage();
+        if (!apiKey) {
+            // Hide usage section if no API key
+            const usageSection = document.querySelector('.usage-section');
+            if (usageSection) {
+                usageSection.style.display = 'none';
+            }
+            return;
+        }
+        
+        const response = await fetch(`${USAGE_STATS_URL}/${apiKey}`);
+        if (!response.ok) {
+            // If 404, user might not have billing set up yet
+            if (response.status === 404) {
+                return;
+            }
+            throw new Error('Usage stats fetch failed');
+        }
+        
+        const usageData = await response.json();
+        updateUsageUI(usageData);
+        
+    } catch (error) {
+        console.error('Usage stats fetch failed:', error);
+        // Don't show warning for usage stats failures (optional feature)
+    }
+}
+
+/**
+ * Get API key from localStorage (for demo purposes)
+ * In production, this would be handled via authentication
+ */
+function getApiKeyFromStorage() {
+    // Check if API key is stored in localStorage
+    // This is a placeholder - real implementation would use proper auth
+    return localStorage.getItem('api_key') || null;
+}
+
+/**
+ * Update usage statistics UI
+ */
+function updateUsageUI(usageData) {
+    // Show usage section
+    const usageSection = document.querySelector('.usage-section');
+    if (usageSection) {
+        usageSection.style.display = 'block';
+    }
+    
+    // Daily Usage
+    const dailyUsageEl = document.getElementById('daily-usage');
+    if (dailyUsageEl && usageData.usage?.daily_usage !== undefined) {
+        dailyUsageEl.textContent = usageData.usage.daily_usage.toLocaleString();
+    }
+    
+    // Daily Limit
+    const dailyLimitEl = document.getElementById('daily-limit');
+    if (dailyLimitEl && usageData.daily_limit !== undefined && usageData.daily_limit !== null) {
+        dailyLimitEl.textContent = `of ${usageData.daily_limit.toLocaleString()}`;
+        
+        // Show warning if approaching limit
+        const usagePercent = (usageData.usage.daily_usage / usageData.daily_limit) * 100;
+        if (usagePercent > 90) {
+            dailyUsageEl.style.color = '#ef4444'; // Red
+        } else if (usagePercent > 75) {
+            dailyUsageEl.style.color = '#f59e0b'; // Orange
+        } else {
+            dailyUsageEl.style.color = '#2EA8FF'; // Blue
+        }
+    } else if (dailyLimitEl && usageData.daily_limit === null) {
+        dailyLimitEl.textContent = 'Unlimited';
+    }
+    
+    // Monthly Total
+    const monthlyTotalEl = document.getElementById('monthly-total');
+    if (monthlyTotalEl && usageData.usage?.monthly_total !== undefined) {
+        monthlyTotalEl.textContent = usageData.usage.monthly_total.toLocaleString();
+    }
+    
+    // Monthly Average
+    const monthlyAvgEl = document.getElementById('monthly-avg');
+    if (monthlyAvgEl && usageData.usage?.monthly_average !== undefined) {
+        monthlyAvgEl.textContent = `Avg: ${usageData.usage.monthly_average.toLocaleString()}/day`;
+    }
+    
+    // Tier
+    const tierEl = document.getElementById('usage-tier');
+    if (tierEl && usageData.tier) {
+        tierEl.textContent = usageData.tier.replace('_', ' ');
+    }
+    
+    // Overage Info
+    const overageEl = document.getElementById('overage-info');
+    if (overageEl && usageData.overage_rate !== undefined) {
+        if (usageData.overage_rate > 0) {
+            overageEl.textContent = `Overage: £${usageData.overage_rate.toFixed(4)}/call`;
+        } else {
+            overageEl.textContent = 'No overages';
+        }
     }
 }
 

@@ -1,33 +1,286 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Primary Meta Tags -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="API-first safety layer for algorithmic trading. Enforce deterministic max drawdown & volatility rules. Block runaway strategies. Strategy-agnostic infrastructure for quants.">
-    <meta name="keywords" content="risk-first trading infrastructure, algorithmic trading risk management, trading execution safety framework, strategy-agnostic trading systems, deterministic risk controls trading, trading system safety rails, capital protection trading API, algorithmic trading infrastructure">
-    
-    <!-- Open Graph -->
-    <meta property="og:title" content="Capital Shield - Risk-First Trading Infrastructure & Execution Safety Framework">
-    <meta property="og:description" content="Strategy-agnostic risk-first trading infrastructure. Deterministic safety gates, capital protection API, and execution safety framework for algorithmic trading systems.">
+    <title>Capital Shield - Risk-First Trading Infrastructure | Runaway Algorithm Protection & Max Drawdown API</title>
+    <meta name="description" content="Block runaway algorithms before execution. Enforce max drawdown, volatility, and regime risk rules with our API-first, strategy-agnostic risk gateway for algorithmic trading systems.">
+    <meta name="keywords" content="algorithmic trading risk management, runaway algorithm protection, max drawdown API, trading safety gates, risk-first infrastructure, capital protection, quant risk management, deterministic risk controls, trading execution safety, prop trading risk">
+    <meta name="author" content="BoonMindX">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://capital-shield.netlify.app/">
+
+    <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://YOUR-NETLIFY-SITE.netlify.app/">
-    <!-- <meta property="og:image" content="https://YOUR-NETLIFY-SITE.netlify.app/og-image.png"> -->
-    
-    <!-- Twitter Card -->
+    <meta property="og:url" content="https://capital-shield.netlify.app/">
+    <meta property="og:title" content="Capital Shield - Risk-First Trading Infrastructure">
+    <meta property="og:description" content="Block runaway algorithms before execution. Enforce max drawdown, volatility, and regime risk rules with our API-first, strategy-agnostic risk gateway.">
+    <meta property="og:image" content="https://capital-shield.netlify.app/assets/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:site_name" content="Capital Shield">
+    <meta property="og:locale" content="en_GB">
+
+    <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://capital-shield.netlify.app/">
     <meta name="twitter:title" content="Capital Shield - Risk-First Trading Infrastructure">
-    <meta name="twitter:description" content="Strategy-agnostic execution safety framework for algorithmic trading systems. Deterministic risk controls and capital protection API.">
-    
-    <!-- Canonical -->
-    <link rel="canonical" href="https://YOUR-NETLIFY-SITE.netlify.app/">
-    
-    <title>Capital Shield | Runaway Algorithm Protection & Risk Gateway</title>
+    <meta name="twitter:description" content="Block runaway algorithms before execution. Deterministic safety gates for algorithmic trading.">
+    <meta name="twitter:image" content="https://capital-shield.netlify.app/assets/twitter-image.png">
+
+    <!-- Additional SEO -->
+    <meta name="theme-color" content="#1a1a2e">
+    <meta name="application-name" content="Capital Shield">
+
+    <!-- Geo Tags (for local SEO) -->
+    <meta name="geo.region" content="GB-MAN">
+    <meta name="geo.placename" content="Manchester">
+    <meta name="geo.position" content="53.4808;-2.2426">
+    <meta name="ICBM" content="53.4808, -2.2426">
+
+    <!-- Language -->
+    <link rel="alternate" hreflang="en" href="https://capital-shield.netlify.app/">
+    <link rel="alternate" hreflang="x-default" href="https://capital-shield.netlify.app/">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%232EA8FF'/><path d='M50 20 L30 50 L50 45 L70 50 Z' fill='%23071225'/><rect x='40' y='50' width='20' height='30' fill='%23071225'/></svg>">
+
+    <!-- Schema Markup (JSON-LD) -->
+    <!-- WebApplication Schema (Primary Product) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "@id": "https://capital-shield.netlify.app/#software",
+      "name": "Capital Shield",
+      "alternateName": "BoonMindX Capital Shield",
+      "description": "Risk-first trading infrastructure and deterministic safety layer for algorithmic trading systems. Strategy-agnostic API that enforces max drawdown limits, regime guards, and execution constraints.",
+      "url": "https://capital-shield.netlify.app/",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "All",
+      "browserRequirements": "Requires JavaScript and HTML5 support",
+      "softwareVersion": "1.0.0",
+      "releaseNotes": "Controlled Beta - Public release Q1 2026",
+      "featureList": [
+        "Max Drawdown Protection",
+        "Regime Guard",
+        "Health Check Validation",
+        "Structured Rejection Reasons",
+        "REST API Integration",
+        "Real-time Dashboard",
+        "Historical Simulation"
+      ],
+      "offers": {
+        "@type": "AggregateOffer",
+        "priceCurrency": "GBP",
+        "lowPrice": "49",
+        "highPrice": "999",
+        "offerCount": "3",
+        "offers": [
+          {
+            "@type": "Offer",
+            "name": "Starter",
+            "description": "10,000 API calls/day for solo systematic traders",
+            "price": "49",
+            "priceCurrency": "GBP",
+            "priceSpecification": {
+              "@type": "UnitPriceSpecification",
+              "price": "49",
+              "priceCurrency": "GBP",
+              "billingDuration": "P1M",
+              "unitText": "month"
+            }
+          },
+          {
+            "@type": "Offer",
+            "name": "Professional",
+            "description": "100,000 API calls/day for prop traders and small funds",
+            "price": "199",
+            "priceCurrency": "GBP",
+            "priceSpecification": {
+              "@type": "UnitPriceSpecification",
+              "price": "199",
+              "priceCurrency": "GBP",
+              "billingDuration": "P1M",
+              "unitText": "month"
+            }
+          },
+          {
+            "@type": "Offer",
+            "name": "Enterprise",
+            "description": "Unlimited API calls for funds and institutions",
+            "price": "999",
+            "priceCurrency": "GBP",
+            "priceSpecification": {
+              "@type": "UnitPriceSpecification",
+              "price": "999",
+              "priceCurrency": "GBP",
+              "billingDuration": "P1M",
+              "unitText": "month"
+            }
+          }
+        ]
+      },
+      "creator": {
+        "@type": "Organization",
+        "@id": "https://capital-shield.netlify.app/#organization",
+        "name": "BoonMindX",
+        "url": "https://capital-shield.netlify.app/",
+        "email": "info@boonmind.io"
+      },
+      "audience": {
+        "@type": "Audience",
+        "audienceType": "Quant developers, trading system architects, systematic traders, prop trading firms"
+      }
+    }
+    </script>
+
+    <!-- Organization Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "@id": "https://capital-shield.netlify.app/#organization",
+      "name": "BoonMindX",
+      "url": "https://capital-shield.netlify.app/",
+      "email": "info@boonmind.io",
+      "founder": {
+        "@type": "Person",
+        "name": "Carl Boon"
+      },
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Manchester",
+        "addressCountry": "United Kingdom"
+      },
+      "sameAs": [
+        "https://github.com/CBoon99/Capital-Shield"
+      ],
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "email": "info@boonmind.io",
+        "contactType": "sales"
+      }
+    }
+    </script>
+
+    <!-- FAQ Schema (Critical for AI Citations) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Is Capital Shield a trading bot?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Capital Shield is risk-first trading infrastructure, not a trading bot. It does not generate buy/sell signals, seek alpha, or execute trades. It sits between your trading strategy and execution, enforcing deterministic safety gates and capital protection rules."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does Capital Shield generate alpha or guarantee profits?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Capital Shield is infrastructure software designed to reduce risk, not generate returns. It enforces deterministic execution constraints (max drawdown limits, regime guards, health checks) but makes no claims about profitability or alpha generation."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is a runaway algorithm and how does Capital Shield prevent it?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A runaway algorithm is an automated trading system that continues executing trades beyond acceptable risk parameters, often leading to catastrophic losses. Capital Shield prevents this by enforcing hard limits (max drawdown, volatility thresholds) and blocking trades that violate predefined safety rules before they reach the market."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How does Capital Shield integrate with existing trading strategies?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Capital Shield is strategy-agnostic and integrates via REST API. Your trading strategy generates signals (BUY/SELL/HOLD), sends them to the Capital Shield API, which evaluates each signal against safety rails and returns an allow/block decision with structured rejection reasons."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What are the pricing tiers for Capital Shield?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Capital Shield offers three tiers: Starter at £49/month (10,000 API calls/day), Professional at £199/month (100,000 API calls/day), and Enterprise with custom pricing for unlimited calls. Annual subscriptions include 2 months free."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the difference between max drawdown protection and a stop-loss?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A stop-loss is a reactive mechanism that exits a position after a loss occurs. Max drawdown protection in Capital Shield is proactive - it evaluates proposed trades BEFORE execution and blocks any trade that would cause total portfolio drawdown to exceed the configured threshold, preventing the loss from ever happening."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Who is Capital Shield for?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Capital Shield is designed for quant developers at multi-strategy funds, trading system architects building execution stacks, solo systematic traders protecting substantial capital, and prop trading firms requiring deterministic risk infrastructure."
+          }
+        }
+      ]
+    }
+    </script>
+
+    <!-- WebPage Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "@id": "https://capital-shield.netlify.app/#webpage",
+      "url": "https://capital-shield.netlify.app/",
+      "name": "Capital Shield - Risk-First Trading Infrastructure | Runaway Algorithm Protection",
+      "description": "Block runaway algorithms before execution. Enforce max drawdown, volatility, and regime risk rules with our API-first, strategy-agnostic risk gateway.",
+      "isPartOf": {
+        "@type": "WebSite",
+        "@id": "https://capital-shield.netlify.app/#website",
+        "name": "Capital Shield",
+        "url": "https://capital-shield.netlify.app/"
+      },
+      "mainEntity": {
+        "@id": "https://capital-shield.netlify.app/#software"
+      },
+      "breadcrumb": {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://capital-shield.netlify.app/"
+          }
+        ]
+      }
+    }
+    </script>
+
+    <!-- WebSite Schema with SearchAction -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "@id": "https://capital-shield.netlify.app/#website",
+      "name": "Capital Shield",
+      "url": "https://capital-shield.netlify.app/",
+      "publisher": {
+        "@id": "https://capital-shield.netlify.app/#organization"
+      }
+    }
+    </script>
 </head>
 <body>
     <!-- Header -->
@@ -79,7 +332,7 @@
                 </div>
                 <div class="hero-ctas">
                     <a href="/demo" class="btn btn-primary" aria-label="View risk demo">View Risk Demo</a>
-                    <a href="#contact" class="btn btn-secondary" aria-label="Join the controlled beta">Join Controlled Beta</a>
+                    <a href="#contact" class="btn btn-secondary" aria-label="Start free trial">Start Free Trial</a>
                     <a href="#quickstart" class="btn btn-secondary" aria-label="Read the documentation">Read the Docs</a>
                     <a href="https://github.com/CBoon99/Capital-Shield" id="github-link-hero" class="btn btn-secondary" target="_blank" rel="noopener noreferrer" aria-label="View on GitHub">View on GitHub</a>
                 </div>
@@ -383,6 +636,171 @@
         </div>
     </section>
 
+    <!-- Pricing -->
+    <section class="section pricing-section" id="pricing">
+        <div class="container">
+            <h2 class="section-title section-title-center">Pricing</h2>
+            <p class="section-subtitle" style="text-align: center; color: var(--text-muted); margin-bottom: 48px; font-size: 16px;">
+                Choose the tier that fits your trading infrastructure needs
+            </p>
+            
+            <!-- Pricing Toggle -->
+            <div style="display: flex; justify-content: center; align-items: center; gap: 16px; margin-bottom: 48px;">
+                <span style="color: var(--text-muted); font-weight: 500;">Monthly</span>
+                <label style="position: relative; display: inline-block; width: 56px; height: 32px;">
+                    <input type="checkbox" id="pricing-toggle" style="opacity: 0; width: 0; height: 0;" onchange="togglePricing()">
+                    <span style="position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: var(--border); border-radius: 32px; transition: 0.3s;"></span>
+                    <span style="position: absolute; content: ''; height: 24px; width: 24px; left: 4px; bottom: 4px; background-color: var(--text-primary); border-radius: 50%; transition: 0.3s;"></span>
+                </label>
+                <span style="color: var(--text-muted); font-weight: 500;">Annual <span style="color: var(--accent); font-size: 14px;">(2 months free)</span></span>
+            </div>
+
+            <!-- Pricing Cards -->
+            <div class="capabilities-grid" style="max-width: 1200px; margin: 0 auto;">
+                <!-- Starter Tier -->
+                <div class="capability-card" style="position: relative;">
+                    <h3>Starter</h3>
+                    <div style="margin: 24px 0;">
+                        <span class="pricing-monthly" style="display: block;">
+                            <span style="font-size: 48px; font-weight: 700; color: var(--accent);">£49</span>
+                            <span style="color: var(--text-muted); font-size: 18px;">/month</span>
+                        </span>
+                        <span class="pricing-annual" style="display: none;">
+                            <span style="font-size: 48px; font-weight: 700; color: var(--accent);">£490</span>
+                            <span style="color: var(--text-muted); font-size: 18px;">/year</span>
+                        </span>
+                    </div>
+                    <p class="trial-text" style="font-size: 13px; color: var(--text-muted); margin-top: -8px; margin-bottom: 16px;">14-day free trial. No credit card required.</p>
+                    <p style="color: var(--text-muted); margin-bottom: 24px;">Perfect for solo systematic traders</p>
+                    <ul style="list-style: none; padding: 0; margin: 24px 0;">
+                        <li style="padding: 8px 0; color: var(--text-primary);">
+                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 16px; height: 16px; display: inline-block; margin-right: 8px; vertical-align: middle;">
+                                <path d="M5 13l4 4L19 7"/>
+                            </svg>
+                            10,000 API calls/day
+                        </li>
+                        <li style="padding: 8px 0; color: var(--text-primary);">
+                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 16px; height: 16px; display: inline-block; margin-right: 8px; vertical-align: middle;">
+                                <path d="M5 13l4 4L19 7"/>
+                            </svg>
+                            Live API access
+                        </li>
+                        <li style="padding: 8px 0; color: var(--text-primary);">
+                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 16px; height: 16px; display: inline-block; margin-right: 8px; vertical-align: middle;">
+                                <path d="M5 13l4 4L19 7"/>
+                            </svg>
+                            Usage-based overages available
+                        </li>
+                    </ul>
+                    <a href="#contact" class="btn btn-secondary" style="width: 100%; margin-top: 24px;" aria-label="Get Started with Starter">Get Started</a>
+                </div>
+
+                <!-- Professional Tier -->
+                <div class="capability-card" style="position: relative; border: 2px solid var(--accent);">
+                    <div style="position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--accent); color: var(--bg-primary); padding: 4px 16px; border-radius: 16px; font-size: 12px; font-weight: 600;">Most Popular</div>
+                    <h3>Professional</h3>
+                    <div style="margin: 24px 0;">
+                        <span class="pricing-monthly" style="display: block;">
+                            <span style="font-size: 48px; font-weight: 700; color: var(--accent);">£199</span>
+                            <span style="color: var(--text-muted); font-size: 18px;">/month</span>
+                        </span>
+                        <span class="pricing-annual" style="display: none;">
+                            <span style="font-size: 48px; font-weight: 700; color: var(--accent);">£1,990</span>
+                            <span style="color: var(--text-muted); font-size: 18px;">/year</span>
+                        </span>
+                    </div>
+                    <p class="trial-text" style="font-size: 13px; color: var(--text-muted); margin-top: -8px; margin-bottom: 16px;">14-day free trial. No credit card required.</p>
+                    <p style="color: var(--text-muted); margin-bottom: 24px;">For prop traders and small funds</p>
+                    <ul style="list-style: none; padding: 0; margin: 24px 0;">
+                        <li style="padding: 8px 0; color: var(--text-primary);">
+                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 16px; height: 16px; display: inline-block; margin-right: 8px; vertical-align: middle;">
+                                <path d="M5 13l4 4L19 7"/>
+                            </svg>
+                            100,000 API calls/day
+                        </li>
+                        <li style="padding: 8px 0; color: var(--text-primary);">
+                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 16px; height: 16px; display: inline-block; margin-right: 8px; vertical-align: middle;">
+                                <path d="M5 13l4 4L19 7"/>
+                            </svg>
+                            Live API access
+                        </li>
+                        <li style="padding: 8px 0; color: var(--text-primary);">
+                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 16px; height: 16px; display: inline-block; margin-right: 8px; vertical-align: middle;">
+                                <path d="M5 13l4 4L19 7"/>
+                            </svg>
+                            Usage-based overages available
+                        </li>
+                        <li style="padding: 8px 0; color: var(--text-primary);">
+                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 16px; height: 16px; display: inline-block; margin-right: 8px; vertical-align: middle;">
+                                <path d="M5 13l4 4L19 7"/>
+                            </svg>
+                            Priority support
+                        </li>
+                    </ul>
+                    <a href="#contact" class="btn btn-primary" style="width: 100%; margin-top: 24px;" aria-label="Get Started with Professional">Get Started</a>
+                </div>
+
+                <!-- Enterprise Tier -->
+                <div class="capability-card" style="position: relative;">
+                    <h3>Enterprise</h3>
+                    <div style="margin: 24px 0;">
+                        <span style="font-size: 48px; font-weight: 700; color: var(--accent);">Custom</span>
+                    </div>
+                    <p style="color: var(--text-muted); margin-bottom: 24px;">For funds and institutions</p>
+                    <ul style="list-style: none; padding: 0; margin: 24px 0;">
+                        <li style="padding: 8px 0; color: var(--text-primary);">
+                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 16px; height: 16px; display: inline-block; margin-right: 8px; vertical-align: middle;">
+                                <path d="M5 13l4 4L19 7"/>
+                            </svg>
+                            Unlimited API calls
+                        </li>
+                        <li style="padding: 8px 0; color: var(--text-primary);">
+                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 16px; height: 16px; display: inline-block; margin-right: 8px; vertical-align: middle;">
+                                <path d="M5 13l4 4L19 7"/>
+                            </svg>
+                            Live API access
+                        </li>
+                        <li style="padding: 8px 0; color: var(--text-primary);">
+                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 16px; height: 16px; display: inline-block; margin-right: 8px; vertical-align: middle;">
+                                <path d="M5 13l4 4L19 7"/>
+                            </svg>
+                            Dedicated support
+                        </li>
+                        <li style="padding: 8px 0; color: var(--text-primary);">
+                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 16px; height: 16px; display: inline-block; margin-right: 8px; vertical-align: middle;">
+                                <path d="M5 13l4 4L19 7"/>
+                            </svg>
+                            Custom SLA
+                        </li>
+                    </ul>
+                    <a href="#contact" class="btn btn-secondary" style="width: 100%; margin-top: 24px;" aria-label="Contact for Enterprise">Contact Sales</a>
+                </div>
+            </div>
+
+            <!-- Simulation-Only Option -->
+            <div style="text-align: center; margin-top: 48px; padding: 24px; background: var(--bg-surface); border: 1px solid var(--border); border-radius: 12px; max-width: 600px; margin-left: auto; margin-right: auto;">
+                <h3 style="font-size: 20px; font-weight: 600; margin-bottom: 12px;">Simulation-Only License</h3>
+                <p style="color: var(--text-muted); margin-bottom: 16px;">
+                    Validate the cost of safety before committing to full protection. Full access to historical simulation engine only.
+                </p>
+                <div style="display: flex; justify-content: center; gap: 32px; flex-wrap: wrap;">
+                    <div>
+                        <strong style="color: var(--accent);">£19/month</strong>
+                        <span style="color: var(--text-muted); font-size: 14px;"> or </span>
+                        <strong style="color: var(--accent);">£149 one-time</strong>
+                    </div>
+                    <a href="#contact" class="btn btn-secondary btn-small" aria-label="Get Simulation-Only License">Learn More</a>
+                </div>
+            </div>
+
+            <!-- Overage Info -->
+            <p style="text-align: center; color: var(--text-muted); font-size: 14px; margin-top: 32px;">
+                Usage-based overages: £0.0001 per additional API call beyond daily limit. Calculated monthly, added to next invoice. 
+                Users can set a hard cap to prevent surprise bills.
+            </p>
+        </div>
+    </section>
+
     <!-- Technical Architecture (Modules) -->
     <section class="section architecture-section" id="architecture">
         <div class="container">
@@ -653,6 +1071,18 @@
                     <div class="form-group">
                         <label for="email">Email <span class="required">*</span></label>
                         <input type="email" id="email" name="email" required aria-required="true" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="tier">Which tier are you interested in? <span class="required">*</span></label>
+                        <select id="tier" name="tier" required aria-required="true">
+                            <option value="">Select a tier...</option>
+                            <option value="starter">Starter (£49/month)</option>
+                            <option value="professional">Professional (£199/month)</option>
+                            <option value="enterprise">Enterprise (Custom)</option>
+                            <option value="simulation">Simulation-Only (£19/month)</option>
+                            <option value="not-sure">Not sure yet</option>
+                        </select>
                     </div>
                     
                     <div class="form-group">

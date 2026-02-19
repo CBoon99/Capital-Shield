@@ -9,17 +9,49 @@ API_TITLE = "BoonMindX Capital Shield API"
 API_VERSION = "1.0.0"
 API_PREFIX = "/api/v1"
 
-# API Keys (Phase 1: In-memory, Phase 2: Database)
-# Format: api_key -> {"tier": "free|pro|professional|enterprise", "name": "key_name"}
-API_KEYS: Dict[str, Dict[str, str]] = {
-    "test_free_key_12345": {
-        "tier": "free",
-        "name": "Test Free Key",
-        "rate_limit": 100  # requests per day
+# Tier Definitions
+TIER_LIMITS: Dict[str, Dict] = {
+    "simulation_only": {
+        "daily_calls": 1000,
+        "live_access": False,
+        "monthly_price_gbp": 19,
+        "annual_price_gbp": 149,  # one-time perpetual
+        "overage_rate_gbp": 0.0  # No overages for simulation-only
     },
-    "test_pro_key_67890": {
-        "tier": "pro",
-        "name": "Test Pro Key",
+    "starter": {
+        "daily_calls": 10000,
+        "live_access": True,
+        "monthly_price_gbp": 49,
+        "annual_price_gbp": 490,
+        "overage_rate_gbp": 0.0001  # £0.0001 per additional call
+    },
+    "professional": {
+        "daily_calls": 100000,
+        "live_access": True,
+        "monthly_price_gbp": 199,
+        "annual_price_gbp": 1990,
+        "overage_rate_gbp": 0.0001  # £0.0001 per additional call
+    },
+    "enterprise": {
+        "daily_calls": float('inf'),  # unlimited
+        "live_access": True,
+        "monthly_price_gbp": None,  # Custom pricing
+        "annual_price_gbp": None,  # Custom pricing
+        "overage_rate_gbp": 0.0  # No overages for enterprise
+    }
+}
+
+# API Keys (Phase 1: In-memory, Phase 2: Database)
+# Format: api_key -> {"tier": "simulation_only|starter|professional|enterprise", "name": "key_name", "stripe_customer_id": "cus_xxx"}
+API_KEYS: Dict[str, Dict[str, str]] = {
+    "test_simulation_key_12345": {
+        "tier": "simulation_only",
+        "name": "Test Simulation Key",
+        "rate_limit": 1000  # requests per day
+    },
+    "test_starter_key_67890": {
+        "tier": "starter",
+        "name": "Test Starter Key",
         "rate_limit": 10000  # requests per day
     },
     "test_professional_key_abcde": {
@@ -72,3 +104,10 @@ HEALTH_CHECK_ENABLED = os.getenv("HEALTH_CHECK_ENABLED", "true").lower() == "tru
 ENGINE_HEALTH_CHECK_INTERVAL = int(os.getenv("ENGINE_HEALTH_CHECK_INTERVAL", "60"))  # seconds
 ENGINE_TIMEOUT = int(os.getenv("ENGINE_TIMEOUT", "5"))  # seconds
 
+# Stripe Configuration
+STRIPE_SECRET_KEY = os.getenv("STRIPE_SECRET_KEY", "")
+STRIPE_WEBHOOK_SECRET = os.getenv("STRIPE_WEBHOOK_SECRET", "")
+STRIPE_PUBLISHABLE_KEY = os.getenv("STRIPE_PUBLISHABLE_KEY", "")
+
+# Database Configuration (for usage tracking)
+DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///./capital_shield.db")  # SQLite for beta, PostgreSQL for production
