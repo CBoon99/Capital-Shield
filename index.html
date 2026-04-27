@@ -1,617 +1,1153 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GSRF Risk Shield — Deterministic Safety Filter for Trading Bots</title>
-  <meta name="description" content="The first trading risk filter derived from quantum error correction. Prevents recursive position sizing, oscillation drift, and runaway drawdown.">
-  <link rel="canonical" href="https://capital-shield.netlify.app/">
-  <meta name="theme-color" content="#0a0a0a">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%230066cc'/><text x='50' y='60' text-anchor='middle' fill='white' font-size='40' font-family='system-ui'>G</text></svg>">
-  <style>
-    :root {
-      --bg-dark: #0a0a0a;
-      --bg-card: #1a1a1a;
-      --accent: #0066cc;
-      --accent-glow: #0066cc33;
-      --text-primary: #ffffff;
-      --text-secondary: #aaaaaa;
-      --border: #2a2a2a;
-      --success: #00cc66;
-      --warning: #ff6600;
-    }
+    <!-- Primary Meta Tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Capital Shield - Risk-First Trading Infrastructure | Runaway Algorithm Protection & Max Drawdown API</title>
+    <meta name="description" content="Block runaway algorithms before execution. Enforce max drawdown, volatility, and regime risk rules with our API-first, strategy-agnostic risk gateway for algorithmic trading systems.">
+    <meta name="keywords" content="algorithmic trading risk management, runaway algorithm protection, max drawdown API, trading safety gates, risk-first infrastructure, capital protection, quant risk management, deterministic risk controls, trading execution safety, prop trading risk">
+    <meta name="author" content="BoonMindX">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://capital-shield.netlify.app/">
 
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      background: var(--bg-dark);
-      color: var(--text-primary);
-      line-height: 1.5;
-    }
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://capital-shield.netlify.app/">
+    <meta property="og:title" content="Capital Shield - Risk-First Trading Infrastructure">
+    <meta property="og:description" content="Block runaway algorithms before execution. Enforce max drawdown, volatility, and regime risk rules with our API-first, strategy-agnostic risk gateway.">
+    <meta property="og:image" content="https://capital-shield.netlify.app/assets/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:site_name" content="Capital Shield">
+    <meta property="og:locale" content="en_GB">
 
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 2rem;
-    }
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://capital-shield.netlify.app/">
+    <meta name="twitter:title" content="Capital Shield - Risk-First Trading Infrastructure">
+    <meta name="twitter:description" content="Block runaway algorithms before execution. Deterministic safety gates for algorithmic trading.">
+    <meta name="twitter:image" content="https://capital-shield.netlify.app/assets/twitter-image.png">
 
-    .header {
-      text-align: center;
-      padding: 4rem 0 2rem;
-      border-bottom: 1px solid var(--border);
-    }
+    <!-- Additional SEO -->
+    <meta name="theme-color" content="#1a1a2e">
+    <meta name="application-name" content="Capital Shield">
 
-    .logo {
-      font-size: 0.85rem;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      color: var(--accent);
-      margin-bottom: 1rem;
-    }
+    <!-- Geo Tags (for local SEO) -->
+    <meta name="geo.region" content="GB-MAN">
+    <meta name="geo.placename" content="Manchester">
+    <meta name="geo.position" content="53.4808;-2.2426">
+    <meta name="ICBM" content="53.4808, -2.2426">
 
-    h1 {
-      font-size: 3rem;
-      font-weight: 700;
-      margin-bottom: 1rem;
-      background: linear-gradient(135deg, #fff, var(--accent));
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
+    <!-- Language -->
+    <link rel="alternate" hreflang="en" href="https://capital-shield.netlify.app/">
+    <link rel="alternate" hreflang="x-default" href="https://capital-shield.netlify.app/">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%232EA8FF'/><path d='M50 20 L30 50 L50 45 L70 50 Z' fill='%23071225'/><rect x='40' y='50' width='20' height='30' fill='%23071225'/></svg>">
 
-    .subhead {
-      font-size: 1.25rem;
-      color: var(--text-secondary);
-      max-width: 600px;
-      margin: 0 auto;
-    }
-
-    .hook {
-      font-size: 1.15rem;
-      color: var(--text-primary);
-      max-width: 640px;
-      margin: 1.25rem auto 0;
-      font-weight: 600;
-      line-height: 1.45;
-    }
-
-    .origin-badge {
-      display: inline-block;
-      background: var(--accent-glow);
-      padding: 0.25rem 0.75rem;
-      border-radius: 20px;
-      font-size: 0.75rem;
-      margin-top: 1rem;
-      color: var(--accent);
-    }
-
-    .demo-section {
-      background: var(--bg-card);
-      border-radius: 16px;
-      padding: 2rem;
-      margin: 3rem 0;
-      border: 1px solid var(--border);
-    }
-
-    .demo-title {
-      text-align: center;
-      margin-bottom: 2rem;
-    }
-
-    .demo-title h2 {
-      margin-bottom: 0.5rem;
-    }
-
-    .demo-title p {
-      color: var(--text-secondary);
-      font-size: 0.9rem;
-    }
-
-    .slider-container {
-      max-width: 500px;
-      margin: 0 auto;
-    }
-
-    input[type="range"] {
-      width: 100%;
-      margin: 1rem 0;
-      -webkit-appearance: none;
-      appearance: none;
-      background: var(--border);
-      height: 4px;
-      border-radius: 2px;
-    }
-
-    input[type="range"]:focus {
-      outline: none;
-    }
-
-    input[type="range"]::-webkit-slider-thumb {
-      -webkit-appearance: none;
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      background: var(--accent);
-      cursor: pointer;
-    }
-
-    input[type="range"]::-moz-range-thumb {
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      background: var(--accent);
-      cursor: pointer;
-      border: none;
-    }
-
-    .demo-values {
-      display: flex;
-      justify-content: space-between;
-      gap: 1rem;
-      margin: 1.5rem 0;
-    }
-
-    .value-card {
-      flex: 1;
-      background: #0d0d0d;
-      padding: 1rem;
-      border-radius: 8px;
-      text-align: center;
-      border: 1px solid var(--border);
-      border-left: 3px solid transparent;
-    }
-
-    .value-card span:first-child {
-      display: block;
-      font-size: 0.75rem;
-      color: var(--text-secondary);
-      margin-bottom: 0.5rem;
-    }
-
-    .value-card .value {
-      font-size: 2rem;
-      font-weight: 700;
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-    }
-
-    .raw .value { color: var(--warning); }
-    .gsrf .value { color: var(--success); }
-
-    button {
-      background: var(--accent);
-      color: white;
-      border: none;
-      padding: 0.5rem 1rem;
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 0.85rem;
-      transition: all 0.2s;
-    }
-
-    button:hover {
-      background: #0052a3;
-      transform: translateY(-1px);
-    }
-
-    .demo-note {
-      text-align: center;
-      font-size: 0.8rem;
-      color: var(--text-secondary);
-      margin-top: 1.5rem;
-    }
-
-    .problem-section {
-      margin: 4rem 0;
-      padding: 2rem;
-      background: linear-gradient(135deg, #1a0a0a, #0a0a0a);
-      border-radius: 16px;
-      border-left: 4px solid var(--warning);
-    }
-
-    .problem-section h2 {
-      margin-bottom: 1rem;
-    }
-
-    .problem-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1.5rem;
-      margin-top: 2rem;
-    }
-
-    .problem-card {
-      background: var(--bg-card);
-      padding: 1.25rem;
-      border-radius: 12px;
-    }
-
-    .problem-card h3 {
-      margin-bottom: 0.5rem;
-      font-size: 1rem;
-    }
-
-    .problem-card p {
-      font-size: 0.85rem;
-      color: var(--text-secondary);
-    }
-
-    .how-section {
-      margin: 4rem 0;
-      text-align: center;
-    }
-
-    .steps {
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
-      margin-top: 2rem;
-      flex-wrap: wrap;
-    }
-
-    .step {
-      flex: 1;
-      min-width: 200px;
-      background: var(--bg-card);
-      padding: 1.5rem;
-      border-radius: 12px;
-      text-align: center;
-    }
-
-    .step-number {
-      width: 40px;
-      height: 40px;
-      background: var(--accent);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 1rem;
-      font-weight: bold;
-    }
-
-    .pricing-section {
-      margin: 4rem 0;
-      text-align: center;
-    }
-
-    .pricing-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 2rem;
-      margin-top: 2rem;
-    }
-
-    .pricing-card {
-      background: var(--bg-card);
-      border-radius: 16px;
-      padding: 2rem;
-      text-align: center;
-      border: 1px solid var(--border);
-      transition: transform 0.2s;
-    }
-
-    .pricing-card:hover {
-      transform: translateY(-4px);
-    }
-
-    .pricing-card.pro {
-      border: 2px solid var(--accent);
-      position: relative;
-    }
-
-    .pro-badge {
-      position: absolute;
-      top: -12px;
-      right: 20px;
-      background: var(--accent);
-      padding: 0.25rem 0.75rem;
-      border-radius: 20px;
-      font-size: 0.7rem;
-    }
-
-    .price {
-      font-size: 2rem;
-      font-weight: 700;
-      margin: 1rem 0;
-    }
-
-    .price span {
-      font-size: 0.9rem;
-      color: var(--text-secondary);
-    }
-
-    .pricing-card ul {
-      list-style: none;
-      margin: 1.5rem 0;
-      text-align: left;
-    }
-
-    .pricing-card li {
-      margin: 0.5rem 0;
-      font-size: 0.85rem;
-      color: var(--text-secondary);
-    }
-
-    .pricing-card li::before {
-      content: "✓ ";
-      color: var(--success);
-    }
-
-    .pricing-card button {
-      width: 100%;
-      padding: 0.75rem;
-      font-size: 1rem;
-      margin-top: 1rem;
-    }
-
-    .footer {
-      text-align: center;
-      padding: 3rem 0;
-      border-top: 1px solid var(--border);
-      margin-top: 4rem;
-      color: var(--text-secondary);
-      font-size: 0.85rem;
-    }
-
-    .footer a {
-      color: var(--accent);
-    }
-
-    .visually-hidden {
-      position: absolute;
-      width: 1px;
-      height: 1px;
-      padding: 0;
-      margin: -1px;
-      overflow: hidden;
-      clip: rect(0, 0, 0, 0);
-      white-space: nowrap;
-      border: 0;
-    }
-
-    @media (max-width: 768px) {
-      .container {
-        padding: 0 1rem;
-      }
-      h1 {
-        font-size: 2rem;
-      }
-      .steps {
-        flex-direction: column;
-        align-items: center;
-      }
-      .step {
-        width: 100%;
+    <!-- Schema Markup (JSON-LD) -->
+    <!-- WebApplication Schema (Primary Product) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "@id": "https://capital-shield.netlify.app/#software",
+      "name": "Capital Shield",
+      "alternateName": "BoonMindX Capital Shield",
+      "description": "Risk-first trading infrastructure and deterministic safety layer for algorithmic trading systems. Strategy-agnostic API that enforces max drawdown limits, regime guards, and execution constraints.",
+      "url": "https://capital-shield.netlify.app/",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "All",
+      "browserRequirements": "Requires JavaScript and HTML5 support",
+      "softwareVersion": "1.0.0",
+      "releaseNotes": "Controlled Beta - Public release Q1 2026",
+      "featureList": [
+        "Max Drawdown Protection",
+        "Regime Guard",
+        "Health Check Validation",
+        "Structured Rejection Reasons",
+        "REST API Integration",
+        "Real-time Dashboard",
+        "Historical Simulation"
+      ],
+      "offers": {
+        "@type": "AggregateOffer",
+        "priceCurrency": "GBP",
+        "lowPrice": "49",
+        "highPrice": "999",
+        "offerCount": "3",
+        "offers": [
+          {
+            "@type": "Offer",
+            "name": "Starter",
+            "description": "10,000 API calls/day for solo systematic traders",
+            "price": "49",
+            "priceCurrency": "GBP",
+            "priceSpecification": {
+              "@type": "UnitPriceSpecification",
+              "price": "49",
+              "priceCurrency": "GBP",
+              "billingDuration": "P1M",
+              "unitText": "month"
+            }
+          },
+          {
+            "@type": "Offer",
+            "name": "Professional",
+            "description": "100,000 API calls/day for prop traders and small funds",
+            "price": "199",
+            "priceCurrency": "GBP",
+            "priceSpecification": {
+              "@type": "UnitPriceSpecification",
+              "price": "199",
+              "priceCurrency": "GBP",
+              "billingDuration": "P1M",
+              "unitText": "month"
+            }
+          },
+          {
+            "@type": "Offer",
+            "name": "Enterprise",
+            "description": "Unlimited API calls for funds and institutions",
+            "price": "999",
+            "priceCurrency": "GBP",
+            "priceSpecification": {
+              "@type": "UnitPriceSpecification",
+              "price": "999",
+              "priceCurrency": "GBP",
+              "billingDuration": "P1M",
+              "unitText": "month"
+            }
+          }
+        ]
+      },
+      "creator": {
+        "@type": "Organization",
+        "@id": "https://capital-shield.netlify.app/#organization",
+        "name": "BoonMindX",
+        "url": "https://capital-shield.netlify.app/",
+        "email": "info@boonmind.io"
+      },
+      "audience": {
+        "@type": "Audience",
+        "audienceType": "Quant developers, trading system architects, systematic traders, prop trading firms"
       }
     }
-  </style>
+    </script>
+
+    <!-- Organization Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "@id": "https://capital-shield.netlify.app/#organization",
+      "name": "BoonMindX",
+      "url": "https://capital-shield.netlify.app/",
+      "email": "info@boonmind.io",
+      "founder": {
+        "@type": "Person",
+        "name": "Carl Boon"
+      },
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Manchester",
+        "addressCountry": "United Kingdom"
+      },
+      "sameAs": [
+        "https://github.com/CBoon99/Capital-Shield"
+      ],
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "email": "info@boonmind.io",
+        "contactType": "sales"
+      }
+    }
+    </script>
+
+    <!-- FAQ Schema (Critical for AI Citations) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Is Capital Shield a trading bot?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Capital Shield is risk-first trading infrastructure, not a trading bot. It does not generate buy/sell signals, seek alpha, or execute trades. It sits between your trading strategy and execution, enforcing deterministic safety gates and capital protection rules."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does Capital Shield generate alpha or guarantee profits?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Capital Shield is infrastructure software designed to reduce risk, not generate returns. It enforces deterministic execution constraints (max drawdown limits, regime guards, health checks) but makes no claims about profitability or alpha generation."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is a runaway algorithm and how does Capital Shield prevent it?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A runaway algorithm is an automated trading system that continues executing trades beyond acceptable risk parameters, often leading to catastrophic losses. Capital Shield prevents this by enforcing hard limits (max drawdown, volatility thresholds) and blocking trades that violate predefined safety rules before they reach the market."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How does Capital Shield integrate with existing trading strategies?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Capital Shield is strategy-agnostic and integrates via REST API. Your trading strategy generates signals (BUY/SELL/HOLD), sends them to the Capital Shield API, which evaluates each signal against safety rails and returns an allow/block decision with structured rejection reasons."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What are the pricing tiers for Capital Shield?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Capital Shield offers three tiers: Starter at £49/month (10,000 API calls/day), Professional at £199/month (100,000 API calls/day), and Enterprise with custom pricing for unlimited calls. Annual subscriptions include 2 months free."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the difference between max drawdown protection and a stop-loss?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A stop-loss is a reactive mechanism that exits a position after a loss occurs. Max drawdown protection in Capital Shield is proactive - it evaluates proposed trades BEFORE execution and blocks any trade that would cause total portfolio drawdown to exceed the configured threshold, preventing the loss from ever happening."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Who is Capital Shield for?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Capital Shield is designed for quant developers at multi-strategy funds, trading system architects building execution stacks, solo systematic traders protecting substantial capital, and prop trading firms requiring deterministic risk infrastructure."
+          }
+        }
+      ]
+    }
+    </script>
+
+    <!-- WebPage Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "@id": "https://capital-shield.netlify.app/#webpage",
+      "url": "https://capital-shield.netlify.app/",
+      "name": "Capital Shield - Risk-First Trading Infrastructure | Runaway Algorithm Protection",
+      "description": "Block runaway algorithms before execution. Enforce max drawdown, volatility, and regime risk rules with our API-first, strategy-agnostic risk gateway.",
+      "isPartOf": {
+        "@type": "WebSite",
+        "@id": "https://capital-shield.netlify.app/#website",
+        "name": "Capital Shield",
+        "url": "https://capital-shield.netlify.app/"
+      },
+      "mainEntity": {
+        "@id": "https://capital-shield.netlify.app/#software"
+      },
+      "breadcrumb": {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://capital-shield.netlify.app/"
+          }
+        ]
+      }
+    }
+    </script>
+
+    <!-- WebSite Schema with SearchAction -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "@id": "https://capital-shield.netlify.app/#website",
+      "name": "Capital Shield",
+      "url": "https://capital-shield.netlify.app/",
+      "publisher": {
+        "@id": "https://capital-shield.netlify.app/#organization"
+      }
+    }
+    </script>
 </head>
 <body>
-  <div class="container">
-
-    <header class="header">
-      <div class="logo">GSRF RISK SHIELD</div>
-      <h1>Finally, a risk filter<br>that remembers.</h1>
-      <p class="subhead">The first deterministic safety filter for trading systems — adapted from quantum error correction.</p>
-      <p class="hook">GSRF doesn't tell you when to buy. It stops you from blowing up when you're wrong.</p>
-      <div class="origin-badge">Originally developed for quantum computing — now protecting your portfolio</div>
+    <!-- Header -->
+    <header class="header" id="header">
+        <nav class="nav container">
+            <div class="nav-brand">
+                <span class="logo-text">BoonMindX</span>
+                <span class="product-name">Capital Shield</span>
+            </div>
+            <ul class="nav-links" role="navigation" aria-label="Main navigation">
+                <li><a href="#overview" aria-label="Overview section">Overview</a></li>
+                <li><a href="#capabilities" aria-label="Capabilities section">Capabilities</a></li>
+                <li><a href="#architecture" aria-label="Architecture section">Architecture</a></li>
+                <li><a href="/demo" aria-label="Interactive demo">Interactive Demo</a></li>
+                <li><a href="#quickstart" aria-label="Quickstart section">Quickstart</a></li>
+                <li><a href="#beta" aria-label="Beta section">Beta</a></li>
+                <li><a href="#licensing" aria-label="Licensing section">Licensing</a></li>
+                <li><a href="#contact" aria-label="Contact section">Contact</a></li>
+                <li><a href="technical.html" aria-label="Technical appendix">Technical</a></li>
+            </ul>
+            <a href="#contact" class="btn btn-primary btn-small" aria-label="Request beta access">Request Beta Access</a>
+        </nav>
     </header>
 
-    <section class="demo-section" aria-label="Live GSRF demo">
-      <div class="demo-title">
-        <h2>See GSRF in action</h2>
-        <p>Move the slider — watch how GSRF dampens oscillations and prevents runaway position sizing</p>
-      </div>
-      <div class="slider-container">
-        <label class="visually-hidden" for="riskSlider">Risk level</label>
-        <input type="range" id="riskSlider" name="riskSlider" min="0" max="100" value="50" aria-label="Simulated risk input">
-        <div class="demo-values">
-          <div class="value-card raw">
-            <span>Raw signal (oscillating)</span>
-            <div class="value" id="rawValue">50%</div>
-          </div>
-          <div class="value-card gsrf">
-            <span>GSRF filtered (stable)</span>
-            <div class="value" id="gsrfValue">50%</div>
-          </div>
+    <!-- Hero -->
+    <section class="hero" id="overview">
+        <div class="hero-background">
+            <div class="glow-orb"></div>
+            <div class="grid-overlay"></div>
         </div>
-        <div style="text-align: center;">
-          <button type="button" id="resetDemo">⟳ Reset GSRF memory</button>
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">Capital Shield: The Deterministic Safety Layer for Algorithmic Trading</h1>
+                <p class="hero-subtitle">Block runaway algorithms before execution. Enforce max drawdown, volatility, and regime risk rules with our API-first, strategy-agnostic risk gateway.</p>
+                <p class="hero-description" style="margin-bottom: 24px;">
+                    Capital Shield is not a trading strategy. It does not predict markets or generate alpha.
+                    It is a deterministic safety layer that evaluates proposed trades and blocks those that violate predefined risk, regime, or capital-preservation rules.
+                </p>
+                <p class="hero-description">
+                    Algorithmic trading systems can spiral out of control—unchecked drawdowns, regime-blind execution, and silent failures. 
+                    Capital Shield sits between your strategy and capital, enforcing deterministic execution constraints, regime awareness, 
+                    and explicit rejection reasons before trades reach the market. This risk-first infrastructure protects capital, not generates returns.
+                </p>
+                <div class="hero-badges">
+                    <span class="badge">Controlled Beta</span>
+                    <span class="badge">API-first</span>
+                    <span class="badge">Strategy-agnostic</span>
+                    <span class="badge">Q1 2026 public release</span>
+                </div>
+                <div class="hero-ctas">
+                    <a href="/demo" class="btn btn-primary" aria-label="View risk demo">View Risk Demo</a>
+                    <a href="#contact" class="btn btn-secondary" aria-label="Start free trial">Start Free Trial</a>
+                    <a href="#quickstart" class="btn btn-secondary" aria-label="Read the documentation">Read the Docs</a>
+                    <a href="https://github.com/CBoon99/Capital-Shield" id="github-link-hero" class="btn btn-secondary" target="_blank" rel="noopener noreferrer" aria-label="View on GitHub">View on GitHub</a>
+                </div>
+            </div>
+            
+            <!-- The Cost of Being Unshielded Table -->
+            <div style="max-width: 900px; margin: 48px auto 0; padding: 32px; background: var(--bg-surface); border: 1px solid var(--border); border-radius: 16px;">
+                <h3 style="font-size: 24px; font-weight: 600; color: var(--text-primary); margin-bottom: 24px; text-align: center;">The Cost of Being Unshielded</h3>
+                <table style="width: 100%; border-collapse: collapse; margin-top: 24px;">
+                    <thead>
+                        <tr>
+                            <th style="padding: 16px; text-align: left; background: rgba(46, 168, 255, 0.1); border: 1px solid var(--border); color: var(--accent); font-weight: 600;">Unshielded Execution</th>
+                            <th style="padding: 16px; text-align: left; background: rgba(46, 168, 255, 0.1); border: 1px solid var(--border); color: var(--accent); font-weight: 600;">Capital Shield Execution</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="padding: 16px; border: 1px solid var(--border); color: var(--text-muted);">Strategy signal → Immediate Execution</td>
+                            <td style="padding: 16px; border: 1px solid var(--border); color: var(--text-primary);">Strategy signal → → Safety Gates → ALLOW/BLOCK → Execution</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 16px; border: 1px solid var(--border); color: var(--text-muted);">Silent failure → Blown-up account</td>
+                            <td style="padding: 16px; border: 1px solid var(--border); color: var(--text-primary);">Structured log (e.g., DD_BREACH) → Protected capital</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 16px; border: 1px solid var(--border); color: var(--text-muted);">Regime-blind trades in a crash</td>
+                            <td style="padding: 16px; border: 1px solid var(--border); color: var(--text-primary);">Regime Guard → "VOL_BREACH: Blocked"</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 16px; border: 1px solid var(--border); color: var(--text-muted);">Risk logic buried inside strategy code</td>
+                            <td style="padding: 16px; border: 1px solid var(--border); color: var(--text-primary);">Centralized, strategy-agnostic safety gates</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
-        <p class="demo-note">Without GSRF, position sizes oscillate. With GSRF, they stabilize — preventing recursive blow-ups.</p>
-      </div>
     </section>
 
-    <section class="problem-section" aria-labelledby="problem-heading">
-      <h2 id="problem-heading">Every trading bot has the same hidden risk</h2>
-      <p>Recursive position sizing. Oscillating trailing stops. Cumulative drift. Most risk tools detect these <strong>after</strong> damage starts. GSRF prevents them <strong>before</strong> execution.</p>
-      <div class="problem-grid">
-        <div class="problem-card">
-          <h3>📈 Position sizing oscillation</h3>
-          <p>Your bot increases size after a win, then more after the next win — one loss wipes out weeks of gains. GSRF bounds the recursion.</p>
+    <!-- System Positioning -->
+    <section class="section diagram-section">
+        <div class="container">
+            <h2 class="section-title section-title-center">System Positioning</h2>
+            <p class="section-subtitle" style="text-align: center; color: var(--text-muted); margin-bottom: 48px; font-size: 16px;">
+                High-level view of where Capital Shield sits in a trading stack.
+            </p>
+            <div class="diagram-container">
+                <svg viewBox="0 0 900 280" class="capital-shield-diagram" aria-label="Where Capital Shield Sits in the Trading Stack">
+                    <title>Where Capital Shield Sits: Strategy Engine → Capital Shield → Execution</title>
+                    
+                    <!-- Box 1: Strategy / Signal Engine -->
+                    <g>
+                        <rect x="20" y="100" width="200" height="120" rx="8" fill="rgba(46, 168, 255, 0.08)" stroke="rgba(120, 170, 255, 0.3)" stroke-width="1.5"/>
+                        <text x="120" y="135" text-anchor="middle" fill="#EAF2FF" font-size="16" font-weight="600" font-family="Inter, sans-serif">Strategy / Signal Engine</text>
+                        <text x="120" y="160" text-anchor="middle" fill="rgba(234, 242, 255, 0.72)" font-size="13" font-family="Inter, sans-serif">(any logic)</text>
+                        <line x1="20" y1="180" x2="220" y2="180" stroke="rgba(120, 170, 255, 0.2)" stroke-width="1"/>
+                        <text x="120" y="200" text-anchor="middle" fill="rgba(234, 242, 255, 0.72)" font-size="12" font-family="Inter, sans-serif">• Signal generation</text>
+                        <text x="120" y="218" text-anchor="middle" fill="rgba(234, 242, 255, 0.72)" font-size="12" font-family="Inter, sans-serif">• Alpha strategies</text>
+                    </g>
+                    
+                    <!-- Arrow 1: trade intents -->
+                    <g>
+                        <path d="M 240 160 L 300 160" stroke="#2EA8FF" stroke-width="2.5" marker-end="url(#arrowhead-blue)"/>
+                        <text x="270" y="150" text-anchor="middle" fill="#2EA8FF" font-size="12" font-weight="500" font-family="Inter, sans-serif">trade intents</text>
+                    </g>
+                    
+                    <!-- Box 2: Capital Shield (highlighted) -->
+                    <g>
+                        <rect x="320" y="60" width="280" height="200" rx="8" fill="rgba(46, 168, 255, 0.15)" stroke="#2EA8FF" stroke-width="2.5"/>
+                        <text x="460" y="95" text-anchor="middle" fill="#2EA8FF" font-size="18" font-weight="700" font-family="Inter, sans-serif">Capital Shield</text>
+                        <text x="460" y="120" text-anchor="middle" fill="#2EA8FF" font-size="14" font-weight="600" font-family="Inter, sans-serif">Deterministic Risk Gates</text>
+                        <line x1="340" y1="135" x2="580" y2="135" stroke="#2EA8FF" stroke-width="1" opacity="0.5"/>
+                        <text x="350" y="158" text-anchor="start" fill="#EAF2FF" font-size="13" font-family="Inter, sans-serif">• Drawdown limits</text>
+                        <text x="350" y="180" text-anchor="start" fill="#EAF2FF" font-size="13" font-family="Inter, sans-serif">• Regime filters</text>
+                        <text x="350" y="202" text-anchor="start" fill="#EAF2FF" font-size="13" font-family="Inter, sans-serif">• Trade sanity checks</text>
+                        <text x="350" y="224" text-anchor="start" fill="#EAF2FF" font-size="13" font-family="Inter, sans-serif">• Kill switch</text>
+                    </g>
+                    
+                    <!-- Arrow 2: allowed trades only -->
+                    <g>
+                        <path d="M 620 160 L 680 160" stroke="#2EA8FF" stroke-width="2.5" marker-end="url(#arrowhead-blue)"/>
+                        <text x="650" y="150" text-anchor="middle" fill="#2EA8FF" font-size="12" font-weight="500" font-family="Inter, sans-serif">allowed trades only</text>
+                    </g>
+                    
+                    <!-- Box 3: Execution / Exchange -->
+                    <g>
+                        <rect x="700" y="100" width="180" height="120" rx="8" fill="rgba(46, 168, 255, 0.08)" stroke="rgba(120, 170, 255, 0.3)" stroke-width="1.5"/>
+                        <text x="790" y="135" text-anchor="middle" fill="#EAF2FF" font-size="16" font-weight="600" font-family="Inter, sans-serif">Execution / Exchange</text>
+                        <text x="790" y="160" text-anchor="middle" fill="rgba(234, 242, 255, 0.72)" font-size="13" font-family="Inter, sans-serif">(broker / venue / API)</text>
+                        <line x1="700" y1="180" x2="880" y2="180" stroke="rgba(120, 170, 255, 0.2)" stroke-width="1"/>
+                        <text x="790" y="200" text-anchor="middle" fill="rgba(234, 242, 255, 0.72)" font-size="12" font-family="Inter, sans-serif">• Order execution</text>
+                        <text x="790" y="218" text-anchor="middle" fill="rgba(234, 242, 255, 0.72)" font-size="12" font-family="Inter, sans-serif">• Market access</text>
+                    </g>
+                    
+                    <!-- Arrow marker definition -->
+                    <defs>
+                        <marker id="arrowhead-blue" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                            <polygon points="0 0, 10 3, 0 6" fill="#2EA8FF"/>
+                        </marker>
+                    </defs>
+                </svg>
+            </div>
+            <p style="text-align: center; color: var(--text-muted); font-size: 16px; margin-top: 32px; max-width: 800px; margin-left: auto; margin-right: auto;">
+                A deterministic decision pipeline where the Safety Gates module applies all risk rules before any execution signal is allowed to pass through.
+            </p>
+            
+            <!-- Stats Strip -->
+            <div class="stats-strip">
+                <div class="stat-item">
+                    <svg class="stat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                        <path d="M2 17l10 5 10-5M2 12l10 5 10-5"/>
+                    </svg>
+                    <div class="stat-content">
+                        <strong>Strategy-agnostic integration</strong>
+                        <span>Works with any trading strategy or signal generator</span>
+                    </div>
+                </div>
+                <div class="stat-item">
+                    <svg class="stat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9 11l3 3L22 4"/>
+                        <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
+                    </svg>
+                    <div class="stat-content">
+                        <strong>Deterministic gates (explainable)</strong>
+                        <span>Same inputs produce same outputs with clear rejection reasons</span>
+                    </div>
+                </div>
+                <div class="stat-item">
+                    <svg class="stat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                    </svg>
+                    <div class="stat-content">
+                        <strong>Fail-closed defaults</strong>
+                        <span>Safety gates block trades by default when uncertain</span>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="problem-card">
-          <h3>🔄 Trailing stop chokes</h3>
-          <p>Volatile days cause stops to tighten too quickly. GSRF adds memory — stops stay rational.</p>
-        </div>
-        <div class="problem-card">
-          <h3>💸 Drawdown accumulation</h3>
-          <p>Small losses build into large drawdowns. GSRF enforces bounded daily loss that compounds safely.</p>
-        </div>
-        <div class="problem-card">
-          <h3>⚡ Hidden recursion</h3>
-          <p>Your bot works in backtest but fails live because of unmodeled feedback loops. GSRF makes recursion deterministic.</p>
-        </div>
-      </div>
     </section>
 
-    <section class="how-section" aria-labelledby="how-heading">
-      <h2 id="how-heading">How GSRF works</h2>
-      <p style="color: var(--text-secondary); max-width: 600px; margin: 0 auto;">Three steps. Deterministic. No black boxes.</p>
-      <div class="steps">
-        <div class="step">
-          <div class="step-number">1</div>
-          <h3>Evaluate</h3>
-          <p style="font-size: 0.85rem; color: var(--text-secondary);">Your bot proposes a trade with position size, stop loss, and take profit.</p>
+    <!-- What It Is / What It Isn't -->
+    <section class="section what-section">
+        <div class="container">
+            <div class="two-column">
+                <div class="column">
+                    <h2 class="section-title">What Capital Shield Is: Risk-First Trading Infrastructure</h2>
+                    <ul class="feature-list">
+                        <li>
+                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 13l4 4L19 7"/>
+                            </svg>
+                            <span><strong>Execution + risk gateway</strong> - Strategy-agnostic infrastructure that sits between signal generation and market execution</span>
+                        </li>
+                        <li>
+                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 13l4 4L19 7"/>
+                            </svg>
+                            <span><strong>Deterministic safety rails</strong> - Hard execution constraints with structured rejection reasons</span>
+                        </li>
+                        <li>
+                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 13l4 4L19 7"/>
+                            </svg>
+                            <span><strong>Strategy-agnostic design</strong> - Works with any trading strategy, signal generator, or alpha engine</span>
+                        </li>
+                        <li>
+                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 13l4 4L19 7"/>
+                            </svg>
+                            <span><strong>Simulation/validation harness</strong> - Test deterministic risk controls against historical market crashes</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="column">
+                    <h2 class="section-title">What Capital Shield Is Not</h2>
+                    <ul class="feature-list">
+                        <li>
+                            <svg class="icon icon-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M18 6L6 18M6 6l12 12"/>
+                            </svg>
+                            <span><strong>Not a strategy</strong> — Doesn't generate buy/sell signals</span>
+                        </li>
+                        <li>
+                            <svg class="icon icon-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M18 6L6 18M6 6l12 12"/>
+                            </svg>
+                            <span><strong>Not a signal generator</strong> — Infrastructure, not alpha generation</span>
+                        </li>
+                        <li>
+                            <svg class="icon icon-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M18 6L6 18M6 6l12 12"/>
+                            </svg>
+                            <span><strong>No profit claims</strong> — Reduces risk, doesn't guarantee returns</span>
+                        </li>
+                        <li>
+                            <svg class="icon icon-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M18 6L6 18M6 6l12 12"/>
+                            </svg>
+                            <span><strong>Not financial advice</strong> — Infrastructure software only</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="why-now">
+                <p>
+                    <strong>Why now:</strong> The post-alpha era demands risk-first infrastructure. 
+                    Capital Shield provides deterministic safety gates that integrate into any trading stack, 
+                    with validation tooling to measure the cost of safety before deployment.
+                </p>
+            </div>
         </div>
-        <div class="step">
-          <div class="step-number">2</div>
-          <h3>Filter</h3>
-          <p style="font-size: 0.85rem; color: var(--text-secondary);">GSRF applies deterministic bounds: gradient return to safe zone + saturating memory.</p>
-        </div>
-        <div class="step">
-          <div class="step-number">3</div>
-          <h3>Execute</h3>
-          <p style="font-size: 0.85rem; color: var(--text-secondary);">Only safe trades reach the exchange. Unsafe trades are blocked or adjusted.</p>
-        </div>
-      </div>
     </section>
 
-    <section class="pricing-section" aria-labelledby="pricing-heading">
-      <h2 id="pricing-heading">Simple pricing. No lock-in.</h2>
-      <p style="color: var(--text-secondary);">Start with the Python package. Upgrade when you need more.</p>
-      <div class="pricing-grid">
-        <div class="pricing-card">
-          <h3>Python Package</h3>
-          <div class="price">$199 <span>one-time</span></div>
-          <ul>
-            <li>GSRF position sizing</li>
-            <li>Daily loss limits</li>
-            <li>Freqtrade integration ready</li>
-            <li>30-day money-back guarantee</li>
-            <li>Email support (48h response)</li>
-          </ul>
-          <button type="button" onclick="window.open('https://gumroad.com/l/gsrf-risk-shield', '_blank', 'noopener,noreferrer')">Buy Now →</button>
+    <!-- Key Capabilities -->
+    <section class="section capabilities-section" id="capabilities">
+        <div class="container">
+            <h2 class="section-title section-title-center">Core Risk Management Capabilities for Algorithmic Trading</h2>
+            <div class="capabilities-grid">
+                <div class="capability-card">
+                    <div class="capability-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                        </svg>
+                    </div>
+                    <h3>Deterministic Safety Rails</h3>
+                    <p>Max drawdown protection, regime guards, and health checks with structured rejection reasons. Deterministic execution constraints for algorithmic trading systems.</p>
+                </div>
+                <div class="capability-card">
+                    <div class="capability-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="2" y="3" width="20" height="14" rx="2"/>
+                            <path d="M8 21h8M12 17v4"/>
+                        </svg>
+                    </div>
+                    <h3>Capital Protection API</h3>
+                    <p>FastAPI-based REST API for risk-first trading infrastructure. Authentication, rate limiting, and structured logging for production deployment.</p>
+                </div>
+                <div class="capability-card">
+                    <div class="capability-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M9 11l3 3L22 4"/>
+                            <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
+                        </svg>
+                    </div>
+                    <h3>Explicit Rejection Reasons</h3>
+                    <p>Machine-readable decision codes (DD_BREACH, VOL_BREACH) for integration and logging. Transparent deterministic risk controls.</p>
+                </div>
+                <div class="capability-card">
+                    <div class="capability-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                            <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+                            <line x1="12" y1="22.08" x2="12" y2="12"/>
+                        </svg>
+                    </div>
+                    <h3>Simulation & Validation</h3>
+                    <p><strong>Quantify Your Safety: See the Protection in Action</strong><br>Test deterministic safety rails against historical market crashes. Compare baseline vs. shielded performance for algorithmic trading systems.</p>
+                    <div style="margin-top: 16px; padding: 16px; background: rgba(46, 168, 255, 0.05); border: 1px solid var(--border); border-radius: 8px; text-align: center;">
+                        <div style="width: 100%; height: 200px; background: linear-gradient(135deg, rgba(46, 168, 255, 0.1) 0%, rgba(124, 92, 255, 0.1) 100%); border-radius: 8px; display: flex; align-items: center; justify-content: center; margin-bottom: 12px;">
+                            <svg viewBox="0 0 400 200" style="width: 100%; height: 100%;">
+                                <!-- Chart placeholder: Crash visualization -->
+                                <line x1="20" y1="180" x2="380" y2="180" stroke="rgba(120, 170, 255, 0.3)" stroke-width="2"/>
+                                <line x1="20" y1="20" x2="20" y2="180" stroke="rgba(120, 170, 255, 0.3)" stroke-width="2"/>
+                                <!-- Unshielded line (crash) -->
+                                <polyline points="20,100 100,95 150,120 200,140 250,160 300,175 350,190 380,195" fill="none" stroke="#FF4444" stroke-width="3" opacity="0.7"/>
+                                <!-- Shielded line (protected) -->
+                                <polyline points="20,100 100,98 150,105 200,110 250,110 300,110 350,110 380,110" fill="none" stroke="#2EA8FF" stroke-width="3"/>
+                                <!-- -10% threshold line -->
+                                <line x1="20" y1="110" x2="380" y2="110" stroke="#2EA8FF" stroke-width="2" stroke-dasharray="5,5" opacity="0.5"/>
+                                <text x="200" y="15" text-anchor="middle" fill="var(--text-muted)" font-size="12">May 2021 Crypto Crash Simulation</text>
+                                <text x="30" y="105" fill="#2EA8FF" font-size="10">-10% limit</text>
+                            </svg>
+                        </div>
+                        <p style="font-size: 13px; color: var(--text-muted); margin: 0;">Visualization: A -10% max drawdown rule during the May 2021 crypto crash.</p>
+                    </div>
+                    <p style="margin-top: 16px; text-align: center;">
+                        <strong><a href="/assets/sample-simulation-report.pdf" target="_blank" rel="noopener noreferrer" style="color: var(--accent); text-decoration: underline;">Download a sample simulation report (PDF)</a></strong>
+                    </p>
+                </div>
+                <div class="capability-card">
+                    <div class="capability-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M3 3v18h18"/>
+                            <path d="M18 17V9M12 17V5M6 17v-3"/>
+                        </svg>
+                    </div>
+                    <h3>Monitoring & Metrics</h3>
+                    <p>Health endpoints, performance metrics calculation, and real-time dashboard for trading infrastructure monitoring.</p>
+                </div>
+                <div class="capability-card">
+                    <div class="capability-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                            <path d="M2 17l10 5 10-5M2 12l10 5 10-5"/>
+                        </svg>
+                    </div>
+                    <h3>Preset Risk Profiles</h3>
+                    <p>Three configurations: Conservative (-5%), Balanced (-10%), Aggressive (-15%) drawdown thresholds. Strategy-agnostic risk controls.</p>
+                </div>
+            </div>
         </div>
-        <div class="pricing-card pro">
-          <div class="pro-badge">MOST POPULAR</div>
-          <h3>Pro License</h3>
-          <div class="price">$49 <span>/month</span></div>
-          <ul>
-            <li>Everything in Python package</li>
-            <li>Multi-strategy correlation risk</li>
-            <li>Real-time ATR adaptation</li>
-            <li>Priority support (24h response)</li>
-            <li>Monthly strategy tuning call</li>
-          </ul>
-          <button type="button" onclick="startTrial()">Start 14-day trial →</button>
-        </div>
-        <div class="pricing-card">
-          <h3>Enterprise</h3>
-          <div class="price">Custom</div>
-          <ul>
-            <li>White-label integration</li>
-            <li>Proprietary bounds configuration</li>
-            <li>SLA + dedicated engineer</li>
-            <li>On-premise deployment option</li>
-            <li>Training for your team</li>
-          </ul>
-          <button type="button" onclick="contactSales()">Contact sales →</button>
-        </div>
-      </div>
     </section>
 
+    <!-- Pricing -->
+    <section class="section pricing-section" id="pricing">
+        <div class="container">
+            <h2 class="section-title section-title-center">Pricing</h2>
+            <p class="section-subtitle" style="text-align: center; color: var(--text-muted); margin-bottom: 48px; font-size: 16px;">
+                Choose the tier that fits your trading infrastructure needs
+            </p>
+            
+            <!-- Pricing Toggle -->
+            <div style="display: flex; justify-content: center; align-items: center; gap: 16px; margin-bottom: 48px;">
+                <span style="color: var(--text-muted); font-weight: 500;">Monthly</span>
+                <label style="position: relative; display: inline-block; width: 56px; height: 32px;">
+                    <input type="checkbox" id="pricing-toggle" style="opacity: 0; width: 0; height: 0;" onchange="togglePricing()">
+                    <span style="position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: var(--border); border-radius: 32px; transition: 0.3s;"></span>
+                    <span style="position: absolute; content: ''; height: 24px; width: 24px; left: 4px; bottom: 4px; background-color: var(--text-primary); border-radius: 50%; transition: 0.3s;"></span>
+                </label>
+                <span style="color: var(--text-muted); font-weight: 500;">Annual <span style="color: var(--accent); font-size: 14px;">(2 months free)</span></span>
+            </div>
+
+            <!-- Pricing Cards -->
+            <div class="capabilities-grid" style="max-width: 1200px; margin: 0 auto;">
+                <!-- Starter Tier -->
+                <div class="capability-card" style="position: relative;">
+                    <h3>Starter</h3>
+                    <div style="margin: 24px 0;">
+                        <span class="pricing-monthly" style="display: block;">
+                            <span style="font-size: 48px; font-weight: 700; color: var(--accent);">£49</span>
+                            <span style="color: var(--text-muted); font-size: 18px;">/month</span>
+                        </span>
+                        <span class="pricing-annual" style="display: none;">
+                            <span style="font-size: 48px; font-weight: 700; color: var(--accent);">£490</span>
+                            <span style="color: var(--text-muted); font-size: 18px;">/year</span>
+                        </span>
+                    </div>
+                    <p class="trial-text" style="font-size: 13px; color: var(--text-muted); margin-top: -8px; margin-bottom: 16px;">14-day free trial. No credit card required.</p>
+                    <p style="color: var(--text-muted); margin-bottom: 24px;">Perfect for solo systematic traders</p>
+                    <ul style="list-style: none; padding: 0; margin: 24px 0;">
+                        <li style="padding: 8px 0; color: var(--text-primary);">
+                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 16px; height: 16px; display: inline-block; margin-right: 8px; vertical-align: middle;">
+                                <path d="M5 13l4 4L19 7"/>
+                            </svg>
+                            10,000 API calls/day
+                        </li>
+                        <li style="padding: 8px 0; color: var(--text-primary);">
+                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 16px; height: 16px; display: inline-block; margin-right: 8px; vertical-align: middle;">
+                                <path d="M5 13l4 4L19 7"/>
+                            </svg>
+                            Live API access
+                        </li>
+                        <li style="padding: 8px 0; color: var(--text-primary);">
+                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 16px; height: 16px; display: inline-block; margin-right: 8px; vertical-align: middle;">
+                                <path d="M5 13l4 4L19 7"/>
+                            </svg>
+                            Usage-based overages available
+                        </li>
+                    </ul>
+                    <a href="#contact" class="btn btn-secondary" style="width: 100%; margin-top: 24px;" aria-label="Get Started with Starter">Get Started</a>
+                </div>
+
+                <!-- Professional Tier -->
+                <div class="capability-card" style="position: relative; border: 2px solid var(--accent);">
+                    <div style="position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--accent); color: var(--bg-primary); padding: 4px 16px; border-radius: 16px; font-size: 12px; font-weight: 600;">Most Popular</div>
+                    <h3>Professional</h3>
+                    <div style="margin: 24px 0;">
+                        <span class="pricing-monthly" style="display: block;">
+                            <span style="font-size: 48px; font-weight: 700; color: var(--accent);">£199</span>
+                            <span style="color: var(--text-muted); font-size: 18px;">/month</span>
+                        </span>
+                        <span class="pricing-annual" style="display: none;">
+                            <span style="font-size: 48px; font-weight: 700; color: var(--accent);">£1,990</span>
+                            <span style="color: var(--text-muted); font-size: 18px;">/year</span>
+                        </span>
+                    </div>
+                    <p class="trial-text" style="font-size: 13px; color: var(--text-muted); margin-top: -8px; margin-bottom: 16px;">14-day free trial. No credit card required.</p>
+                    <p style="color: var(--text-muted); margin-bottom: 24px;">For prop traders and small funds</p>
+                    <ul style="list-style: none; padding: 0; margin: 24px 0;">
+                        <li style="padding: 8px 0; color: var(--text-primary);">
+                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 16px; height: 16px; display: inline-block; margin-right: 8px; vertical-align: middle;">
+                                <path d="M5 13l4 4L19 7"/>
+                            </svg>
+                            100,000 API calls/day
+                        </li>
+                        <li style="padding: 8px 0; color: var(--text-primary);">
+                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 16px; height: 16px; display: inline-block; margin-right: 8px; vertical-align: middle;">
+                                <path d="M5 13l4 4L19 7"/>
+                            </svg>
+                            Live API access
+                        </li>
+                        <li style="padding: 8px 0; color: var(--text-primary);">
+                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 16px; height: 16px; display: inline-block; margin-right: 8px; vertical-align: middle;">
+                                <path d="M5 13l4 4L19 7"/>
+                            </svg>
+                            Usage-based overages available
+                        </li>
+                        <li style="padding: 8px 0; color: var(--text-primary);">
+                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 16px; height: 16px; display: inline-block; margin-right: 8px; vertical-align: middle;">
+                                <path d="M5 13l4 4L19 7"/>
+                            </svg>
+                            Priority support
+                        </li>
+                    </ul>
+                    <a href="#contact" class="btn btn-primary" style="width: 100%; margin-top: 24px;" aria-label="Get Started with Professional">Get Started</a>
+                </div>
+
+                <!-- Enterprise Tier -->
+                <div class="capability-card" style="position: relative;">
+                    <h3>Enterprise</h3>
+                    <div style="margin: 24px 0;">
+                        <span style="font-size: 48px; font-weight: 700; color: var(--accent);">Custom</span>
+                    </div>
+                    <p style="color: var(--text-muted); margin-bottom: 24px;">For funds and institutions</p>
+                    <ul style="list-style: none; padding: 0; margin: 24px 0;">
+                        <li style="padding: 8px 0; color: var(--text-primary);">
+                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 16px; height: 16px; display: inline-block; margin-right: 8px; vertical-align: middle;">
+                                <path d="M5 13l4 4L19 7"/>
+                            </svg>
+                            Unlimited API calls
+                        </li>
+                        <li style="padding: 8px 0; color: var(--text-primary);">
+                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 16px; height: 16px; display: inline-block; margin-right: 8px; vertical-align: middle;">
+                                <path d="M5 13l4 4L19 7"/>
+                            </svg>
+                            Live API access
+                        </li>
+                        <li style="padding: 8px 0; color: var(--text-primary);">
+                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 16px; height: 16px; display: inline-block; margin-right: 8px; vertical-align: middle;">
+                                <path d="M5 13l4 4L19 7"/>
+                            </svg>
+                            Dedicated support
+                        </li>
+                        <li style="padding: 8px 0; color: var(--text-primary);">
+                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 16px; height: 16px; display: inline-block; margin-right: 8px; vertical-align: middle;">
+                                <path d="M5 13l4 4L19 7"/>
+                            </svg>
+                            Custom SLA
+                        </li>
+                    </ul>
+                    <a href="#contact" class="btn btn-secondary" style="width: 100%; margin-top: 24px;" aria-label="Contact for Enterprise">Contact Sales</a>
+                </div>
+            </div>
+
+            <!-- Simulation-Only Option -->
+            <div style="text-align: center; margin-top: 48px; padding: 24px; background: var(--bg-surface); border: 1px solid var(--border); border-radius: 12px; max-width: 600px; margin-left: auto; margin-right: auto;">
+                <h3 style="font-size: 20px; font-weight: 600; margin-bottom: 12px;">Simulation-Only License</h3>
+                <p style="color: var(--text-muted); margin-bottom: 16px;">
+                    Validate the cost of safety before committing to full protection. Full access to historical simulation engine only.
+                </p>
+                <div style="display: flex; justify-content: center; gap: 32px; flex-wrap: wrap;">
+                    <div>
+                        <strong style="color: var(--accent);">£19/month</strong>
+                        <span style="color: var(--text-muted); font-size: 14px;"> or </span>
+                        <strong style="color: var(--accent);">£149 one-time</strong>
+                    </div>
+                    <a href="#contact" class="btn btn-secondary btn-small" aria-label="Get Simulation-Only License">Learn More</a>
+                </div>
+            </div>
+
+            <!-- Overage Info -->
+            <p style="text-align: center; color: var(--text-muted); font-size: 14px; margin-top: 32px;">
+                Usage-based overages: £0.0001 per additional API call beyond daily limit. Calculated monthly, added to next invoice. 
+                Users can set a hard cap to prevent surprise bills.
+            </p>
+        </div>
+    </section>
+
+    <!-- Technical Architecture (Modules) -->
+    <section class="section architecture-section" id="architecture">
+        <div class="container">
+            <p class="section-intro" style="text-align: center; color: var(--text-muted); margin-bottom: 24px; font-size: 16px;">
+                Below is the internal module breakdown for technical readers.
+            </p>
+            <details class="architecture-details" style="max-width: 1000px; margin: 0 auto;">
+                <summary style="cursor: pointer; padding: 24px; background: var(--bg-surface); border: 1px solid var(--border); border-radius: 12px; font-size: 24px; font-weight: 600; color: var(--text-primary); list-style: none; user-select: none;">
+                    <span style="margin-right: 12px;">▶</span> Technical Architecture (Modules)
+                </summary>
+                <div style="padding: 32px 24px;">
+                    <div class="architecture-diagram">
+                <!-- Inline SVG Architecture Visual -->
+                <div style="max-width: 900px; margin: 0 auto 48px; padding: 32px; background: var(--bg-surface); border: 1px solid var(--border); border-radius: 16px;">
+                    <svg viewBox="0 0 800 200" style="width: 100%; height: auto;">
+                        <!-- Flow boxes -->
+                        <rect x="20" y="80" width="120" height="40" rx="4" fill="rgba(46, 168, 255, 0.1)" stroke="var(--border)" stroke-width="1"/>
+                        <text x="80" y="105" text-anchor="middle" fill="var(--text-primary)" font-size="12" font-weight="500">Strategy/Signal</text>
+                        
+                        <path d="M 150 100 L 200 100" stroke="var(--accent)" stroke-width="2" marker-end="url(#arrowhead)"/>
+                        
+                        <rect x="220" y="60" width="140" height="80" rx="4" fill="rgba(46, 168, 255, 0.2)" stroke="var(--accent)" stroke-width="2"/>
+                        <text x="290" y="95" text-anchor="middle" fill="var(--accent)" font-size="13" font-weight="600">Capital Shield API</text>
+                        <text x="290" y="115" text-anchor="middle" fill="var(--text-muted)" font-size="11">Safety Gates</text>
+                        
+                        <path d="M 370 100 L 420 100" stroke="var(--accent)" stroke-width="2" marker-end="url(#arrowhead)"/>
+                        
+                        <rect x="440" y="80" width="120" height="40" rx="4" fill="rgba(46, 168, 255, 0.1)" stroke="var(--border)" stroke-width="1"/>
+                        <text x="500" y="100" text-anchor="middle" fill="var(--text-primary)" font-size="11" font-weight="500">Execution</text>
+                        <text x="500" y="115" text-anchor="middle" fill="var(--text-muted)" font-size="10">Adapter</text>
+                        
+                        <path d="M 570 100 L 620 100" stroke="var(--accent)" stroke-width="2" marker-end="url(#arrowhead)"/>
+                        
+                        <rect x="640" y="80" width="120" height="40" rx="4" fill="rgba(46, 168, 255, 0.1)" stroke="var(--border)" stroke-width="1"/>
+                        <text x="700" y="105" text-anchor="middle" fill="var(--text-primary)" font-size="12" font-weight="500">Market</text>
+                        
+                        <!-- Side components -->
+                        <rect x="240" y="160" width="100" height="30" rx="4" fill="rgba(124, 92, 255, 0.1)" stroke="rgba(124, 92, 255, 0.3)" stroke-width="1"/>
+                        <text x="290" y="180" text-anchor="middle" fill="var(--accent-2)" font-size="11">Metrics/Dashboard</text>
+                        
+                        <rect x="360" y="160" width="80" height="30" rx="4" fill="rgba(124, 92, 255, 0.1)" stroke="rgba(124, 92, 255, 0.3)" stroke-width="1"/>
+                        <text x="400" y="180" text-anchor="middle" fill="var(--accent-2)" font-size="11">Config</text>
+                        
+                        <rect x="460" y="160" width="100" height="30" rx="4" fill="rgba(124, 92, 255, 0.1)" stroke="rgba(124, 92, 255, 0.3)" stroke-width="1"/>
+                        <text x="510" y="180" text-anchor="middle" fill="var(--accent-2)" font-size="11">Simulation</text>
+                        
+                        <!-- Arrow marker definition -->
+                        <defs>
+                            <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                                <polygon points="0 0, 10 3, 0 6" fill="var(--accent)"/>
+                            </marker>
+                        </defs>
+                    </svg>
+                </div>
+                <!-- Text-based fallback for smaller screens -->
+                <div class="arch-flow" style="display: none;">
+                    <div class="arch-block">Strategy/Signal</div>
+                    <div class="arch-arrow">→</div>
+                    <div class="arch-block arch-block-primary">Capital Shield API</div>
+                    <div class="arch-arrow">→</div>
+                    <div class="arch-block">Safety Gates</div>
+                    <div class="arch-arrow">→</div>
+                    <div class="arch-block">Execution Adapter<br><span class="arch-note">(external)</span></div>
+                    <div class="arch-arrow">→</div>
+                    <div class="arch-block">Market</div>
+                </div>
+                        <div class="arch-side">
+                            <div class="arch-side-item">Metrics/Dashboard</div>
+                            <div class="arch-side-item">Config</div>
+                            <div class="arch-side-item">Simulation</div>
+                        </div>
+                    </div>
+                    <ul class="architecture-features">
+                        <li><strong>Separation of concerns</strong> — Risk enforcement before execution</li>
+                        <li><strong>Integrates anywhere</strong> — REST API works with any trading stack</li>
+                        <li><strong>Deterministic decisions</strong> — Same inputs produce same outputs</li>
+                    </ul>
+                    <div style="text-align: center; margin-top: 32px;">
+                        <a href="technical.html" class="btn btn-secondary" aria-label="View technical appendix">Technical Appendix</a>
+                    </div>
+                </div>
+            </details>
+        </div>
+    </section>
+
+    <!-- Beta Status + Roadmap -->
+    <section class="section beta-section" id="beta">
+        <div class="container">
+            <h2 class="section-title section-title-center">Beta Status & Roadmap</h2>
+            <div class="beta-status">
+                <p class="beta-statement">
+                    <strong>Controlled Beta:</strong> Core API + safety rails are production-grade. 
+                    Simulation adapters and deployment runbooks are under refinement.
+                </p>
+            </div>
+            <div class="roadmap">
+                <h3>Roadmap (Q1 2026 Public Release)</h3>
+                <ul class="roadmap-list">
+                    <li>Additional data adapters (beyond CoinGecko)</li>
+                    <li>Deployment runbooks (systemd/nginx templates)</li>
+                    <li>Strategy-agnostic connector interface</li>
+                    <li>Packaging + installer polish</li>
+                </ul>
+            </div>
+            <div class="beta-cta">
+                <a href="#contact" class="btn btn-primary" aria-label="Join the beta program">Join Beta</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quickstart -->
+    <section class="section quickstart-section" id="quickstart">
+        <div class="container">
+            <h2 class="section-title section-title-center">Quickstart: Getting Started with Capital Shield</h2>
+            <div class="quickstart-content">
+                <div class="code-block">
+                    <div class="code-header">
+                        <span>Install</span>
+                        <button class="copy-btn" aria-label="Copy code" data-copy="pip install -r requirements.txt">Copy</button>
+                    </div>
+                    <pre><code>pip install -r requirements.txt</code></pre>
+                </div>
+                <div class="code-block">
+                    <div class="code-header">
+                        <span>Run API</span>
+                        <button class="copy-btn" aria-label="Copy code" data-copy="python -m app.main">Copy</button>
+                    </div>
+                    <pre><code>python -m app.main</code></pre>
+                </div>
+                <div class="code-block">
+                    <div class="code-header">
+                        <span>Run Tests</span>
+                        <button class="copy-btn" aria-label="Copy code" data-copy="pytest tests/">Copy</button>
+                    </div>
+                    <pre><code>pytest tests/</code></pre>
+                </div>
+                <div class="code-block">
+                    <div class="code-header">
+                        <span>Run Simulation</span>
+                        <button class="copy-btn" aria-label="Copy code" data-copy="python -m live_sim.quick_demo">Copy</button>
+                    </div>
+                    <pre><code>python -m live_sim.quick_demo</code></pre>
+                </div>
+                <div class="code-block">
+                    <div class="code-header">
+                        <span>Open Dashboard</span>
+                        <button class="copy-btn" aria-label="Copy code" data-copy="http://localhost:8000/dashboard/">Copy</button>
+                    </div>
+                    <pre><code>http://localhost:8000/dashboard/</code></pre>
+                </div>
+                <div class="quickstart-docs">
+                    <p>For detailed documentation, see:</p>
+                    <ul>
+                        <li><a href="https://github.com/CBoon99/Capital-Shield/blob/main/boonmindx_capital_shield/QUICKSTART.md" target="_blank" rel="noopener noreferrer">Quickstart Guide</a></li>
+                        <li><a href="https://github.com/CBoon99/Capital-Shield/blob/main/boonmindx_capital_shield/INFRASTRUCTURE_INVENTORY.md" target="_blank" rel="noopener noreferrer">Infrastructure Inventory</a></li>
+                        <li><a href="https://github.com/CBoon99/Capital-Shield/blob/main/boonmindx_capital_shield/PRODUCT_PITCH_ONEPAGER.md" target="_blank" rel="noopener noreferrer">Product Overview</a></li>
+                        <li><a href="technical.html">Technical Architecture</a></li>
+                        <li><a href="https://github.com/CBoon99/Capital-Shield/blob/main/README.md" target="_blank" rel="noopener noreferrer">Repository Documentation</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Licensing -->
+    <section class="section licensing-section" id="licensing">
+        <div class="container">
+            <h2 class="section-title section-title-center">Licensing & Commercial Use</h2>
+            <div class="licensing-content">
+                <p class="licensing-text">
+                    Capital Shield is available under a commercial license for production use. 
+                    Evaluation and internal testing are permitted under limited terms. 
+                    Licensing is discussed case-by-case to accommodate different use cases and deployment requirements.
+                </p>
+                <div class="licensing-cta">
+                    <a href="mailto:info@boonmind.io?subject=Licensing%20Inquiry" class="btn btn-primary" aria-label="Discuss licensing">Discuss licensing</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="section faq-section" id="faq">
+        <div class="container">
+            <h2 class="section-title section-title-center">Frequently Asked Questions</h2>
+            <div class="faq-list">
+                <article class="faq-item">
+                    <h3 class="faq-question">Is Capital Shield a trading bot?</h3>
+                    <p class="faq-answer">
+                        No. Capital Shield is risk-first trading infrastructure, not a trading bot. It does not generate buy/sell signals, 
+                        seek alpha, or execute trades. It sits between your trading strategy and execution, enforcing deterministic 
+                        safety gates and capital protection rules. You bring your own strategy; Capital Shield enforces the safety rails.
+                    </p>
+                </article>
+                <article class="faq-item">
+                    <h3 class="faq-question">Does Capital Shield generate alpha or guarantee profits?</h3>
+                    <p class="faq-answer">
+                        No. Capital Shield is infrastructure software designed to reduce risk, not generate returns. It enforces 
+                        deterministic execution constraints (max drawdown limits, regime guards, health checks) but makes no claims 
+                        about profitability, alpha generation, or trading performance. This is capital protection infrastructure, 
+                        not an alpha engine.
+                    </p>
+                </article>
+                <article class="faq-item">
+                    <h3 class="faq-question">Who is Capital Shield for?</h3>
+                    <ul class="faq-answer" style="list-style: none; padding-left: 0;">
+                        <li style="margin-bottom: 12px; padding-left: 24px; position: relative;">
+                            <span style="position: absolute; left: 0; color: var(--accent);">•</span>
+                            <strong>Quant Developers at multi-strategy funds</strong>
+                        </li>
+                        <li style="margin-bottom: 12px; padding-left: 24px; position: relative;">
+                            <span style="position: absolute; left: 0; color: var(--accent);">•</span>
+                            <strong>Trading System Architects building execution stacks</strong>
+                        </li>
+                        <li style="margin-bottom: 12px; padding-left: 24px; position: relative;">
+                            <span style="position: absolute; left: 0; color: var(--accent);">•</span>
+                            <strong>Solo Systematic Traders protecting substantial capital</strong>
+                        </li>
+                    </ul>
+                </article>
+                <article class="faq-item">
+                    <h3 class="faq-question">How does Capital Shield integrate with trading strategies?</h3>
+                    <p class="faq-answer">
+                        Capital Shield is strategy-agnostic. Your trading strategy generates signals (BUY/SELL/HOLD), which are sent 
+                        to the Capital Shield API. The API evaluates each signal against deterministic safety rails (max drawdown, 
+                        regime guard, health check) and returns an allow/block decision with structured rejection reasons. Only 
+                        allowed trades proceed to execution. This infrastructure sits between strategy and capital, enforcing 
+                        deterministic execution constraints regardless of signal source.
+                    </p>
+                </article>
+                <article class="faq-item">
+                    <h3 class="faq-question">Why does risk-first architecture matter for algorithmic trading?</h3>
+                    <p class="faq-answer">
+                        Risk-first architecture separates safety enforcement from signal generation. This allows you to validate 
+                        safety rails independently, measure the cost of safety before deployment, and enforce deterministic 
+                        execution constraints that cannot be bypassed by trading logic. Unlike black-box strategies or alpha-seeking 
+                        bots, risk-first infrastructure provides transparent, testable, strategy-agnostic capital protection. 
+                        This matters for funds, quants, and system developers who need deterministic risk controls in production.
+                        <a href="/runaway-algorithm-protection/" style="color: var(--accent); text-decoration: underline; margin-left: 8px;">Learn how we define and prevent a runaway algorithm.</a>
+                    </p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form -->
+    <section class="section contact-section" id="contact">
+        <div class="container">
+            <h2 class="section-title section-title-center">Apply for Beta Access</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <p>Apply for early access to Capital Shield. We're prioritizing quant developers, trading system architects, and systematic traders with substantial capital to protect.</p>
+                    <p class="contact-email">Email: <a href="mailto:info@boonmind.io">info@boonmind.io</a></p>
+                </div>
+                <form name="contact" method="POST" action="/thanks/" data-netlify="true" netlify-honeypot="bot-field" class="contact-form" id="contact-form">
+                    <input type="hidden" name="form-name" value="contact">
+                    <p class="hidden">
+                        <label>Don't fill this out if you're human: <input name="bot-field" /></label>
+                    </p>
+                    
+                    <div id="form-messages"></div>
+                    
+                    <div class="form-group">
+                        <label for="name">Name <span class="required">*</span></label>
+                        <input type="text" id="name" name="name" required aria-required="true" />
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email <span class="required">*</span></label>
+                        <input type="email" id="email" name="email" required aria-required="true" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="tier">Which tier are you interested in? <span class="required">*</span></label>
+                        <select id="tier" name="tier" required aria-required="true">
+                            <option value="">Select a tier...</option>
+                            <option value="starter">Starter (£49/month)</option>
+                            <option value="professional">Professional (£199/month)</option>
+                            <option value="enterprise">Enterprise (Custom)</option>
+                            <option value="simulation">Simulation-Only (£19/month)</option>
+                            <option value="not-sure">Not sure yet</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="tradingStack">Primary Trading Stack <span class="required">*</span></label>
+                        <input type="text" id="tradingStack" name="tradingStack" placeholder="e.g., QuantConnect, custom Python, TradingView, etc." required aria-required="true" />
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="painPoint">Biggest Risk Management Pain Point <span class="required">*</span></label>
+                        <textarea id="painPoint" name="painPoint" rows="4" placeholder="Describe your biggest challenge with risk management in algorithmic trading..." required aria-required="true"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="riskWorry">Current biggest risk worry? (Optional)</label>
+                        <select id="riskWorry" name="riskWorry">
+                            <option value="">Select one...</option>
+                            <option value="runaway-algorithm">Runaway algorithm</option>
+                            <option value="silent-failures">Silent failures</option>
+                            <option value="regime-shifts">Regime shifts</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Additional Information (Optional)</label>
+                        <textarea id="message" name="message" rows="4" placeholder="Any additional context about your use case..."></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary" id="submit-btn">Apply for Beta Access</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Disclaimer -->
+    <section class="section disclaimer-section">
+        <div class="container">
+            <div class="disclaimer">
+                <p><strong>Disclaimer:</strong> No financial advice. No performance guarantees. Infrastructure only.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
     <footer class="footer">
-      <p>Built by Carl Boon — inventor of GSRF (patent pending)</p>
-      <p style="margin-top: 0.5rem;">
-        <a href="technical.html">Documentation</a> ·
-        <a href="https://github.com/CBoon99/Capital-Shield">GitHub</a> ·
-        <a href="mailto:carl@boonmind.io">Contact</a>
-      </p>
-      <p style="margin-top: 1rem; font-size: 0.7rem;">© 2026 Capital Shield. GSRF is proprietary technology. Patent applications in preparation.</p>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <span class="logo-text">BoonMindX</span>
+                    <span class="product-name">Capital Shield</span>
+                </div>
+                <div class="footer-links">
+                    <a href="https://github.com/CBoon99/Capital-Shield" id="github-link-footer" target="_blank" rel="noopener noreferrer" aria-label="GitHub repository">GitHub</a>
+                    <a href="https://github.com/CBoon99/Capital-Shield/blob/main/boonmindx_capital_shield/README.md" target="_blank" rel="noopener noreferrer">Docs</a>
+                    <a href="technical.html">Technical</a>
+                    <a href="#contact" aria-label="Contact us">Contact</a>
+                </div>
+            </div>
+            <div class="footer-copyright">
+                <p>&copy; 2025 BoonMindX. All rights reserved.</p>
+                <p style="margin-top: 8px; font-size: 12px; color: var(--text-muted);">Commercial licensing available. Contact: <a href="mailto:info@boonmind.io" style="color: var(--accent); text-decoration: none;">info@boonmind.io</a></p>
+            </div>
+        </div>
     </footer>
-  </div>
 
-  <script>
-    class GSRFFilter {
-      constructor(options = {}) {
-        this.beta = Math.min(0.9, Math.max(0.01, options.beta || 0.3));
-        this.k_return = Math.max(0.1, options.k_return || 1.0);
-        this.mem = Math.min(0.5, Math.max(0.0, options.mem || 0.2));
-        this.targetCenter = options.targetCenter || 50;
-        this.current = this.targetCenter;
-        this.previous = this.targetCenter;
-      }
-
-      update(observation, dt) {
-        dt = dt === undefined ? 1.0 : dt;
-        const gradient = -(this.current - this.targetCenter);
-        const memory = Math.tanh(this.current - this.previous);
-        const u = this.k_return * gradient + this.mem * memory;
-        let filtered = this.current + this.beta * u * dt;
-        filtered = Math.min(100, Math.max(0, filtered));
-        this.previous = this.current;
-        this.current = filtered;
-        return filtered;
-      }
-
-      reset() {
-        this.current = this.targetCenter;
-        this.previous = this.targetCenter;
-      }
-    }
-
-    const gsrf = new GSRFFilter({
-      beta: 0.6,
-      mem: 0.3,
-      k_return: 1.2,
-      targetCenter: 50
-    });
-
-    const slider = document.getElementById('riskSlider');
-    const rawSpan = document.getElementById('rawValue');
-    const gsrfSpan = document.getElementById('gsrfValue');
-    const resetBtn = document.getElementById('resetDemo');
-
-    let time = 0;
-    let rawValue = 50;
-
-    function updateDemo() {
-      const sliderVal = parseFloat(slider.value, 10);
-      const oscillation = Math.sin(time) * 15;
-      rawValue = Math.min(100, Math.max(0, sliderVal + oscillation));
-      const filteredValue = gsrf.update(rawValue);
-      rawSpan.textContent = Math.round(rawValue) + '%';
-      gsrfSpan.textContent = Math.round(filteredValue) + '%';
-
-      const rawCard = document.querySelector('.value-card.raw');
-      const gsrfCard = document.querySelector('.value-card.gsrf');
-      if (Math.abs(rawValue - filteredValue) > 5) {
-        rawCard.style.borderLeft = '3px solid #ff6600';
-        gsrfCard.style.borderLeft = '3px solid #00cc66';
-      } else {
-        rawCard.style.borderLeft = '3px solid transparent';
-        gsrfCard.style.borderLeft = '3px solid transparent';
-      }
-
-      time += 0.1;
-      requestAnimationFrame(updateDemo);
-    }
-
-    resetBtn.addEventListener('click', function() {
-      gsrf.reset();
-      rawSpan.style.animation = 'none';
-      gsrfSpan.style.animation = 'none';
-      setTimeout(function() {
-        rawSpan.style.animation = '';
-        gsrfSpan.style.animation = '';
-      }, 10);
-    });
-
-    updateDemo();
-
-    function startTrial() {
-      window.alert('Pro trial: Email carl@boonmind.io to start your 14-day trial. We will set up your account within 24 hours.');
-    }
-
-    function contactSales() {
-      window.alert('Enterprise: Email carl@boonmind.io with your requirements. We will respond within 1 business day.');
-    }
-  </script>
+    <script src="app.js"></script>
 </body>
 </html>
