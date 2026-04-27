@@ -1,0 +1,5 @@
+# Static site: no bundler. index.html, technical.html, and assets live at the repo root.
+# Overrides Netlify UI if it still has "npm run build" and publish = "public".
+[build]
+  command = "true"
+  publish = "."
