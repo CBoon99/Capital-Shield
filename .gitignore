@@ -33,3 +33,9 @@ ENV/
 dist/
 build/
 *.egg-info/
+
+# Netlify CLI local cache
+.netlify/
+
+# Internal planning docs (not for public repo)
+PROTECTION_EVIDENCE_IMPLEMENTATION_PLAN.md
