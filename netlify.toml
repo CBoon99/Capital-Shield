@@ -1,5 +1,10 @@
-# Static site: no bundler. index.html, technical.html, and assets live at the repo root.
-# Overrides Netlify UI if it still has "npm run build" and publish = "public".
+# Capital Shield — static site (root publish).
+# Before go-live: Netlify → Site configuration → General → set site visibility
+# to public (disable password protection). Then submit /sitemap.xml in
+# Google Search Console and Bing Webmaster Tools.
+#
+# No bundler: index.html, assets, and Python package live in this repo.
+# command = "true" avoids Netlify inferring a failing npm build.
 [build]
   command = "true"
   publish = "."

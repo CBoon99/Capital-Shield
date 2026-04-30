@@ -467,6 +467,115 @@
                     </div>
                 </div>
             </div>
+
+            <!-- API Integration Demo -->
+            <div style="max-width: 1000px; margin: 64px auto 0;">
+                <div class="demo-header">
+                    <h2 style="font-size: 32px; font-weight: 700; margin-bottom: 16px;">Try the Capital Shield API</h2>
+                    <p style="font-size: 16px; color: var(--text-muted); max-width: 600px; margin: 0 auto;">
+                        See how easy it is to integrate Capital Shield. Enter a trade signal and see the deterministic safety gate evaluation in real-time.
+                    </p>
+                </div>
+
+                <div class="demo-disclaimer" style="margin-top: 32px;">
+                    <p><strong>Note:</strong> This is a client-side simulation demonstrating Capital Shield's logic. Production systems use the REST API endpoint.</p>
+                </div>
+
+                <div class="demo-layout" style="margin-top: 32px;">
+                    <!-- Inputs Panel -->
+                    <div class="demo-inputs">
+                        <h3 style="font-size: 18px; font-weight: 600; margin-bottom: 24px; color: var(--text-primary);">Trade Inputs</h3>
+                        
+                        <form id="api-demo-form">
+                            <div class="form-group">
+                                <label for="api-signal">Signal</label>
+                                <select id="api-signal" name="signal" style="width: 100%; padding: 12px 16px; background: rgba(46, 168, 255, 0.05); border: 1px solid var(--border); border-radius: 8px; color: var(--text-primary); font-family: var(--font-family); font-size: 14px;">
+                                    <option value="BUY" selected>BUY</option>
+                                    <option value="SELL">SELL</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="api-asset">Asset</label>
+                                <input type="text" id="api-asset" name="asset" value="BTC" style="width: 100%; padding: 12px 16px; background: rgba(46, 168, 255, 0.05); border: 1px solid var(--border); border-radius: 8px; color: var(--text-primary); font-family: var(--font-family); font-size: 14px;" />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="api-drawdown">
+                                    Current Drawdown
+                                    <span class="range-value" id="api-drawdown-value">-8.5%</span>
+                                </label>
+                                <input type="range" id="api-drawdown" name="drawdown" min="-20" max="0" value="-8.5" step="0.1" style="width: 100%; padding: 0; height: 8px; -webkit-appearance: none; appearance: none; background: rgba(46, 168, 255, 0.1); border-radius: 4px;" />
+                                <input type="number" id="api-drawdown-input" min="-20" max="0" value="-8.5" step="0.1" style="width: 100%; margin-top: 8px; padding: 12px 16px; background: rgba(46, 168, 255, 0.05); border: 1px solid var(--border); border-radius: 8px; color: var(--text-primary); font-family: var(--font-family); font-size: 14px;" />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="api-volatility">
+                                    24h Volatility
+                                    <span class="range-value" id="api-volatility-value">45%</span>
+                                </label>
+                                <input type="range" id="api-volatility" name="volatility" min="0" max="200" value="45" step="1" style="width: 100%; padding: 0; height: 8px; -webkit-appearance: none; appearance: none; background: rgba(46, 168, 255, 0.1); border-radius: 4px;" />
+                                <input type="number" id="api-volatility-input" min="0" max="200" value="45" step="1" style="width: 100%; margin-top: 8px; padding: 12px 16px; background: rgba(46, 168, 255, 0.05); border: 1px solid var(--border); border-radius: 8px; color: var(--text-primary); font-family: var(--font-family); font-size: 14px;" />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="api-max-dd">Max Drawdown Limit</label>
+                                <input type="number" id="api-max-dd" name="maxDD" value="-10" step="0.5" style="width: 100%; padding: 12px 16px; background: rgba(46, 168, 255, 0.05); border: 1px solid var(--border); border-radius: 8px; color: var(--text-primary); font-family: var(--font-family); font-size: 14px;" />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="api-max-vol">Max Volatility Limit</label>
+                                <input type="number" id="api-max-vol" name="maxVol" value="80" step="1" style="width: 100%; padding: 12px 16px; background: rgba(46, 168, 255, 0.05); border: 1px solid var(--border); border-radius: 8px; color: var(--text-primary); font-family: var(--font-family); font-size: 14px;" />
+                            </div>
+
+                            <button type="submit" class="run-button" id="api-check-button">Check Trade</button>
+                        </form>
+                    </div>
+
+                    <!-- Output Panel -->
+                    <div class="demo-output">
+                        <h3 style="font-size: 18px; font-weight: 600; margin-bottom: 24px; color: var(--text-primary);">API Response</h3>
+                        <div class="output-panel" id="api-output-panel">
+                            <div class="output-empty">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M9 11l3 3L22 4"/>
+                                    <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
+                                </svg>
+                                <p>Adjust the inputs and click "Check Trade" to see the Capital Shield API response.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Integration Code Example -->
+                <div style="max-width: 1000px; margin: 48px auto 0; padding: 32px; background: var(--bg-surface); border: 1px solid var(--border); border-radius: 16px;">
+                    <h3 style="font-size: 18px; font-weight: 600; margin-bottom: 16px; color: var(--text-primary);">Integration Example</h3>
+                    <p style="color: var(--text-muted); margin-bottom: 16px; font-size: 14px;">
+                        Capital Shield integrates with just a few lines of code:
+                    </p>
+                    <pre style="background: rgba(7, 18, 37, 0.8); padding: 20px; border-radius: 8px; overflow-x: auto; font-size: 13px; line-height: 1.6; color: #e0e0e0; font-family: 'Monaco', 'Menlo', 'Courier New', monospace;"><code># 3 lines to protect your capital
+from capital_shield import SafetyGate
+
+gate = SafetyGate(max_drawdown=-0.10, max_volatility=0.80)
+
+# Before every trade:
+decision = gate.check(
+    signal="BUY",
+    asset="BTC",
+    current_drawdown=-0.085,
+    volatility_24h=0.45
+)
+
+if decision.allowed:
+    execute_trade()
+else:
+    log(f"Blocked: {decision.code} - {decision.reason}")</code></pre>
+                    <div style="margin-top: 16px; display: flex; gap: 12px; flex-wrap: wrap;">
+                        <button onclick="copyCodeExample()" class="preset-btn" style="cursor: pointer;">Copy Code</button>
+                        <a href="https://github.com/CBoon99/Capital-Shield/blob/main/boonmindx_capital_shield/QUICKSTART.md" target="_blank" rel="noopener noreferrer" class="preset-btn" style="text-decoration: none; display: inline-block;">View Full API Docs</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -492,5 +601,6 @@
 
     <script src="app.js"></script>
     <script src="demo.js"></script>
+    <script src="demo-simulator.js"></script>
 </body>
 </html>

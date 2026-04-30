@@ -168,8 +168,9 @@
     function validateForm(form) {
         const name = form.querySelector('#name').value.trim();
         const email = form.querySelector('#email').value.trim();
-        const subject = form.querySelector('#subject').value;
-        const message = form.querySelector('#message').value.trim();
+        const tier = form.querySelector('#tier') ? form.querySelector('#tier').value : '';
+        const tradingStack = form.querySelector('#tradingStack') ? form.querySelector('#tradingStack').value.trim() : '';
+        const painPoint = form.querySelector('#painPoint') ? form.querySelector('#painPoint').value.trim() : '';
         const messagesDiv = document.getElementById('form-messages');
         
         // Clear previous messages
@@ -191,13 +192,18 @@
             isValid = false;
         }
         
-        if (!subject) {
-            errors.push('Please select a subject');
+        if (!tier) {
+            errors.push('Please select a tier');
             isValid = false;
         }
         
-        if (!message) {
-            errors.push('Message is required');
+        if (!tradingStack) {
+            errors.push('Primary trading stack is required');
+            isValid = false;
+        }
+        
+        if (!painPoint) {
+            errors.push('Please describe your risk management pain point');
             isValid = false;
         }
         
@@ -243,12 +249,31 @@
     // Make togglePricing available globally
     window.togglePricing = togglePricing;
 
+    function prefillTierFromQuery() {
+        const tierSelect = document.getElementById('tier');
+        if (!tierSelect) return;
+        try {
+            const params = new URLSearchParams(window.location.search);
+            const tier = params.get('tier');
+            if (tier && tierSelect.querySelector('option[value="' + tier + '"]')) {
+                tierSelect.value = tier;
+            }
+            if (tier && window.location.hash === '#contact') {
+                requestAnimationFrame(function() {
+                    const el = document.getElementById('contact');
+                    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                });
+            }
+        } catch (err) { /* ignore */ }
+    }
+
     // Initialize everything when DOM is ready
     function init() {
         initSmoothScroll();
         initCopyButtons();
         initHeaderScroll();
         initScrollAnimations();
+        prefillTierFromQuery();
         initContactForm();
     }
 

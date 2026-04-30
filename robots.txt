@@ -1,6 +1,6 @@
 # Capital Shield - robots.txt
 # Optimized for search engines AND AI crawlers
-# Last updated: February 2026
+# Last updated: May 2026
 
 # ===========================================
 # TRADITIONAL SEARCH ENGINE CRAWLERS

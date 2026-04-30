@@ -60,7 +60,7 @@
       "@id": "https://capital-shield.netlify.app/#software",
       "name": "Capital Shield",
       "alternateName": "BoonMindX Capital Shield",
-      "description": "Risk-first trading infrastructure and deterministic safety layer for algorithmic trading systems. Strategy-agnostic API that enforces max drawdown limits, regime guards, and execution constraints.",
+      "description": "Risk-first trading infrastructure and deterministic safety layer for algorithmic trading systems. Strategy-agnostic API that enforces max drawdown limits, regime guards, and execution constraints. Patent pending.",
       "url": "https://capital-shield.netlify.app/",
       "applicationCategory": "FinanceApplication",
       "operatingSystem": "All",
@@ -79,19 +79,19 @@
       "offers": {
         "@type": "AggregateOffer",
         "priceCurrency": "GBP",
-        "lowPrice": "49",
-        "highPrice": "999",
+        "lowPrice": "0",
+        "highPrice": "199",
         "offerCount": "3",
         "offers": [
           {
             "@type": "Offer",
-            "name": "Starter",
-            "description": "10,000 API calls/day for solo systematic traders",
-            "price": "49",
+            "name": "Free — Shadow mode",
+            "description": "Observe policy outcomes and evaluation; no live enforcement on your execution stack",
+            "price": "0",
             "priceCurrency": "GBP",
             "priceSpecification": {
               "@type": "UnitPriceSpecification",
-              "price": "49",
+              "price": "0",
               "priceCurrency": "GBP",
               "billingDuration": "P1M",
               "unitText": "month"
@@ -99,8 +99,8 @@
           },
           {
             "@type": "Offer",
-            "name": "Professional",
-            "description": "100,000 API calls/day for prop traders and small funds",
+            "name": "Licensed — Audit mode",
+            "description": "Compliance-oriented reporting, forensic logging, and regulatory documentation support",
             "price": "199",
             "priceCurrency": "GBP",
             "priceSpecification": {
@@ -113,17 +113,9 @@
           },
           {
             "@type": "Offer",
-            "name": "Enterprise",
-            "description": "Unlimited API calls for funds and institutions",
-            "price": "999",
-            "priceCurrency": "GBP",
-            "priceSpecification": {
-              "@type": "UnitPriceSpecification",
-              "price": "999",
-              "priceCurrency": "GBP",
-              "billingDuration": "P1M",
-              "unitText": "month"
-            }
+            "name": "Enterprise — Enforcement mode",
+            "description": "Live constraint enforcement and full middleware deployment; custom commercial terms",
+            "priceCurrency": "GBP"
           }
         ]
       },
@@ -213,7 +205,31 @@
           "name": "What are the pricing tiers for Capital Shield?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Capital Shield offers three tiers: Starter at £49/month (10,000 API calls/day), Professional at £199/month (100,000 API calls/day), and Enterprise with custom pricing for unlimited calls. Annual subscriptions include 2 months free."
+            "text": "Capital Shield is offered in three operational modes: Free Shadow mode (observe and evaluate with no live enforcement on your stack), Licensed Audit mode from £199/month (compliance reporting, forensic logging, and documentation), and Enterprise Enforcement mode (live constraint enforcement and full middleware deployment) with custom pricing. Annual billing for Licensed tier includes two months free where applicable."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the first-10 Audit pilot — and what does \"25k\" mean?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The first ten qualified Licensed — Audit customers receive a complimentary extended onboarding and audit reporting bundle. \"25k\" is informal shorthand for material professional scope, not a fixed cash value, currency, or rigid deliverable list. Exact scope is agreed in writing per customer before kickoff."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Who qualifies for the first-10 Audit pilot?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Typical qualifiers: a recognised legal entity or professional trading organisation, a clear algorithmic or systematic trading stack, intent to use Licensed Audit for compliance logging or internal review, capacity to assign a technical contact and sandbox or non-production path for onboarding, and willingness to agree scope in writing. BoonMindX reserves the right to decline or waitlist applicants that are not a fit."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the difference between Shadow, Audit, and Enforcement modes?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Shadow mode lets you observe how Capital Shield would allow or block trades without enforcing decisions on your live execution path. Audit mode (licensed) adds compliance-oriented reporting, forensic logging, and documentation suitable for internal and external review. Enforcement mode (enterprise) deploys live constraint enforcement in your middleware so blocked trades do not reach the market under configured rules."
           }
         },
         {
@@ -296,14 +312,26 @@
                 <li><a href="#architecture" aria-label="Architecture section">Architecture</a></li>
                 <li><a href="/demo" aria-label="Interactive demo">Interactive Demo</a></li>
                 <li><a href="#quickstart" aria-label="Quickstart section">Quickstart</a></li>
+                <li><a href="integration.html" aria-label="Integration guide">Integration</a></li>
+                <li><a href="whitepaper.html" aria-label="Methodology brief PDF">Brief (PDF)</a></li>
                 <li><a href="#beta" aria-label="Beta section">Beta</a></li>
                 <li><a href="#licensing" aria-label="Licensing section">Licensing</a></li>
                 <li><a href="#contact" aria-label="Contact section">Contact</a></li>
                 <li><a href="technical.html" aria-label="Technical appendix">Technical</a></li>
             </ul>
-            <a href="#contact" class="btn btn-primary btn-small" aria-label="Request beta access">Request Beta Access</a>
+            <a href="?tier=licensed-audit#contact" class="btn btn-primary btn-small" aria-label="Apply for Audit pilot">Audit pilot — 10 spots</a>
         </nav>
     </header>
+
+    <div class="audit-pilot-banner" role="region" aria-label="Audit pilot promotion" style="background: linear-gradient(90deg, rgba(46, 168, 255, 0.12), rgba(124, 92, 255, 0.1)); border-bottom: 1px solid var(--border); padding: 14px 16px;">
+        <div class="container" style="text-align: center; font-size: 14px; color: var(--text-primary); line-height: 1.55;">
+            <strong>Audit-first:</strong> First <strong>10 qualified</strong> organisations on <strong>Licensed — Audit</strong> receive a <strong>complimentary</strong> extended audit, reporting, and onboarding package
+            (we use <strong>“25k”</strong> as informal shorthand for a <strong>serious</strong> professional bundle — <strong>not</strong> a fixed price, currency, or deliverable list; <a href="#faq-audit-pilot" style="color: var(--accent);">details</a>).
+            <a href="?tier=licensed-audit#contact" class="btn btn-primary btn-small" style="margin: 8px 0 0 12px; vertical-align: middle; display: inline-block;">Apply — Audit pilot</a>
+            <p id="audit-pilot-spots-line" style="margin: 10px 0 0 0; font-size: 13px; color: var(--text-muted);" aria-live="polite">Loading pilot seat availability…</p>
+            <p style="margin: 8px 0 0 0; font-size: 12px; color: var(--text-muted);">Maintain seat count in <code style="font-size: 11px;">audit-pilot-status.json</code> (commit &amp; deploy). Engagement wording: <a href="https://github.com/CBoon99/Capital-Shield/blob/main/AUDIT_PILOT_ENGAGEMENT_TEMPLATE.md" target="_blank" rel="noopener noreferrer" style="color: var(--accent);">template in repo</a>.</p>
+        </div>
+    </div>
 
     <!-- Hero -->
     <section class="hero" id="overview">
@@ -325,15 +353,19 @@
                     and explicit rejection reasons before trades reach the market. This risk-first infrastructure protects capital, not generates returns.
                 </p>
                 <div class="hero-badges">
+                    <span class="badge">Patent pending</span>
                     <span class="badge">Controlled Beta</span>
                     <span class="badge">API-first</span>
                     <span class="badge">Strategy-agnostic</span>
-                    <span class="badge">Q1 2026 public release</span>
                 </div>
                 <div class="hero-ctas">
-                    <a href="/demo" class="btn btn-primary" aria-label="View risk demo">View Risk Demo</a>
-                    <a href="#contact" class="btn btn-secondary" aria-label="Start free trial">Start Free Trial</a>
-                    <a href="#quickstart" class="btn btn-secondary" aria-label="Read the documentation">Read the Docs</a>
+                    <a href="?tier=licensed-audit#contact" class="btn btn-primary" aria-label="Apply for the Audit pilot">Audit pilot — first 10 spots</a>
+                    <a href="/demo" class="btn btn-secondary" aria-label="View risk demo">View Risk Demo</a>
+                    <a href="#protection-evidence" class="btn btn-secondary" aria-label="See protection evidence">See Protection Evidence</a>
+                    <a href="#contact" class="btn btn-secondary" aria-label="Other tiers and contact">Other tiers</a>
+                    <a href="integration.html" class="btn btn-secondary" aria-label="Integration guide">Integration guide</a>
+                    <a href="whitepaper.html" class="btn btn-secondary" aria-label="Performance brief PDF">Methodology brief</a>
+                    <a href="#quickstart" class="btn btn-secondary" aria-label="Quickstart">Quickstart</a>
                     <a href="https://github.com/CBoon99/Capital-Shield" id="github-link-hero" class="btn btn-secondary" target="_blank" rel="noopener noreferrer" aria-label="View on GitHub">View on GitHub</a>
                 </div>
             </div>
@@ -636,12 +668,275 @@
         </div>
     </section>
 
+    <!-- Protection Evidence -->
+    <section class="section protection-evidence-section" id="protection-evidence">
+        <div class="container">
+            <h2 class="section-title section-title-center">Protection Evidence: What Capital Shield Prevents</h2>
+            <p class="section-subtitle" style="text-align: center; color: var(--text-muted); margin-bottom: 48px; font-size: 16px;">
+                Real numbers from historical crisis simulations. Capital Shield blocks trades that violate risk rules before execution.
+            </p>
+
+            <!-- Crisis Simulation Results -->
+            <div class="capabilities-grid" style="max-width: 1200px; margin: 0 auto 64px;">
+                <!-- May 2021 Crypto Crash -->
+                <div class="capability-card">
+                    <div class="capability-icon" style="background: rgba(255, 68, 68, 0.1);">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                            <path d="M2 17l10 5 10-5M2 12l10 5 10-5"/>
+                        </svg>
+                    </div>
+                    <h3>May 2021 Crypto Crash</h3>
+                    <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 16px;">May 12-23, 2021 • BTC: -47% in 11 days</p>
+                    <div style="margin: 24px 0;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                            <span style="color: var(--text-muted);">Unshielded Max DD:</span>
+                            <span style="color: #FF4444; font-weight: 600;">-47%</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                            <span style="color: var(--text-muted);">Shielded Max DD:</span>
+                            <span style="color: var(--accent); font-weight: 600;">-10%</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 16px;">
+                            <span style="color: var(--text-muted);">Trades Blocked:</span>
+                            <span style="color: var(--text-primary); font-weight: 600;">11</span>
+                        </div>
+                        <div style="padding: 12px; background: rgba(46, 168, 255, 0.05); border-radius: 8px; font-size: 13px;">
+                            <div style="margin-bottom: 4px;"><strong>DD_BREACH:</strong> 0 trades</div>
+                            <div style="margin-bottom: 4px;"><strong>VOL_BREACH:</strong> 11 trades</div>
+                            <div><strong>REGIME_GUARD:</strong> 0 trades</div>
+                        </div>
+                        <div style="margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border);">
+                            <div style="font-size: 18px; font-weight: 700; color: var(--accent);">£2,100</div>
+                            <div style="font-size: 12px; color: var(--text-muted);">Estimated losses prevented</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- March 2020 COVID Crash -->
+                <div class="capability-card">
+                    <div class="capability-icon" style="background: rgba(255, 68, 68, 0.1);">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                            <path d="M2 17l10 5 10-5M2 12l10 5 10-5"/>
+                        </svg>
+                    </div>
+                    <h3>March 2020 COVID Crash</h3>
+                    <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 16px;">March 9-23, 2020 • BTC: -46% in 14 days</p>
+                    <div style="margin: 24px 0;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                            <span style="color: var(--text-muted);">Unshielded Max DD:</span>
+                            <span style="color: #FF4444; font-weight: 600;">-46%</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                            <span style="color: var(--text-muted);">Shielded Max DD:</span>
+                            <span style="color: var(--accent); font-weight: 600;">-10%</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 16px;">
+                            <span style="color: var(--text-muted);">Trades Blocked:</span>
+                            <span style="color: var(--text-primary); font-weight: 600;">55</span>
+                        </div>
+                        <div style="padding: 12px; background: rgba(46, 168, 255, 0.05); border-radius: 8px; font-size: 13px;">
+                            <div style="margin-bottom: 4px;"><strong>DD_BREACH:</strong> 0 trades</div>
+                            <div style="margin-bottom: 4px;"><strong>VOL_BREACH:</strong> 55 trades</div>
+                            <div><strong>REGIME_GUARD:</strong> 0 trades</div>
+                        </div>
+                        <div style="margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border);">
+                            <div style="font-size: 18px; font-weight: 700; color: var(--accent);">£2,500</div>
+                            <div style="font-size: 12px; color: var(--text-muted);">Estimated losses prevented</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FTX Collapse -->
+                <div class="capability-card">
+                    <div class="capability-icon" style="background: rgba(255, 68, 68, 0.1);">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                            <path d="M2 17l10 5 10-5M2 12l10 5 10-5"/>
+                        </svg>
+                    </div>
+                    <h3>FTX Collapse</h3>
+                    <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 16px;">November 6-14, 2022 • BTC: -26% in 8 days</p>
+                    <div style="margin: 24px 0;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                            <span style="color: var(--text-muted);">Unshielded Max DD:</span>
+                            <span style="color: #FF4444; font-weight: 600;">-26%</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                            <span style="color: var(--text-muted);">Shielded Max DD:</span>
+                            <span style="color: var(--accent); font-weight: 600;">-10%</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 16px;">
+                            <span style="color: var(--text-muted);">Trades Blocked:</span>
+                            <span style="color: var(--text-primary); font-weight: 600;">0</span>
+                        </div>
+                        <div style="padding: 12px; background: rgba(46, 168, 255, 0.05); border-radius: 8px; font-size: 13px;">
+                            <div style="margin-bottom: 4px;"><strong>DD_BREACH:</strong> 0 trades</div>
+                            <div style="margin-bottom: 4px;"><strong>VOL_BREACH:</strong> 0 trades</div>
+                            <div><strong>REGIME_GUARD:</strong> 0 trades</div>
+                        </div>
+                        <div style="margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border);">
+                            <div style="font-size: 18px; font-weight: 700; color: var(--accent);">—</div>
+                            <div style="font-size: 12px; color: var(--text-muted);">No trades blocked (volatility within limits)</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Drawdown Comparison Chart -->
+            <div style="max-width: 1000px; margin: 0 auto 64px;">
+                <h3 class="section-title" style="font-size: 24px; margin-bottom: 24px; text-align: center;">Drawdown Comparison: May 2021 Crypto Crash</h3>
+                <div style="background: var(--bg-surface); border: 1px solid var(--border); border-radius: 16px; padding: 32px; position: relative;">
+                    <canvas id="drawdownChart" style="max-height: 400px;"></canvas>
+                    <div style="margin-top: 24px; display: flex; justify-content: center; gap: 32px; flex-wrap: wrap;">
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                            <div style="width: 16px; height: 3px; background: #FF4444;"></div>
+                            <span style="font-size: 14px; color: var(--text-muted);">Unshielded</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                            <div style="width: 16px; height: 3px; background: var(--accent);"></div>
+                            <span style="font-size: 14px; color: var(--text-muted);">Shielded (Max DD: -10%)</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                            <div style="width: 16px; height: 3px; background: var(--accent); border-top: 2px dashed var(--accent);"></div>
+                            <span style="font-size: 14px; color: var(--text-muted);">Drawdown Limit</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Blocked Trade Log Example -->
+            <div style="max-width: 1000px; margin: 0 auto 64px;">
+                <h3 class="section-title" style="font-size: 24px; margin-bottom: 24px; text-align: center;">Sample Blocked Trade Log: May 2021 Crash</h3>
+                <div style="background: var(--bg-surface); border: 1px solid var(--border); border-radius: 16px; padding: 24px; overflow-x: auto;">
+                    <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
+                        <thead>
+                            <tr style="border-bottom: 2px solid var(--border);">
+                                <th style="text-align: left; padding: 12px; color: var(--text-muted); font-weight: 600;">Timestamp</th>
+                                <th style="text-align: left; padding: 12px; color: var(--text-muted); font-weight: 600;">Signal</th>
+                                <th style="text-align: left; padding: 12px; color: var(--text-muted); font-weight: 600;">Asset</th>
+                                <th style="text-align: left; padding: 12px; color: var(--text-muted); font-weight: 600;">Rejection Code</th>
+                                <th style="text-align: left; padding: 12px; color: var(--text-muted); font-weight: 600;">Reason</th>
+                                <th style="text-align: right; padding: 12px; color: var(--text-muted); font-weight: 600;">Est. Loss Avoided</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="border-bottom: 1px solid var(--border);">
+                                <td style="padding: 12px; color: var(--text-primary);">2021-05-19</td>
+                                <td style="padding: 12px; color: var(--text-primary);">BUY</td>
+                                <td style="padding: 12px; color: var(--text-primary);">BTC</td>
+                                <td style="padding: 12px;"><code style="background: rgba(255, 68, 68, 0.1); color: #FF4444; padding: 4px 8px; border-radius: 4px; font-size: 12px;">VOL_BREACH</code></td>
+                                <td style="padding: 12px; color: var(--text-muted);">Volatility 81% exceeds limit 80%</td>
+                                <td style="padding: 12px; text-align: right; color: var(--accent); font-weight: 600;">£257</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid var(--border);">
+                                <td style="padding: 12px; color: var(--text-primary);">2021-05-19</td>
+                                <td style="padding: 12px; color: var(--text-primary);">BUY</td>
+                                <td style="padding: 12px; color: var(--text-primary);">BTC</td>
+                                <td style="padding: 12px;"><code style="background: rgba(255, 68, 68, 0.1); color: #FF4444; padding: 4px 8px; border-radius: 4px; font-size: 12px;">VOL_BREACH</code></td>
+                                <td style="padding: 12px; color: var(--text-muted);">Volatility 81% exceeds limit 80%</td>
+                                <td style="padding: 12px; text-align: right; color: var(--accent); font-weight: 600;">£462</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid var(--border);">
+                                <td style="padding: 12px; color: var(--text-primary);">2021-05-19</td>
+                                <td style="padding: 12px; color: var(--text-primary);">BUY</td>
+                                <td style="padding: 12px; color: var(--text-primary);">BTC</td>
+                                <td style="padding: 12px;"><code style="background: rgba(255, 68, 68, 0.1); color: #FF4444; padding: 4px 8px; border-radius: 4px; font-size: 12px;">VOL_BREACH</code></td>
+                                <td style="padding: 12px; color: var(--text-muted);">Volatility 81% exceeds limit 80%</td>
+                                <td style="padding: 12px; text-align: right; color: var(--accent); font-weight: 600;">£414</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid var(--border);">
+                                <td style="padding: 12px; color: var(--text-primary);">2021-05-19</td>
+                                <td style="padding: 12px; color: var(--text-primary);">BUY</td>
+                                <td style="padding: 12px; color: var(--text-primary);">BTC</td>
+                                <td style="padding: 12px;"><code style="background: rgba(255, 68, 68, 0.1); color: #FF4444; padding: 4px 8px; border-radius: 4px; font-size: 12px;">VOL_BREACH</code></td>
+                                <td style="padding: 12px; color: var(--text-muted);">Volatility 83% exceeds limit 80%</td>
+                                <td style="padding: 12px; text-align: right; color: var(--accent); font-weight: 600;">£535</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid var(--border);">
+                                <td style="padding: 12px; color: var(--text-primary);">2021-05-19</td>
+                                <td style="padding: 12px; color: var(--text-primary);">BUY</td>
+                                <td style="padding: 12px; color: var(--text-primary);">BTC</td>
+                                <td style="padding: 12px;"><code style="background: rgba(255, 68, 68, 0.1); color: #FF4444; padding: 4px 8px; border-radius: 4px; font-size: 12px;">VOL_BREACH</code></td>
+                                <td style="padding: 12px; color: var(--text-muted);">Volatility 82% exceeds limit 80%</td>
+                                <td style="padding: 12px; text-align: right; color: var(--accent); font-weight: 600;">£437</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p style="text-align: center; color: var(--text-muted); font-size: 13px; margin-top: 16px;">
+                    Sample entries from May 2021 crash simulation. Actual blocked trades logged with timestamps, rejection codes, and estimated losses avoided.
+                </p>
+            </div>
+
+            <!-- Key Protection Metrics -->
+            <div style="max-width: 1200px; margin: 0 auto 64px;">
+                <h3 class="section-title" style="font-size: 24px; margin-bottom: 32px; text-align: center;">Key Protection Metrics (Combined Crises)</h3>
+                <div class="capabilities-grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 24px;">
+                    <div class="capability-card" style="text-align: center;">
+                        <div style="font-size: 36px; font-weight: 700; color: var(--accent); margin-bottom: 8px;">-47% → -10%</div>
+                        <div style="font-size: 14px; color: var(--text-muted); margin-bottom: 8px;">Max Drawdown Prevented</div>
+                        <div style="font-size: 12px; color: var(--text-muted);">Worst case across all crises</div>
+                    </div>
+                    <div class="capability-card" style="text-align: center;">
+                        <div style="font-size: 36px; font-weight: 700; color: var(--accent); margin-bottom: 8px;">66</div>
+                        <div style="font-size: 14px; color: var(--text-muted); margin-bottom: 8px;">Total Trades Blocked</div>
+                        <div style="font-size: 12px; color: var(--text-muted);">Across all crisis periods</div>
+                    </div>
+                    <div class="capability-card" style="text-align: center;">
+                        <div style="font-size: 36px; font-weight: 700; color: var(--accent); margin-bottom: 8px;">£4,600</div>
+                        <div style="font-size: 14px; color: var(--text-muted); margin-bottom: 8px;">Estimated Losses Prevented</div>
+                        <div style="font-size: 12px; color: var(--text-muted);">Combined across all crises</div>
+                    </div>
+                    <div class="capability-card" style="text-align: center;">
+                        <div style="font-size: 36px; font-weight: 700; color: var(--accent); margin-bottom: 8px;">11</div>
+                        <div style="font-size: 14px; color: var(--text-muted); margin-bottom: 8px;">Volatility Breaches Blocked</div>
+                        <div style="font-size: 12px; color: var(--text-muted);">May 2021 crash</div>
+                    </div>
+                    <div class="capability-card" style="text-align: center;">
+                        <div style="font-size: 36px; font-weight: 700; color: var(--accent); margin-bottom: 8px;">£912</div>
+                        <div style="font-size: 14px; color: var(--text-muted); margin-bottom: 8px;">Largest Single Loss Prevented</div>
+                        <div style="font-size: 12px; color: var(--text-muted);">Single blocked trade</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Methodology Summary -->
+            <div style="max-width: 800px; margin: 0 auto 64px; padding: 32px; background: var(--bg-surface); border: 1px solid var(--border); border-radius: 16px;">
+                <h3 class="section-title" style="font-size: 20px; margin-bottom: 16px;">Methodology</h3>
+                <p style="color: var(--text-muted); margin-bottom: 16px; line-height: 1.7;">
+                    These simulations use deterministic safety rules, not machine learning predictions. Capital Shield evaluates proposed trades against configurable thresholds (max drawdown, volatility limits, regime guards) and blocks those that violate rules before execution.
+                </p>
+                <p style="color: var(--text-muted); margin-bottom: 16px; line-height: 1.7;">
+                    <strong>Key principles:</strong>
+                </p>
+                <ul style="color: var(--text-muted); line-height: 1.7; margin-left: 24px; margin-bottom: 16px;">
+                    <li>Deterministic rules: Same inputs always produce same outputs</li>
+                    <li>Configurable thresholds: Users set their own risk limits</li>
+                    <li>Fail-closed defaults: If safety checks fail, trade is blocked</li>
+                    <li>Strategy-agnostic: Works with any trading strategy</li>
+                </ul>
+                <p style="color: var(--text-muted); margin-bottom: 0; line-height: 1.7;">
+                    <a href="technical.html" style="color: var(--accent); text-decoration: underline;">See technical architecture for detailed implementation</a>
+                </p>
+            </div>
+
+            <!-- Disclaimers -->
+            <div style="max-width: 1000px; margin: 0 auto; padding: 24px; background: rgba(124, 92, 255, 0.05); border: 1px solid rgba(124, 92, 255, 0.2); border-radius: 12px;">
+                <p style="font-size: 12px; color: var(--text-muted); line-height: 1.6; margin: 0; text-align: center;">
+                    <strong>Disclaimers:</strong> Simulated results based on historical data. Past performance does not guarantee future results. Capital Shield reduces risk but cannot prevent all losses. Not financial advice. User is responsible for configuring appropriate risk limits for their strategy.
+                </p>
+            </div>
+        </div>
+    </section>
+
     <!-- Pricing -->
     <section class="section pricing-section" id="pricing">
         <div class="container">
             <h2 class="section-title section-title-center">Pricing</h2>
             <p class="section-subtitle" style="text-align: center; color: var(--text-muted); margin-bottom: 48px; font-size: 16px;">
-                Choose the tier that fits your trading infrastructure needs
+                Operational modes: <strong>Shadow</strong> (observe), <strong>Audit</strong> (compliance and logging), <strong>Enforcement</strong> (live constraints)
             </p>
             
             <!-- Pricing Toggle -->
@@ -652,53 +947,51 @@
                     <span style="position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: var(--border); border-radius: 32px; transition: 0.3s;"></span>
                     <span style="position: absolute; content: ''; height: 24px; width: 24px; left: 4px; bottom: 4px; background-color: var(--text-primary); border-radius: 50%; transition: 0.3s;"></span>
                 </label>
-                <span style="color: var(--text-muted); font-weight: 500;">Annual <span style="color: var(--accent); font-size: 14px;">(2 months free)</span></span>
+                <span style="color: var(--text-muted); font-weight: 500;">Annual <span style="color: var(--accent); font-size: 14px;">(2 months free — Licensed tier)</span></span>
             </div>
 
             <!-- Pricing Cards -->
             <div class="capabilities-grid" style="max-width: 1200px; margin: 0 auto;">
-                <!-- Starter Tier -->
+                <!-- Free — Shadow -->
                 <div class="capability-card" style="position: relative;">
-                    <h3>Starter</h3>
+                    <h3>Free — Shadow</h3>
                     <div style="margin: 24px 0;">
-                        <span class="pricing-monthly" style="display: block;">
-                            <span style="font-size: 48px; font-weight: 700; color: var(--accent);">£49</span>
-                            <span style="color: var(--text-muted); font-size: 18px;">/month</span>
-                        </span>
-                        <span class="pricing-annual" style="display: none;">
-                            <span style="font-size: 48px; font-weight: 700; color: var(--accent);">£490</span>
-                            <span style="color: var(--text-muted); font-size: 18px;">/year</span>
-                        </span>
+                        <span style="font-size: 48px; font-weight: 700; color: var(--accent);">£0</span>
+                        <span style="color: var(--text-muted); font-size: 18px;"> shadow evaluation</span>
                     </div>
-                    <p class="trial-text" style="font-size: 13px; color: var(--text-muted); margin-top: -8px; margin-bottom: 16px;">14-day free trial. No credit card required.</p>
-                    <p style="color: var(--text-muted); margin-bottom: 24px;">Perfect for solo systematic traders</p>
+                    <p class="trial-text" style="font-size: 13px; color: var(--text-muted); margin-top: -8px; margin-bottom: 16px;">Observe outcomes; no live enforcement on your system.</p>
+                    <p style="color: var(--text-muted); margin-bottom: 24px;">For teams validating fit before audit or enforcement</p>
                     <ul style="list-style: none; padding: 0; margin: 24px 0;">
                         <li style="padding: 8px 0; color: var(--text-primary);">
                             <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 16px; height: 16px; display: inline-block; margin-right: 8px; vertical-align: middle;">
                                 <path d="M5 13l4 4L19 7"/>
                             </svg>
-                            10,000 API calls/day
+                            Shadow mode: observe allow/block decisions
                         </li>
                         <li style="padding: 8px 0; color: var(--text-primary);">
                             <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 16px; height: 16px; display: inline-block; margin-right: 8px; vertical-align: middle;">
                                 <path d="M5 13l4 4L19 7"/>
                             </svg>
-                            Live API access
+                            No capital risk from enforcement on your stack
                         </li>
                         <li style="padding: 8px 0; color: var(--text-primary);">
                             <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 16px; height: 16px; display: inline-block; margin-right: 8px; vertical-align: middle;">
                                 <path d="M5 13l4 4L19 7"/>
                             </svg>
-                            Usage-based overages available
+                            API access for evaluation (fair-use limits)
                         </li>
                     </ul>
-                    <a href="#contact" class="btn btn-secondary" style="width: 100%; margin-top: 24px;" aria-label="Get Started with Starter">Get Started</a>
+                    <a href="#contact" class="btn btn-secondary" style="width: 100%; margin-top: 24px;" aria-label="Request Shadow mode access">Request Shadow access</a>
                 </div>
 
-                <!-- Professional Tier -->
+                <!-- Licensed — Audit -->
                 <div class="capability-card" style="position: relative; border: 2px solid var(--accent);">
-                    <div style="position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--accent); color: var(--bg-primary); padding: 4px 16px; border-radius: 16px; font-size: 12px; font-weight: 600;">Most Popular</div>
-                    <h3>Professional</h3>
+                    <div style="position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--accent); color: var(--bg-primary); padding: 4px 16px; border-radius: 16px; font-size: 12px; font-weight: 600;">Audit pilot — 10 spots</div>
+                    <h3>Licensed — Audit</h3>
+                    <p style="font-size: 13px; color: var(--text-muted); margin: 0 0 16px 0; line-height: 1.5;">
+                        <strong style="color: var(--accent-2);">Intro offer:</strong> First 10 qualified sign-ups get the extended audit &amp; reporting package at no extra charge
+                        (<strong>“25k”</strong> is just shorthand for the <em>scale</em> of bundle we’re talking about — <a href="#faq-audit-pilot" style="color: var(--accent);">not a fixed £ figure</a>).
+                    </p>
                     <div style="margin: 24px 0;">
                         <span class="pricing-monthly" style="display: block;">
                             <span style="font-size: 48px; font-weight: 700; color: var(--accent);">£199</span>
@@ -709,26 +1002,20 @@
                             <span style="color: var(--text-muted); font-size: 18px;">/year</span>
                         </span>
                     </div>
-                    <p class="trial-text" style="font-size: 13px; color: var(--text-muted); margin-top: -8px; margin-bottom: 16px;">14-day free trial. No credit card required.</p>
-                    <p style="color: var(--text-muted); margin-bottom: 24px;">For prop traders and small funds</p>
+                    <p class="trial-text" style="font-size: 13px; color: var(--text-muted); margin-top: -8px; margin-bottom: 16px;">Compliance reporting, forensic logging, regulatory documentation</p>
+                    <p style="color: var(--text-muted); margin-bottom: 24px;">For funds and desks needing an audit trail</p>
                     <ul style="list-style: none; padding: 0; margin: 24px 0;">
                         <li style="padding: 8px 0; color: var(--text-primary);">
                             <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 16px; height: 16px; display: inline-block; margin-right: 8px; vertical-align: middle;">
                                 <path d="M5 13l4 4L19 7"/>
                             </svg>
-                            100,000 API calls/day
+                            High-volume API for production documentation
                         </li>
                         <li style="padding: 8px 0; color: var(--text-primary);">
                             <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 16px; height: 16px; display: inline-block; margin-right: 8px; vertical-align: middle;">
                                 <path d="M5 13l4 4L19 7"/>
                             </svg>
-                            Live API access
-                        </li>
-                        <li style="padding: 8px 0; color: var(--text-primary);">
-                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 16px; height: 16px; display: inline-block; margin-right: 8px; vertical-align: middle;">
-                                <path d="M5 13l4 4L19 7"/>
-                            </svg>
-                            Usage-based overages available
+                            Structured rejection reasons and logs
                         </li>
                         <li style="padding: 8px 0; color: var(--text-primary);">
                             <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 16px; height: 16px; display: inline-block; margin-right: 8px; vertical-align: middle;">
@@ -736,66 +1023,73 @@
                             </svg>
                             Priority support
                         </li>
+                        <li style="padding: 8px 0; color: var(--text-primary);">
+                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 16px; height: 16px; display: inline-block; margin-right: 8px; vertical-align: middle;">
+                                <path d="M5 13l4 4L19 7"/>
+                            </svg>
+                            Usage-based overages available
+                        </li>
                     </ul>
-                    <a href="#contact" class="btn btn-primary" style="width: 100%; margin-top: 24px;" aria-label="Get Started with Professional">Get Started</a>
+                    <a href="?tier=licensed-audit#contact" class="btn btn-primary" style="width: 100%; margin-top: 24px;" aria-label="Get started with Licensed Audit tier">Get Audit license</a>
                 </div>
 
-                <!-- Enterprise Tier -->
+                <!-- Enterprise — Enforcement -->
                 <div class="capability-card" style="position: relative;">
-                    <h3>Enterprise</h3>
+                    <h3>Enterprise — Enforcement</h3>
                     <div style="margin: 24px 0;">
                         <span style="font-size: 48px; font-weight: 700; color: var(--accent);">Custom</span>
                     </div>
-                    <p style="color: var(--text-muted); margin-bottom: 24px;">For funds and institutions</p>
+                    <p style="color: var(--text-muted); margin-bottom: 24px;">Live constraint enforcement and full middleware deployment</p>
                     <ul style="list-style: none; padding: 0; margin: 24px 0;">
                         <li style="padding: 8px 0; color: var(--text-primary);">
                             <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 16px; height: 16px; display: inline-block; margin-right: 8px; vertical-align: middle;">
                                 <path d="M5 13l4 4L19 7"/>
                             </svg>
-                            Unlimited API calls
+                            Deterministic enforcement in your execution path
                         </li>
                         <li style="padding: 8px 0; color: var(--text-primary);">
                             <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 16px; height: 16px; display: inline-block; margin-right: 8px; vertical-align: middle;">
                                 <path d="M5 13l4 4L19 7"/>
                             </svg>
-                            Live API access
+                            Unlimited API volume (contracted)
                         </li>
                         <li style="padding: 8px 0; color: var(--text-primary);">
                             <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 16px; height: 16px; display: inline-block; margin-right: 8px; vertical-align: middle;">
                                 <path d="M5 13l4 4L19 7"/>
                             </svg>
-                            Dedicated support
+                            Dedicated support and custom SLA
                         </li>
                         <li style="padding: 8px 0; color: var(--text-primary);">
                             <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 16px; height: 16px; display: inline-block; margin-right: 8px; vertical-align: middle;">
                                 <path d="M5 13l4 4L19 7"/>
                             </svg>
-                            Custom SLA
+                            Solutions architecture for middleware insertion
                         </li>
                     </ul>
-                    <a href="#contact" class="btn btn-secondary" style="width: 100%; margin-top: 24px;" aria-label="Contact for Enterprise">Contact Sales</a>
+                    <a href="#contact" class="btn btn-secondary" style="width: 100%; margin-top: 24px;" aria-label="Contact sales for Enterprise Enforcement">Contact Sales</a>
                 </div>
             </div>
 
             <!-- Simulation-Only Option -->
             <div style="text-align: center; margin-top: 48px; padding: 24px; background: var(--bg-surface); border: 1px solid var(--border); border-radius: 12px; max-width: 600px; margin-left: auto; margin-right: auto;">
-                <h3 style="font-size: 20px; font-weight: 600; margin-bottom: 12px;">Simulation-Only License</h3>
+                <h3 style="font-size: 20px; font-weight: 600; margin-bottom: 12px;">Simulation-only add-on</h3>
                 <p style="color: var(--text-muted); margin-bottom: 16px;">
-                    Validate the cost of safety before committing to full protection. Full access to historical simulation engine only.
+                    Historical simulation and validation workloads alongside your commercial tier. Quote based on scope.
                 </p>
                 <div style="display: flex; justify-content: center; gap: 32px; flex-wrap: wrap;">
                     <div>
-                        <strong style="color: var(--accent);">£19/month</strong>
+                        <strong style="color: var(--accent);">From £19/month</strong>
                         <span style="color: var(--text-muted); font-size: 14px;"> or </span>
                         <strong style="color: var(--accent);">£149 one-time</strong>
+                        <span style="color: var(--text-muted); font-size: 13px; display: block; margin-top: 8px;">Illustrative; confirm in contract</span>
                     </div>
-                    <a href="#contact" class="btn btn-secondary btn-small" aria-label="Get Simulation-Only License">Learn More</a>
+                    <a href="#contact" class="btn btn-secondary btn-small" aria-label="Ask about simulation-only options">Ask about simulation</a>
                 </div>
             </div>
 
             <!-- Overage Info -->
             <p style="text-align: center; color: var(--text-muted); font-size: 14px; margin-top: 32px;">
-                Usage-based overages: £0.0001 per additional API call beyond daily limit. Calculated monthly, added to next invoice. 
+                Licensed tier: usage-based overages may apply beyond contracted daily API limits (£0.0001 per call unless otherwise agreed).
                 Users can set a hard cap to prevent surprise bills.
             </p>
         </div>
@@ -1004,6 +1298,34 @@
                         not an alpha engine.
                     </p>
                 </article>
+                <article class="faq-item" id="faq-audit-pilot">
+                    <h3 class="faq-question">What is the first-10 Audit pilot — and what does “25k” mean?</h3>
+                    <p class="faq-answer">
+                        For our <strong>Audit-first</strong> rollout, the first <strong>10 qualified</strong> customers who take <strong>Licensed — Audit</strong> receive a <strong>complimentary</strong> extended bundle we may describe in conversation as a <strong>“25k-style”</strong> package. That phrase is <strong>not</strong> a promised cash value, a fixed sterling amount, or a rigid checklist of deliverables — it only signals <strong>material professional scope</strong> (e.g. onboarding time, reporting setup, working sessions). <strong>What you actually receive is whatever we agree in writing</strong> for your organisation before kickoff. It is <strong>not a cash rebate</strong>. Spots are allocated in application order among qualified applicants.
+                    </p>
+                </article>
+                <article class="faq-item" id="faq-audit-qualified">
+                    <h3 class="faq-question">Who qualifies for the first-10 Audit pilot?</h3>
+                    <p class="faq-answer">
+                        We prioritise teams that can <strong>deploy and use</strong> the API in a sensible environment. Indicative criteria (all discretionary):
+                    </p>
+                    <ul class="faq-answer" style="margin-left: 20px; color: var(--text-muted); line-height: 1.7;">
+                        <li><strong>Entity:</strong> registered company, fund, or professional trading firm (we do not target retail).</li>
+                        <li><strong>Use-case:</strong> systematic / algo execution where <strong>audit trails</strong> or risk logs matter.</li>
+                        <li><strong>Technical:</strong> named engineer or quant who can integrate HTTP/JSON (see <a href="integration.html" style="color: var(--accent);">integration guide</a>).</li>
+                        <li><strong>Environment:</strong> willingness to start in <strong>shadow or non-production</strong> before any enforcement talk.</li>
+                        <li><strong>Legal:</strong> able to sign an order or engagement that sets out scope (start from our <a href="https://github.com/CBoon99/Capital-Shield/blob/main/AUDIT_PILOT_ENGAGEMENT_TEMPLATE.md" target="_blank" rel="noopener noreferrer" style="color: var(--accent);">template</a>; counsel to review).</li>
+                    </ul>
+                    <p class="faq-answer" style="margin-top: 12px;">We may <strong>decline or waitlist</strong> applicants that are not a fit; pilot seats are <strong>not</strong> allocated purely on a first-come basis if qualification is not met.</p>
+                </article>
+                <article class="faq-item">
+                    <h3 class="faq-question">Shadow, Audit, and Enforcement — what is the difference?</h3>
+                    <p class="faq-answer">
+                        <strong>Shadow (free):</strong> observe how Capital Shield evaluates signals and what would be allowed or blocked, without enforcing outcomes on your production stack.
+                        <strong>Licensed — Audit:</strong> compliance-oriented reporting, forensic logging, and documentation for desks that need a durable audit trail.
+                        <strong>Enterprise — Enforcement:</strong> live constraint enforcement in your execution path and full middleware deployment, under commercial terms.
+                    </p>
+                </article>
                 <article class="faq-item">
                     <h3 class="faq-question">Who is Capital Shield for?</h3>
                     <ul class="faq-answer" style="list-style: none; padding-left: 0;">
@@ -1049,10 +1371,12 @@
     <!-- Contact Form -->
     <section class="section contact-section" id="contact">
         <div class="container">
-            <h2 class="section-title section-title-center">Apply for Beta Access</h2>
+            <h2 class="section-title section-title-center">Apply — Audit pilot &amp; access</h2>
             <div class="contact-content">
                 <div class="contact-info">
-                    <p>Apply for early access to Capital Shield. We're prioritizing quant developers, trading system architects, and systematic traders with substantial capital to protect.</p>
+                    <p><strong>We are prioritising Audit (Licensed) rollouts.</strong> Use this form for Shadow, Audit, or Enterprise — for the <strong>first-10 Audit bundle</strong> (the informal <strong>“25k”</strong> scope shorthand — see FAQ), select <strong>Licensed — Audit</strong> and we will confirm eligibility.</p>
+                    <p style="font-size: 14px;">Engineering prerequisites: <a href="integration.html" style="color: var(--accent);">integration guide</a>. Engagement wording: <a href="https://github.com/CBoon99/Capital-Shield/blob/main/AUDIT_PILOT_ENGAGEMENT_TEMPLATE.md" target="_blank" rel="noopener noreferrer" style="color: var(--accent);">scope template</a> (have counsel review).</p>
+                    <p>We're prioritizing quant developers, trading system architects, and systematic traders building a durable compliance and risk log.</p>
                     <p class="contact-email">Email: <a href="mailto:info@boonmind.io">info@boonmind.io</a></p>
                 </div>
                 <form name="contact" method="POST" action="/thanks/" data-netlify="true" netlify-honeypot="bot-field" class="contact-form" id="contact-form">
@@ -1077,10 +1401,10 @@
                         <label for="tier">Which tier are you interested in? <span class="required">*</span></label>
                         <select id="tier" name="tier" required aria-required="true">
                             <option value="">Select a tier...</option>
-                            <option value="starter">Starter (£49/month)</option>
-                            <option value="professional">Professional (£199/month)</option>
-                            <option value="enterprise">Enterprise (Custom)</option>
-                            <option value="simulation">Simulation-Only (£19/month)</option>
+                            <option value="licensed-audit">Licensed — Audit (£199/mo) — Audit pilot eligible</option>
+                            <option value="shadow-free">Free — Shadow (observe only)</option>
+                            <option value="enterprise-enforcement">Enterprise — Enforcement (custom)</option>
+                            <option value="simulation">Simulation add-on</option>
                             <option value="not-sure">Not sure yet</option>
                         </select>
                     </div>
@@ -1111,7 +1435,7 @@
                         <textarea id="message" name="message" rows="4" placeholder="Any additional context about your use case..."></textarea>
                     </div>
                     
-                    <button type="submit" class="btn btn-primary" id="submit-btn">Apply for Beta Access</button>
+                    <button type="submit" class="btn btn-primary" id="submit-btn">Submit application</button>
                 </form>
             </div>
         </div>
@@ -1121,7 +1445,7 @@
     <section class="section disclaimer-section">
         <div class="container">
             <div class="disclaimer">
-                <p><strong>Disclaimer:</strong> No financial advice. No performance guarantees. Infrastructure only.</p>
+                <p><strong>Disclaimer:</strong> No financial advice. No performance guarantees. Infrastructure only. Capital Shield is <strong>patent pending</strong>; public materials are not legal or patent advice. <strong>Audit pilot:</strong> limited availability; <strong>“25k”</strong> is informal shorthand for bundle scale, not a guaranteed valuation or fixed deliverables unless your signed agreement says so.</p>
             </div>
         </div>
     </section>
@@ -1137,17 +1461,22 @@
                 <div class="footer-links">
                     <a href="https://github.com/CBoon99/Capital-Shield" id="github-link-footer" target="_blank" rel="noopener noreferrer" aria-label="GitHub repository">GitHub</a>
                     <a href="https://github.com/CBoon99/Capital-Shield/blob/main/boonmindx_capital_shield/README.md" target="_blank" rel="noopener noreferrer">Docs</a>
+                    <a href="integration.html">Integration</a>
+                    <a href="whitepaper.html">Brief (PDF)</a>
                     <a href="technical.html">Technical</a>
                     <a href="#contact" aria-label="Contact us">Contact</a>
                 </div>
             </div>
             <div class="footer-copyright">
-                <p>&copy; 2025 BoonMindX. All rights reserved.</p>
+                <p>&copy; 2026 BoonMindX. All rights reserved. <span style="color: var(--text-muted);">Capital Shield — patent pending.</span></p>
                 <p style="margin-top: 8px; font-size: 12px; color: var(--text-muted);">Commercial licensing available. Contact: <a href="mailto:info@boonmind.io" style="color: var(--accent); text-decoration: none;">info@boonmind.io</a></p>
             </div>
         </div>
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
     <script src="app.js"></script>
+    <script src="audit-pilot.js"></script>
+    <script src="protection-evidence.js"></script>
 </body>
 </html>

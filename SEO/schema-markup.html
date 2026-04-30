@@ -12,7 +12,7 @@
   "@id": "https://capital-shield.netlify.app/#software",
   "name": "Capital Shield",
   "alternateName": "BoonMindX Capital Shield",
-  "description": "Risk-first trading infrastructure and deterministic safety layer for algorithmic trading systems. Strategy-agnostic API that enforces max drawdown limits, regime guards, and execution constraints.",
+  "description": "Risk-first trading infrastructure and deterministic safety layer for algorithmic trading systems. Strategy-agnostic API that enforces max drawdown limits, regime guards, and execution constraints. Patent pending.",
   "url": "https://capital-shield.netlify.app/",
   "applicationCategory": "FinanceApplication",
   "operatingSystem": "All",
@@ -31,19 +31,19 @@
   "offers": {
     "@type": "AggregateOffer",
     "priceCurrency": "GBP",
-    "lowPrice": "49",
-    "highPrice": "999",
+    "lowPrice": "0",
+    "highPrice": "199",
     "offerCount": "3",
     "offers": [
       {
         "@type": "Offer",
-        "name": "Starter",
-        "description": "10,000 API calls/day for solo systematic traders",
-        "price": "49",
+        "name": "Free — Shadow mode",
+        "description": "Observe policy outcomes and evaluation; no live enforcement on your execution stack",
+        "price": "0",
         "priceCurrency": "GBP",
         "priceSpecification": {
           "@type": "UnitPriceSpecification",
-          "price": "49",
+          "price": "0",
           "priceCurrency": "GBP",
           "billingDuration": "P1M",
           "unitText": "month"
@@ -51,8 +51,8 @@
       },
       {
         "@type": "Offer",
-        "name": "Professional",
-        "description": "100,000 API calls/day for prop traders and small funds",
+        "name": "Licensed — Audit mode",
+        "description": "Compliance-oriented reporting, forensic logging, and regulatory documentation support",
         "price": "199",
         "priceCurrency": "GBP",
         "priceSpecification": {
@@ -65,17 +65,9 @@
       },
       {
         "@type": "Offer",
-        "name": "Enterprise",
-        "description": "Unlimited API calls for funds and institutions",
-        "price": "999",
-        "priceCurrency": "GBP",
-        "priceSpecification": {
-          "@type": "UnitPriceSpecification",
-          "price": "999",
-          "priceCurrency": "GBP",
-          "billingDuration": "P1M",
-          "unitText": "month"
-        }
+        "name": "Enterprise — Enforcement mode",
+        "description": "Live constraint enforcement and full middleware deployment; custom commercial terms",
+        "priceCurrency": "GBP"
       }
     ]
   },
@@ -165,7 +157,15 @@
       "name": "What are the pricing tiers for Capital Shield?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Capital Shield offers three tiers: Starter at £49/month (10,000 API calls/day), Professional at £199/month (100,000 API calls/day), and Enterprise with custom pricing for unlimited calls. Annual subscriptions include 2 months free."
+        "text": "Capital Shield is offered in three operational modes: Free Shadow mode (observe and evaluate with no live enforcement on your stack), Licensed Audit mode from £199/month (compliance reporting, forensic logging, and documentation), and Enterprise Enforcement mode (live constraint enforcement and full middleware deployment) with custom pricing. Annual billing for Licensed tier includes two months free where applicable."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the difference between Shadow, Audit, and Enforcement modes?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Shadow mode lets you observe how Capital Shield would allow or block trades without enforcing decisions on your live execution path. Audit mode (licensed) adds compliance-oriented reporting, forensic logging, and documentation suitable for internal and external review. Enforcement mode (enterprise) deploys live constraint enforcement in your middleware so blocked trades do not reach the market under configured rules."
       }
     },
     {

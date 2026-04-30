@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Capital Shield — Integration guide &amp; API overview</title>
+    <meta name="description" content="How to integrate Capital Shield: REST API, authentication, core endpoints, latency expectations, and sample middleware for deterministic trade filtering. Patent pending.">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <link rel="canonical" href="https://capital-shield.netlify.app/integration">
+    <meta name="theme-color" content="#1a1a2e">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%232EA8FF'/><path d='M50 20 L30 50 L50 45 L70 50 Z' fill='%23071225'/><rect x='40' y='50' width='20' height='30' fill='%23071225'/></svg>">
+</head>
+<body>
+    <header class="header" id="header">
+        <nav class="nav container">
+            <div class="nav-brand">
+                <span class="logo-text">BoonMindX</span>
+                <span class="product-name">Capital Shield</span>
+            </div>
+            <ul class="nav-links" role="navigation" aria-label="Main navigation">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+                <li><a href="whitepaper.html">Whitepaper</a></li>
+                <li><a href="technical.html">Technical</a></li>
+            </ul>
+            <a href="index.html?tier=licensed-audit#contact" class="btn btn-primary btn-small">Audit pilot</a>
+        </nav>
+    </header>
+
+    <section class="section" style="padding-top: 48px;">
+        <div class="container" style="max-width: 900px;">
+            <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 16px;"><strong>Patent pending.</strong> Public integration summary only — not legal or patent advice.</p>
+            <h1 class="section-title" style="margin-bottom: 16px;">Integration guide</h1>
+            <p style="color: var(--text-muted); line-height: 1.7; margin-bottom: 32px;">
+                Capital Shield exposes a <strong>FastAPI</strong> HTTP API. Your strategy proposes trades; the API returns allow/block decisions and structured reasons.
+                Self-host the stack from the open repo, or use a managed deployment — substitute your base URL below.
+            </p>
+
+            <h2 style="font-size: 22px; margin: 32px 0 16px;">Architecture</h2>
+            <p style="color: var(--text-muted); line-height: 1.7;">
+                Recommended insertion point: <strong>after</strong> signal generation and <strong>before</strong> order routing to brokers or internal OMS.
+                In <strong>Shadow</strong> mode you log decisions without blocking execution; in <strong>Audit</strong> you persist logs for compliance; in <strong>Enforcement</strong> blocked intents must not be sent for execution.
+            </p>
+
+            <h2 style="font-size: 22px; margin: 32px 0 16px;">Base URL &amp; docs</h2>
+            <ul style="color: var(--text-muted); line-height: 1.8;">
+                <li><strong>Prefix:</strong> <code style="background: var(--bg-surface); padding: 2px 8px; border-radius: 4px;">/api/v1</code></li>
+                <li><strong>Example base:</strong> <code style="background: var(--bg-surface); padding: 2px 8px; border-radius: 4px;">https://your-host.example/api/v1</code></li>
+                <li><strong>Interactive OpenAPI:</strong> <code style="background: var(--bg-surface); padding: 2px 8px; border-radius: 4px;">/docs</code> on your deployment</li>
+                <li><strong>Repository README:</strong> <a href="https://github.com/CBoon99/Capital-Shield/blob/main/boonmindx_capital_shield/README.md" style="color: var(--accent);" target="_blank" rel="noopener noreferrer">boonmindx_capital_shield/README.md</a></li>
+            </ul>
+
+            <h2 style="font-size: 22px; margin: 32px 0 16px;">Authentication</h2>
+            <p style="color: var(--text-muted); line-height: 1.7;">
+                Production calls use an API key header (see server config and tier tables in the repo):
+            </p>
+            <pre style="background: var(--bg-surface); border: 1px solid var(--border); border-radius: 8px; padding: 16px; overflow-x: auto; font-size: 13px; color: var(--text-primary);">X-API-Key: &lt;your-key&gt;</pre>
+
+            <h2 style="font-size: 22px; margin: 32px 0 16px;">Core endpoints (summary)</h2>
+            <div style="overflow-x: auto;">
+                <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
+                    <thead>
+                        <tr style="background: rgba(46, 168, 255, 0.1);">
+                            <th style="padding: 12px; border: 1px solid var(--border); text-align: left;">Method</th>
+                            <th style="padding: 12px; border: 1px solid var(--border); text-align: left;">Path</th>
+                            <th style="padding: 12px; border: 1px solid var(--border); text-align: left;">Role</th>
+                        </tr>
+                    </thead>
+                    <tbody style="color: var(--text-muted);">
+                        <tr>
+                            <td style="padding: 12px; border: 1px solid var(--border);"><code>POST</code></td>
+                            <td style="padding: 12px; border: 1px solid var(--border);"><code>/filter</code></td>
+                            <td style="padding: 12px; border: 1px solid var(--border);">Trade gatekeeper: allow/block + safety rails</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 12px; border: 1px solid var(--border);"><code>POST</code></td>
+                            <td style="padding: 12px; border: 1px solid var(--border);"><code>/risk</code></td>
+                            <td style="padding: 12px; border: 1px solid var(--border);">Risk evaluation for a proposed position</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 12px; border: 1px solid var(--border);"><code>POST</code></td>
+                            <td style="padding: 12px; border: 1px solid var(--border);"><code>/signal</code></td>
+                            <td style="padding: 12px; border: 1px solid var(--border);">Engine signal (MOCK/LIVE per deployment)</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 12px; border: 1px solid var(--border);"><code>POST</code></td>
+                            <td style="padding: 12px; border: 1px solid var(--border);"><code>/regime</code></td>
+                            <td style="padding: 12px; border: 1px solid var(--border);">Regime classification helper</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 12px; border: 1px solid var(--border);"><code>GET</code></td>
+                            <td style="padding: 12px; border: 1px solid var(--border);"><code>/healthz</code></td>
+                            <td style="padding: 12px; border: 1px solid var(--border);">Liveness (typically unauthenticated)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2 style="font-size: 22px; margin: 32px 0 16px;"><code>POST /filter</code> body (illustrative)</h2>
+            <p style="color: var(--text-muted); line-height: 1.7;">Exact schema matches <code>FilterRequest</code> in the codebase; adjust fields to your deployment version.</p>
+            <pre style="background: var(--bg-surface); border: 1px solid var(--border); border-radius: 8px; padding: 16px; overflow-x: auto; font-size: 13px; color: var(--text-primary);">{
+  "asset": "BTC",
+  "action": "BUY",
+  "price_history": [50000.0, 50100.0, 50200.0],
+  "volume_history": [1200.5, 1150.0, 1300.0]
+}</pre>
+
+            <h2 style="font-size: 22px; margin: 32px 0 16px;">Latency &amp; throughput</h2>
+            <p style="color: var(--text-muted); line-height: 1.7;">
+                Measure on <strong>your</strong> hardware, region, and network. Document targets in your deployment runbook. Example planning assumptions (not a guarantee):
+            </p>
+            <ul style="color: var(--text-muted); line-height: 1.8;">
+                <li><strong>Same-region</strong> HTTP: design reviews often plan for sub-100&nbsp;ms application time for the filter path before network — validate with your load tests.</li>
+                <li><strong>Rate limits:</strong> tiered by API key; see <code>infra/RATE_LIMIT_PROFILES.md</code> in the repo.</li>
+                <li><strong>Fail-closed:</strong> on timeout or error, your middleware should treat the decision as <strong>block</strong> unless you explicitly operate in Shadow-only logging mode.</li>
+            </ul>
+
+            <h2 style="font-size: 22px; margin: 32px 0 16px;">Sample middleware (Python-style)</h2>
+            <p style="color: var(--text-muted); line-height: 1.7;">Illustrative only — error handling, retries, and idempotency are your responsibility.</p>
+            <pre style="background: var(--bg-surface); border: 1px solid var(--border); border-radius: 8px; padding: 16px; overflow-x: auto; font-size: 13px; color: var(--text-primary);">import requests
+
+BASE = "https://your-host.example/api/v1"
+API_KEY = "your-key"
+
+def route_through_shield(asset: str, action: str, prices: list[float], shadow: bool = False) -&gt; dict:
+    r = requests.post(
+        f"{BASE}/filter",
+        headers={"X-API-Key": API_KEY, "Content-Type": "application/json"},
+        json={
+            "asset": asset,
+            "action": action,
+            "price_history": prices,
+        },
+        timeout=5.0,
+    )
+    r.raise_for_status()
+    decision = r.json()
+    if shadow:
+        return {"shadow_logged": True, "decision": decision}
+    if not decision.get("trade_allowed", False):
+        return {"execute": False, "reason": decision}
+    return {"execute": True, "reason": decision}</pre>
+
+            <h2 style="font-size: 22px; margin: 32px 0 16px;">Supported environments</h2>
+            <p style="color: var(--text-muted); line-height: 1.7;">
+                Server: <strong>Python 3.9+</strong>, FastAPI. Clients may use any language with HTTP/JSON. Validate TLS, clock sync, and secret storage (no keys in browsers for production).
+            </p>
+
+            <p style="margin-top: 40px;">
+                <a href="index.html#contact" class="btn btn-primary">Apply for access</a>
+                <a href="whitepaper.html" class="btn btn-secondary" style="margin-left: 12px;">Performance brief (PDF)</a>
+            </p>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <span class="logo-text">BoonMindX</span>
+                    <span class="product-name">Capital Shield</span>
+                </div>
+                <div class="footer-links">
+                    <a href="index.html">Home</a>
+                    <a href="integration.html">Integration</a>
+                    <a href="whitepaper.html">Whitepaper</a>
+                    <a href="technical.html">Technical</a>
+                    <a href="https://github.com/CBoon99/Capital-Shield" target="_blank" rel="noopener noreferrer">GitHub</a>
+                </div>
+            </div>
+            <div class="footer-copyright">
+                <p>&copy; 2026 BoonMindX. <span style="color: var(--text-muted);">Capital Shield — patent pending.</span></p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
