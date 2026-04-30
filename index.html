@@ -170,10 +170,34 @@
       "mainEntity": [
         {
           "@type": "Question",
+          "name": "How do Shadow, Audit, and Enforcement differ in the execution path and in log space?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Shadow is for observation: you capture Capital Shield decisions in logs or parallel calls without letting those decisions gate live orders. Audit (licensed) emphasizes durable logging, exports, and reporting suitable for compliance and internal review; your stack may still route orders as you configure, but the audit trail is production-grade. Enforcement (enterprise) is deployed so a BLOCK decision prevents the order from reaching brokers or internal OMS, with middleware wired to honor the gate. Log space means immutable or exportable records of each decision, timestamps, and structured codes; execution path means what actually reaches the market."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is log space versus the execution path?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The execution path is the chain that turns a strategy intent into a routed order. Log space is the parallel record of what Capital Shield decided (ALLOW/BLOCK), with reasons and metadata. Shadow and Audit prioritize proving and storing that record; Enforcement extends the same API semantics so the execution path cannot bypass a BLOCK when configured."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "If we are on Licensed — Audit, must we block trades when Capital Shield returns BLOCK?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Not by the tier name alone. Licensed — Audit is a commercial package centered on compliance logging, forensic exports, and documentation. Many teams still choose to honor ALLOW/BLOCK in production, but the contractual emphasis is on auditability. Enterprise — Enforcement is aimed at organisations that require the execution path to respect BLOCK under deployment and support terms. Exact obligations are in your order or engagement letter."
+          }
+        },
+        {
+          "@type": "Question",
           "name": "Is Capital Shield a trading bot?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "No. Capital Shield is risk-first trading infrastructure, not a trading bot. It does not generate buy/sell signals, seek alpha, or execute trades. It sits between your trading strategy and execution, enforcing deterministic safety gates and capital protection rules."
+            "text": "No. Capital Shield is risk-first trading infrastructure, not a trading bot. It does not generate buy or sell signals, seek alpha, or execute trades. It evaluates proposed trades or signals against deterministic safety rails and returns structured allow or block decisions."
           }
         },
         {
@@ -181,55 +205,15 @@
           "name": "Does Capital Shield generate alpha or guarantee profits?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "No. Capital Shield is infrastructure software designed to reduce risk, not generate returns. It enforces deterministic execution constraints (max drawdown limits, regime guards, health checks) but makes no claims about profitability or alpha generation."
+            "text": "No. It is infrastructure to constrain fat-tail and runaway outcomes. It makes no claims about profitability, alpha, or future performance. Past simulations do not guarantee future results."
           }
         },
         {
           "@type": "Question",
-          "name": "What is a runaway algorithm and how does Capital Shield prevent it?",
+          "name": "What is a runaway algorithm and how does Capital Shield help?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "A runaway algorithm is an automated trading system that continues executing trades beyond acceptable risk parameters, often leading to catastrophic losses. Capital Shield prevents this by enforcing hard limits (max drawdown, volatility thresholds) and blocking trades that violate predefined safety rules before they reach the market."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "How does Capital Shield integrate with existing trading strategies?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Capital Shield is strategy-agnostic and integrates via REST API. Your trading strategy generates signals (BUY/SELL/HOLD), sends them to the Capital Shield API, which evaluates each signal against safety rails and returns an allow/block decision with structured rejection reasons."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "What are the pricing tiers for Capital Shield?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Capital Shield is offered in three operational modes: Free Shadow mode (observe and evaluate with no live enforcement on your stack), Licensed Audit mode from £199/month (compliance reporting, forensic logging, and documentation), and Enterprise Enforcement mode (live constraint enforcement and full middleware deployment) with custom pricing. Annual billing for Licensed tier includes two months free where applicable."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "What is the first-10 Audit pilot — and what does \"25k\" mean?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "The first ten qualified Licensed — Audit customers receive a complimentary extended onboarding and audit reporting bundle. \"25k\" is informal shorthand for material professional scope, not a fixed cash value, currency, or rigid deliverable list. Exact scope is agreed in writing per customer before kickoff."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Who qualifies for the first-10 Audit pilot?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Typical qualifiers: a recognised legal entity or professional trading organisation, a clear algorithmic or systematic trading stack, intent to use Licensed Audit for compliance logging or internal review, capacity to assign a technical contact and sandbox or non-production path for onboarding, and willingness to agree scope in writing. BoonMindX reserves the right to decline or waitlist applicants that are not a fit."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "What is the difference between Shadow, Audit, and Enforcement modes?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Shadow mode lets you observe how Capital Shield would allow or block trades without enforcing decisions on your live execution path. Audit mode (licensed) adds compliance-oriented reporting, forensic logging, and documentation suitable for internal and external review. Enforcement mode (enterprise) deploys live constraint enforcement in your middleware so blocked trades do not reach the market under configured rules."
+            "text": "A runaway algorithm keeps submitting or sizing trades outside acceptable risk bounds. Capital Shield applies configurable gates such as drawdown and volatility limits and returns explicit rejection codes before problematic trades reach execution when you deploy enforcement-style wiring."
           }
         },
         {
@@ -237,7 +221,71 @@
           "name": "What is the difference between max drawdown protection and a stop-loss?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "A stop-loss is a reactive mechanism that exits a position after a loss occurs. Max drawdown protection in Capital Shield is proactive - it evaluates proposed trades BEFORE execution and blocks any trade that would cause total portfolio drawdown to exceed the configured threshold, preventing the loss from ever happening."
+            "text": "A typical stop-loss reacts after loss on a position. Max drawdown style gates in Capital Shield evaluate proposed trades against a portfolio or strategy drawdown threshold before execution, aiming to block deterioration that would breach the limit."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why does risk-first architecture matter for algorithmic trading?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "It separates safety enforcement from alpha logic so limits can be tested, logged, and audited independently. Deterministic gates reduce silent failure modes where strategy code bypasses risk checks."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How does Capital Shield integrate with trading strategies?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Via REST APIs such as the filter path: your system sends proposed actions and context, receives allow or block with structured reasons, and your middleware decides routing in Shadow or Audit, or enforces in Enterprise deployments."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What are structured rejection reasons?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Machine- and human-readable codes such as drawdown or volatility breach labels returned with decisions. They feed SIEMs, compliance worksheets, and post-trade review without scraping free text."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is Capital Shield machine learning or fully deterministic?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Safety decisions are driven by explicit rules and thresholds you configure, not by opaque predictive models. The goal is explainable, repeatable outcomes suitable for audit."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can we self-host the Capital Shield API?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The stack is designed to run on your infrastructure from the open repository; deployment, networking, and secrets are your responsibility unless you use a managed offering described in contract."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What are the pricing tiers for Capital Shield?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Free Shadow for observation without emphasis on enforcement; Licensed Audit from about 199 GBP monthly for audit-grade logging and reporting; Enterprise Enforcement with custom pricing for middleware and live constraint enforcement. Annual billing may apply for licensed tiers."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the first-10 Audit pilot and what does 25k mean?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The first ten qualified Licensed Audit customers may receive a complimentary extended onboarding and reporting bundle. 25k is informal shorthand for professional scope, not a guaranteed cash amount or fixed deliverable list; scope is agreed in writing."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Who qualifies for the first-10 Audit pilot?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Professional entities with systematic trading stacks, technical contacts, and a path for sandbox or non-production onboarding. BoonMindX may decline or waitlist applicants who are not a fit."
           }
         },
         {
@@ -245,7 +293,23 @@
           "name": "Who is Capital Shield for?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Capital Shield is designed for quant developers at multi-strategy funds, trading system architects building execution stacks, solo systematic traders protecting substantial capital, and prop trading firms requiring deterministic risk infrastructure."
+            "text": "Quant and execution engineers, heads of risk or technology at funds and prop firms, and architects who need deterministic risk gates and defensible logs, not retail hobby traders."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Capital Shield is patent pending — what should customers know?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Features and claims may evolve; nothing on the website is legal or patent advice. Performance descriptions should be reviewed by counsel before formal regulatory or marketing filings."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How should we handle API keys and log data?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Treat API keys as secrets, rotate them, avoid browsers in production, and classify logs under your data policy. Capital Shield decisions may contain sensitive trading metadata."
           }
         }
       ]
@@ -1278,92 +1342,209 @@
 
     <!-- FAQ Section -->
     <section class="section faq-section" id="faq">
-        <div class="container">
-            <h2 class="section-title section-title-center">Frequently Asked Questions</h2>
-            <div class="faq-list">
-                <article class="faq-item">
-                    <h3 class="faq-question">Is Capital Shield a trading bot?</h3>
-                    <p class="faq-answer">
-                        No. Capital Shield is risk-first trading infrastructure, not a trading bot. It does not generate buy/sell signals, 
-                        seek alpha, or execute trades. It sits between your trading strategy and execution, enforcing deterministic 
-                        safety gates and capital protection rules. You bring your own strategy; Capital Shield enforces the safety rails.
-                    </p>
-                </article>
-                <article class="faq-item">
-                    <h3 class="faq-question">Does Capital Shield generate alpha or guarantee profits?</h3>
-                    <p class="faq-answer">
-                        No. Capital Shield is infrastructure software designed to reduce risk, not generate returns. It enforces 
-                        deterministic execution constraints (max drawdown limits, regime guards, health checks) but makes no claims 
-                        about profitability, alpha generation, or trading performance. This is capital protection infrastructure, 
-                        not an alpha engine.
-                    </p>
-                </article>
-                <article class="faq-item" id="faq-audit-pilot">
-                    <h3 class="faq-question">What is the first-10 Audit pilot — and what does “25k” mean?</h3>
-                    <p class="faq-answer">
-                        For our <strong>Audit-first</strong> rollout, the first <strong>10 qualified</strong> customers who take <strong>Licensed — Audit</strong> receive a <strong>complimentary</strong> extended bundle we may describe in conversation as a <strong>“25k-style”</strong> package. That phrase is <strong>not</strong> a promised cash value, a fixed sterling amount, or a rigid checklist of deliverables — it only signals <strong>material professional scope</strong> (e.g. onboarding time, reporting setup, working sessions). <strong>What you actually receive is whatever we agree in writing</strong> for your organisation before kickoff. It is <strong>not a cash rebate</strong>. Spots are allocated in application order among qualified applicants.
-                    </p>
-                </article>
-                <article class="faq-item" id="faq-audit-qualified">
-                    <h3 class="faq-question">Who qualifies for the first-10 Audit pilot?</h3>
-                    <p class="faq-answer">
-                        We prioritise teams that can <strong>deploy and use</strong> the API in a sensible environment. Indicative criteria (all discretionary):
-                    </p>
-                    <ul class="faq-answer" style="margin-left: 20px; color: var(--text-muted); line-height: 1.7;">
-                        <li><strong>Entity:</strong> registered company, fund, or professional trading firm (we do not target retail).</li>
-                        <li><strong>Use-case:</strong> systematic / algo execution where <strong>audit trails</strong> or risk logs matter.</li>
-                        <li><strong>Technical:</strong> named engineer or quant who can integrate HTTP/JSON (see <a href="integration.html" style="color: var(--accent);">integration guide</a>).</li>
-                        <li><strong>Environment:</strong> willingness to start in <strong>shadow or non-production</strong> before any enforcement talk.</li>
-                        <li><strong>Legal:</strong> able to sign an order or engagement that sets out scope (start from our <a href="https://github.com/CBoon99/Capital-Shield/blob/main/AUDIT_PILOT_ENGAGEMENT_TEMPLATE.md" target="_blank" rel="noopener noreferrer" style="color: var(--accent);">template</a>; counsel to review).</li>
-                    </ul>
-                    <p class="faq-answer" style="margin-top: 12px;">We may <strong>decline or waitlist</strong> applicants that are not a fit; pilot seats are <strong>not</strong> allocated purely on a first-come basis if qualification is not met.</p>
-                </article>
-                <article class="faq-item">
-                    <h3 class="faq-question">Shadow, Audit, and Enforcement — what is the difference?</h3>
-                    <p class="faq-answer">
-                        <strong>Shadow (free):</strong> observe how Capital Shield evaluates signals and what would be allowed or blocked, without enforcing outcomes on your production stack.
-                        <strong>Licensed — Audit:</strong> compliance-oriented reporting, forensic logging, and documentation for desks that need a durable audit trail.
-                        <strong>Enterprise — Enforcement:</strong> live constraint enforcement in your execution path and full middleware deployment, under commercial terms.
-                    </p>
-                </article>
-                <article class="faq-item">
-                    <h3 class="faq-question">Who is Capital Shield for?</h3>
-                    <ul class="faq-answer" style="list-style: none; padding-left: 0;">
-                        <li style="margin-bottom: 12px; padding-left: 24px; position: relative;">
-                            <span style="position: absolute; left: 0; color: var(--accent);">•</span>
-                            <strong>Quant Developers at multi-strategy funds</strong>
-                        </li>
-                        <li style="margin-bottom: 12px; padding-left: 24px; position: relative;">
-                            <span style="position: absolute; left: 0; color: var(--accent);">•</span>
-                            <strong>Trading System Architects building execution stacks</strong>
-                        </li>
-                        <li style="margin-bottom: 12px; padding-left: 24px; position: relative;">
-                            <span style="position: absolute; left: 0; color: var(--accent);">•</span>
-                            <strong>Solo Systematic Traders protecting substantial capital</strong>
-                        </li>
-                    </ul>
-                </article>
-                <article class="faq-item">
-                    <h3 class="faq-question">How does Capital Shield integrate with trading strategies?</h3>
-                    <p class="faq-answer">
-                        Capital Shield is strategy-agnostic. Your trading strategy generates signals (BUY/SELL/HOLD), which are sent 
-                        to the Capital Shield API. The API evaluates each signal against deterministic safety rails (max drawdown, 
-                        regime guard, health check) and returns an allow/block decision with structured rejection reasons. Only 
-                        allowed trades proceed to execution. This infrastructure sits between strategy and capital, enforcing 
-                        deterministic execution constraints regardless of signal source.
-                    </p>
-                </article>
-                <article class="faq-item">
-                    <h3 class="faq-question">Why does risk-first architecture matter for algorithmic trading?</h3>
-                    <p class="faq-answer">
-                        Risk-first architecture separates safety enforcement from signal generation. This allows you to validate 
-                        safety rails independently, measure the cost of safety before deployment, and enforce deterministic 
-                        execution constraints that cannot be bypassed by trading logic. Unlike black-box strategies or alpha-seeking 
-                        bots, risk-first infrastructure provides transparent, testable, strategy-agnostic capital protection. 
-                        This matters for funds, quants, and system developers who need deterministic risk controls in production.
-                        <a href="/runaway-algorithm-protection/" style="color: var(--accent); text-decoration: underline; margin-left: 8px;">Learn how we define and prevent a runaway algorithm.</a>
-                    </p>
-                </article>
+        <div class="container faq-container-outer">
+            <div class="faq-inner">
+            <h2 class="section-title section-title-center faq-page-title">Frequently asked questions</h2>
+            <p class="faq-intro">
+                Clear answers on <strong>operational modes</strong> (Shadow, Audit, Enforcement), what happens in <strong>log space</strong> versus your <strong>live execution path</strong>, and how Capital Shield fits your stack. <strong>Patent pending</strong> — not legal advice.
+            </p>
+            <nav class="faq-anchors" aria-label="FAQ sections">
+                <a href="#faq-modes">Modes &amp; logging</a>
+                <a href="#faq-product">Product &amp; risk</a>
+                <a href="#faq-technical">Technical</a>
+                <a href="#faq-commercial">Commercial</a>
+            </nav>
+
+            <div class="faq-list-new">
+                <h3 class="faq-group-title" id="faq-modes">Operational modes — execution path &amp; log space</h3>
+
+                <details class="faq-disclosure" id="faq-modes-comparison">
+                    <summary><span class="faq-summary-text">How do <span class="faq-pill faq-pill--shadow">Shadow</span> <span class="faq-pill faq-pill--audit">Audit</span> <span class="faq-pill faq-pill--enforce">Enforcement</span> differ?</span></summary>
+                    <div class="faq-body">
+                        <p>Think in two layers: <strong>log space</strong> (the durable record of each Capital Shield decision) and the <strong>execution path</strong> (what actually reaches brokers or your internal OMS).</p>
+                        <div class="faq-modes-table-wrap">
+                            <table class="faq-modes-table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col"></th>
+                                        <th scope="col">Shadow (free)</th>
+                                        <th scope="col">Licensed — Audit</th>
+                                        <th scope="col">Enterprise — Enforcement</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Primary intent</td>
+                                        <td>Observe &amp; validate fit</td>
+                                        <td>Compliance-grade logs &amp; reports</td>
+                                        <td>Live gates on the execution path</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Typical log space</td>
+                                        <td>Decisions recorded for analysis; you prove what <em>would</em> have happened</td>
+                                        <td>Retained, exportable audit trail; structured reasons for review</td>
+                                        <td>Full forensic trail plus operational runbooks</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Execution path</td>
+                                        <td>Your router usually <strong>ignores</strong> BLOCK for live orders unless you wire it; zero surprise enforcement</td>
+                                        <td>You may honour ALLOW/BLOCK in prod, but the <strong>contract emphasis</strong> is auditability &amp; documentation</td>
+                                        <td>Middleware is deployed so <strong>BLOCK cannot be bypassed</strong> by strategy code under agreed architecture</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <p>All three can call the same APIs; the <strong>commercial mode</strong> describes what you are buying (observe, audit trail, or enforced deployment), not a different “secret” algorithm.</p>
+                    </div>
+                </details>
+
+                <details class="faq-disclosure" id="faq-log-execution">
+                    <summary><span class="faq-summary-text">What is <strong>log space</strong> vs the <strong>execution path</strong>?</span></summary>
+                    <div class="faq-body">
+                        <p><strong>Execution path:</strong> strategy → risk/OMS → venue. Anything that can move capital or change exposure.</p>
+                        <p><strong>Log space:</strong> the parallel record of Capital Shield’s decision for each check: timestamp, inputs you sent, ALLOW or BLOCK, and structured codes (for example drawdown or volatility breach labels). That record is what risk and compliance teams replay, export, or attach to internal tickets.</p>
+                        <p><strong>Shadow</strong> prioritises log space without mandating execution changes. <strong>Audit</strong> hardens log space for production scrutiny. <strong>Enforcement</strong> ties log space to execution so a BLOCK does not reach the market under the deployed design.</p>
+                    </div>
+                </details>
+
+                <details class="faq-disclosure">
+                    <summary><span class="faq-summary-text">On Licensed — Audit, must we stop orders when Capital Shield returns BLOCK?</span></summary>
+                    <div class="faq-body">
+                        <p><strong>Not automatically from the tier name alone.</strong> Licensed — Audit is positioned for teams that need <strong>defensible logging, exports, and documentation</strong>. Many desks still choose to honour BLOCK in production, but your order defines what you are purchasing.</p>
+                        <p><strong>Enterprise — Enforcement</strong> is for organisations that need the execution path wired so BLOCK is operationally binding, with solution engineering and SLAs as agreed.</p>
+                        <p>Always align wiring with your counsel and your regulatory framework.</p>
+                    </div>
+                </details>
+
+                <h3 class="faq-group-title" id="faq-product">Product &amp; risk</h3>
+
+                <details class="faq-disclosure">
+                    <summary><span class="faq-summary-text">Is Capital Shield a trading bot or signal service?</span></summary>
+                    <div class="faq-body">
+                        <p><strong>No.</strong> It does not generate alpha, rank names, or fire discretionary trades. Your strategy proposes actions; Capital Shield returns deterministic allow/block style outcomes against thresholds you configure.</p>
+                    </div>
+                </details>
+
+                <details class="faq-disclosure">
+                    <summary><span class="faq-summary-text">Does it guarantee profits or prevent all losses?</span></summary>
+                    <div class="faq-body">
+                        <p><strong>No.</strong> It is infrastructure to constrain tail scenarios and silent failures, not a performance product. Simulations and historical tests are illustrative; they are not promises of future results.</p>
+                    </div>
+                </details>
+
+                <details class="faq-disclosure">
+                    <summary><span class="faq-summary-text">What is a runaway algorithm, and how does this help?</span></summary>
+                    <div class="faq-body">
+                        <p>A <strong>runaway algorithm</strong> keeps trading or sizing in ways that breach risk bounds—often because checks are implicit in strategy code or because failures are silent.</p>
+                        <p>Capital Shield centralises gates (drawdown, regime, health-style checks) with explicit reasons. In <strong>Enforcement</strong> deployments, disallowed trades never reach execution; in <strong>Shadow/Audit</strong>, you see every would-be block in log space first.</p>
+                        <p><a href="/runaway-algorithm-protection/">Read how we frame runaway algos on the deep-dive page.</a></p>
+                    </div>
+                </details>
+
+                <details class="faq-disclosure">
+                    <summary><span class="faq-summary-text">Max drawdown gate vs a stop-loss — what is the difference?</span></summary>
+                    <div class="faq-body">
+                        <p>A classic <strong>stop-loss</strong> often reacts <em>after</em> a position is hurt. A <strong>drawdown-style gate</strong> evaluates whether the <em>next</em> trade would breach a configured portfolio or strategy drawdown limit before execution, returning a structured block where applicable.</p>
+                    </div>
+                </details>
+
+                <details class="faq-disclosure">
+                    <summary><span class="faq-summary-text">Why does “risk-first” architecture matter?</span></summary>
+                    <div class="faq-body">
+                        <p>When safety rules live only inside strategy code, they are hard to test, easy to bypass, and painful to explain to regulators. Separating <strong>signal generation</strong> from <strong>risk gates</strong> gives you independent tests, cleaner logs, and a single place to prove what blocked a trade.</p>
+                    </div>
+                </details>
+
+                <h3 class="faq-group-title" id="faq-technical">Technical integration</h3>
+
+                <details class="faq-disclosure">
+                    <summary><span class="faq-summary-text">How does integration work at a high level?</span></summary>
+                    <div class="faq-body">
+                        <p>Capital Shield is <strong>strategy-agnostic</strong>: send proposed trades or context over HTTPS with your API key; receive JSON with allow/block and reasons. Insert between signal generation and routing—see the <a href="integration.html">integration guide</a> for endpoints and a sample middleware pattern.</p>
+                    </div>
+                </details>
+
+                <details class="faq-disclosure">
+                    <summary><span class="faq-summary-text">What are structured rejection reasons?</span></summary>
+                    <div class="faq-body">
+                        <p>Instead of opaque “risk says no,” responses include <strong>machine-readable codes</strong> (for example labels corresponding to drawdown or volatility breaches) suitable for SIEM pipelines, spreadsheets, and audit workpapers—so reviewers see <em>why</em> a trade was blocked without reverse-engineering logs.</p>
+                    </div>
+                </details>
+
+                <details class="faq-disclosure">
+                    <summary><span class="faq-summary-text">Is this deterministic rules or opaque AI?</span></summary>
+                    <div class="faq-body">
+                        <p>Safety decisions come from <strong>explicit rules and thresholds</strong> you own, not from hidden predictive models. The goal is repeatable, explainable outcomes that stand up in internal and external review.</p>
+                    </div>
+                </details>
+
+                <details class="faq-disclosure">
+                    <summary><span class="faq-summary-text">Can we self-host the API?</span></summary>
+                    <div class="faq-body">
+                        <p>The stack in the repository is designed to run <strong>on your infrastructure</strong> (Python/FastAPI). You manage network isolation, TLS, key rotation, and backups. Managed offerings, if any, are defined only in contract.</p>
+                    </div>
+                </details>
+
+                <details class="faq-disclosure">
+                    <summary><span class="faq-summary-text">API keys, browsers, and sensitive logs — any rules of thumb?</span></summary>
+                    <div class="faq-body">
+                        <p>Treat keys as secrets (environment stores, never front-end). Keep Capital Shield <strong>close to your execution stack</strong> network-wise. Classify logs like any trading data: retention, encryption, and access control are your policies—we provide structured payloads you can map into them.</p>
+                    </div>
+                </details>
+
+                <h3 class="faq-group-title" id="faq-commercial">Commercial &amp; legal posture</h3>
+
+                <details class="faq-disclosure">
+                    <summary><span class="faq-summary-text">Who is Capital Shield for?</span></summary>
+                    <div class="faq-body">
+                        <ul>
+                            <li>Quant and execution engineers building production or shadow stacks</li>
+                            <li>Risk or technology leadership at funds, props, and systematic desks</li>
+                            <li>Architects who need deterministic gates and credible log space—not retail signal chasers</li>
+                        </ul>
+                    </div>
+                </details>
+
+                <details class="faq-disclosure">
+                    <summary><span class="faq-summary-text">What are the three commercial tiers in one sentence each?</span></summary>
+                    <div class="faq-body">
+                        <p><span class="faq-pill faq-pill--shadow">Shadow</span> — observe in log space without enforcing on live flow.</p>
+                        <p><span class="faq-pill faq-pill--audit">Audit</span> — licensed emphasis on forensic logging, exports, and documentation.</p>
+                        <p><span class="faq-pill faq-pill--enforce">Enforcement</span> — enterprise deployment where BLOCK is binding on the execution path as engineered.</p>
+                        <p>Pricing details are on the page above; annual options may apply for Licensed tiers.</p>
+                    </div>
+                </details>
+
+                <details class="faq-disclosure" id="faq-audit-pilot">
+                    <summary><span class="faq-summary-text">First-10 Audit pilot — what does <strong>“25k”</strong> mean?</span></summary>
+                    <div class="faq-body">
+                        <p>For our Audit-first rollout, a limited number of qualified <strong>Licensed — Audit</strong> customers receive a <strong>complimentary</strong> extended onboarding and reporting bundle. <strong>“25k”</strong> is informal shorthand for <strong>serious professional scope</strong> — not a promised cash amount, not a fixed menu of deliverables. <strong>Exactly what you receive is whatever we agree in writing</strong> before kickoff. Not a cash rebate.</p>
+                    </div>
+                </details>
+
+                <details class="faq-disclosure" id="faq-audit-qualified">
+                    <summary><span class="faq-summary-text">Who qualifies for the Audit pilot?</span></summary>
+                    <div class="faq-body">
+                        <p>Indicative criteria (we may decline or waitlist):</p>
+                        <ul>
+                            <li>Registered company, fund, or professional trading firm</li>
+                            <li>Systematic or algorithmic stack with a named technical owner</li>
+                            <li>Willingness to start in shadow or non-production where appropriate</li>
+                            <li>Ability to sign an engagement or order (see the <a href="https://github.com/CBoon99/Capital-Shield/blob/main/AUDIT_PILOT_ENGAGEMENT_TEMPLATE.md" target="_blank" rel="noopener noreferrer">template</a>; counsel reviews)</li>
+                        </ul>
+                    </div>
+                </details>
+
+                <details class="faq-disclosure">
+                    <summary><span class="faq-summary-text">Patent pending — what should we tell legal or compliance?</span></summary>
+                    <div class="faq-body">
+                        <p>Capital Shield is <strong>patent pending</strong>. Website and docs are not legal or patent advice. If you need language for filings, vendor due diligence, or marketing approvals, run final wording past your counsel.</p>
+                        <div class="faq-callout">
+                            Performance metrics, simulation screenshots, and historical tests are <strong>illustrative</strong> unless repeated in a controlled report you approve with advisors.
+                        </div>
+                    </div>
+                </details>
+            </div>
             </div>
         </div>
     </section>
