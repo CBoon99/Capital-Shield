@@ -140,25 +140,54 @@
         const messagesDiv = document.getElementById('form-messages');
 
         form.addEventListener('submit', function(e) {
-            // Clear previous messages
             messagesDiv.innerHTML = '';
-            
-            // Validate form before submission
+
             if (!validateForm(form)) {
                 e.preventDefault();
                 return false;
             }
-            
-            // Disable submit button and show "Sending..." state
-            // Let Netlify handle the form submission naturally
-            // The form will submit to action="/thanks/" and Netlify will process it
-            submitBtn.disabled = true;
+
+            // No fetch: allow normal POST to /thanks/ (Netlify still records the submission).
+            if (typeof fetch !== 'function') {
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Sending...';
+                return true;
+            }
+
+            e.preventDefault();
+
             const originalText = submitBtn.textContent;
+            submitBtn.disabled = true;
             submitBtn.textContent = 'Sending...';
-            
-            // Form will submit naturally - Netlify processes it and redirects to /thanks/
-            // If there's a network error, the browser will handle it
-            // Button stays disabled to prevent double-submission
+
+            const params = new URLSearchParams(new FormData(form));
+
+            fetch('/', {
+                method: 'POST',
+                body: params
+            })
+                .then(function (res) {
+                    if (!res.ok) throw new Error('Submit failed');
+                })
+                .then(function () {
+                    showFormMessage(
+                        messagesDiv,
+                        'success',
+                        "Thank you — your application was sent. We'll reply within 48 hours at the email you provided. Our team is notified at info@boonmind.io."
+                    );
+                    form.reset();
+                })
+                .catch(function () {
+                    showFormMessage(
+                        messagesDiv,
+                        'error',
+                        'Something went wrong. Please email info@boonmind.io directly or try again in a moment.'
+                    );
+                })
+                .finally(function () {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = originalText;
+                });
         });
     }
 

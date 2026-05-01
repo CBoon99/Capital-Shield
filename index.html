@@ -1559,15 +1559,16 @@
                     <p><strong>We are prioritising Audit (Licensed) rollouts.</strong> Use this form for Shadow, Audit, or Enterprise — for the <strong>first-10 Audit bundle</strong> (the informal <strong>“25k”</strong> scope shorthand — see FAQ), select <strong>Licensed — Audit</strong> and we will confirm eligibility.</p>
                     <p style="font-size: 14px;">Engineering prerequisites: <a href="integration.html" style="color: var(--accent);">integration guide</a>. Engagement wording: <a href="https://coerentis.co/AUDIT_PILOT_ENGAGEMENT_TEMPLATE.md" target="_blank" rel="noopener noreferrer" style="color: var(--accent);">scope template</a> (have counsel review).</p>
                     <p>We're prioritizing quant developers, trading system architects, and systematic traders building a durable compliance and risk log.</p>
-                    <p class="contact-email">Email: <a href="mailto:info@boonmind.io">info@boonmind.io</a></p>
+                    <p class="contact-email">Submissions are delivered to our team at <a href="mailto:info@boonmind.io">info@boonmind.io</a> (and you’ll see a confirmation below once sent).</p>
                 </div>
                 <form name="contact" method="POST" action="/thanks/" data-netlify="true" netlify-honeypot="bot-field" class="contact-form" id="contact-form">
+                    <!-- Netlify → Site settings → Forms → Notifications: add info@boonmind.io so the team is emailed on each submission. -->
                     <input type="hidden" name="form-name" value="contact">
                     <p class="hidden">
                         <label>Don't fill this out if you're human: <input name="bot-field" /></label>
                     </p>
                     
-                    <div id="form-messages"></div>
+                    <div id="form-messages" role="status" aria-live="polite"></div>
                     
                     <div class="form-group">
                         <label for="name">Name <span class="required">*</span></label>
