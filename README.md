@@ -1,16 +1,16 @@
-# BoonMindX Capital Shield
+# BoonMindX Coerentis
 
 **Risk-first trading infrastructure and execution safety framework for algorithmic trading systems**
 
-Capital Shield is a strategy-agnostic deterministic risk controls framework that sits between trading signal generators and market execution. This risk-first trading infrastructure enforces hard execution constraints (max drawdown limits, regime guards, health checks) with structured rejection reasons, providing a validation harness to measure the cost of safety before deployment. Designed for integration into existing quantitative trading infrastructure, not as a profitable trading bot or alpha engine.
+Coerentis is a strategy-agnostic deterministic risk controls framework that sits between trading signal generators and market execution. This risk-first trading infrastructure enforces hard execution constraints (max drawdown limits, regime guards, health checks) with structured rejection reasons, providing a validation harness to measure the cost of safety before deployment. Designed for integration into existing quantitative trading infrastructure, not as a profitable trading bot or alpha engine.
 
 ---
 
-## What Capital Shield Is: Risk-First Trading Infrastructure
+## What Coerentis Is: Risk-First Trading Infrastructure
 
-**BoonMindX Capital Shield** is a deterministic safety gateway that sits between trading signal generators and market execution. It enforces hard risk limits (max drawdown, regime guards, health checks) with structured rejection reasons, providing a validation harness to measure the cost of safety before deployment. The system is strategy-agnostic, API-first, and designed for integration into existing quantitative trading infrastructure.
+**BoonMindX Coerentis** is a deterministic safety gateway that sits between trading signal generators and market execution. It enforces hard risk limits (max drawdown, regime guards, health checks) with structured rejection reasons, providing a validation harness to measure the cost of safety before deployment. The system is strategy-agnostic, API-first, and designed for integration into existing quantitative trading infrastructure.
 
-**Key Differentiator**: Unlike alpha-seeking bots, signal sellers, or black-box strategies, Capital Shield is pure infrastructure. It enforces deterministic execution constraints regardless of trading signals. You bring your own strategy; Capital Shield enforces the safety rails.
+**Key Differentiator**: Unlike alpha-seeking bots, signal sellers, or black-box strategies, Coerentis is pure infrastructure. It enforces deterministic execution constraints regardless of trading signals. You bring your own strategy; Coerentis enforces the safety rails.
 
 ---
 
@@ -27,7 +27,7 @@ Capital Shield is a strategy-agnostic deterministic risk controls framework that
 
 ## Why It Exists
 
-The post-alpha era demands **risk-first infrastructure**. Capital Shield provides deterministic safety gates that integrate into any trading stack, with validation tooling to measure the cost of safety before deployment. It is strategy-agnostic: bring your own signals, and Capital Shield enforces the safety rails.
+The post-alpha era demands **risk-first infrastructure**. Coerentis provides deterministic safety gates that integrate into any trading stack, with validation tooling to measure the cost of safety before deployment. It is strategy-agnostic: bring your own signals, and Coerentis enforces the safety rails.
 
 **Core Value**: Prevents bad trades from reaching execution, with empirical validation to measure the cost of safety.
 
@@ -43,7 +43,7 @@ The post-alpha era demands **risk-first infrastructure**. Capital Shield provide
          │
          ▼
 ┌─────────────────────────────────┐
-│   Capital Shield API            │
+│   Coerentis API            │
 │   (FastAPI, Auth, Rate Limit)   │
 └────────┬────────────────────────┘
          │
@@ -183,12 +183,12 @@ http://localhost:8000/dashboard/
 
 ## Bring Your Own Strategy
 
-Capital Shield is **strategy-agnostic**. It does not generate trading signals. Instead, it provides a safety gateway for your existing trading logic.
+Coerentis is **strategy-agnostic**. It does not generate trading signals. Instead, it provides a safety gateway for your existing trading logic.
 
 ### Integration Pattern
 
 1. **Your Strategy** generates a signal (BUY/SELL/HOLD)
-2. **Capital Shield API** evaluates the signal against safety rails
+2. **Coerentis API** evaluates the signal against safety rails
 3. **Decision**: Allow or block with structured rejection reason
 4. **Your Execution** proceeds only if allowed
 
@@ -299,7 +299,7 @@ See `boonmindx_capital_shield/docs/DOCS_INDEX.md` for complete documentation ind
 ## Contact
 
 - **Email**: info@boonmind.io
-- **Website**: [Landing Page](index.html) (local) / [Netlify](https://capital-shield.netlify.app) (when deployed)
+- **Website**: [Landing Page](index.html) (local) / [Netlify](https://coerentis.co) (when deployed)
 - **Contact Form**: Available on landing page
 
 For beta access, licensing inquiries, or technical questions, please contact us.
@@ -310,7 +310,7 @@ For beta access, licensing inquiries, or technical questions, please contact us.
 
 **No Financial Advice**: This is infrastructure software, not investment advice.
 
-**No Performance Guarantees**: Capital Shield reduces risk but does not guarantee profits or returns.
+**No Performance Guarantees**: Coerentis reduces risk but does not guarantee profits or returns.
 
 **Use at Your Own Risk**: Users are responsible for their own trading decisions.
 
@@ -322,7 +322,7 @@ For beta access, licensing inquiries, or technical questions, please contact us.
 
 © 2025 Carl Boon. All rights reserved.
 
-**BoonMindX Capital Shield** is proprietary software. Unauthorized use, reproduction, or distribution is prohibited.
+**BoonMindX Coerentis** is proprietary software. Unauthorized use, reproduction, or distribution is prohibited.
 
 See `LICENSE.md` for full licensing terms.
 

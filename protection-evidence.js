@@ -1,5 +1,5 @@
 /**
- * Capital Shield Protection Evidence - Chart Rendering
+ * Coerentis Protection Evidence - Chart Rendering
  * Drawdown comparison chart for crisis simulations
  */
 

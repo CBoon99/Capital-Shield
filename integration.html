@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Capital Shield — Integration guide &amp; API overview</title>
-    <meta name="description" content="How to integrate Capital Shield: REST API, authentication, core endpoints, latency expectations, and sample middleware for deterministic trade filtering. Patent pending.">
+    <title>Coerentis — Integration guide &amp; API overview</title>
+    <meta name="description" content="How to integrate Coerentis: REST API, authentication, core endpoints, latency expectations, and sample middleware for deterministic trade filtering. Patent pending.">
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
-    <link rel="canonical" href="https://capital-shield.netlify.app/integration">
+    <link rel="canonical" href="https://coerentis.co/integration">
     <meta name="theme-color" content="#1a1a2e">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,10 +17,10 @@
 <body>
     <header class="header" id="header">
         <nav class="nav container">
-            <div class="nav-brand">
-                <span class="logo-text">BoonMindX</span>
-                <span class="product-name">Capital Shield</span>
-            </div>
+            <a href="/" class="nav-brand nav-brand-lockup" aria-label="Coerentis home">
+                <svg class="brand-shield-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="32" height="32" aria-hidden="true"><rect width="100" height="100" rx="14" fill="#2EA8FF"/><path d="M50 20 L30 50 L50 45 L70 50 Z" fill="#071225"/><rect x="40" y="50" width="20" height="30" fill="#071225"/></svg>
+                <span class="product-name nav-product-name">Coerentis</span>
+            </a>
             <ul class="nav-links" role="navigation" aria-label="Main navigation">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="index.html#contact">Contact</a></li>
@@ -36,8 +36,8 @@
             <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 16px;"><strong>Patent pending.</strong> Public integration summary only — not legal or patent advice.</p>
             <h1 class="section-title" style="margin-bottom: 16px;">Integration guide</h1>
             <p style="color: var(--text-muted); line-height: 1.7; margin-bottom: 32px;">
-                Capital Shield exposes a <strong>FastAPI</strong> HTTP API. Your strategy proposes trades; the API returns allow/block decisions and structured reasons.
-                Self-host the stack from the open repo, or use a managed deployment — substitute your base URL below.
+                Coerentis exposes a <strong>FastAPI</strong> HTTP API. Your strategy proposes trades; the API returns allow/block decisions and structured reasons.
+                Self-host the API on your infrastructure, or use a managed deployment — substitute your base URL below.
             </p>
 
             <h2 style="font-size: 22px; margin: 32px 0 16px;">Architecture</h2>
@@ -51,7 +51,7 @@
                 <li><strong>Prefix:</strong> <code style="background: var(--bg-surface); padding: 2px 8px; border-radius: 4px;">/api/v1</code></li>
                 <li><strong>Example base:</strong> <code style="background: var(--bg-surface); padding: 2px 8px; border-radius: 4px;">https://your-host.example/api/v1</code></li>
                 <li><strong>Interactive OpenAPI:</strong> <code style="background: var(--bg-surface); padding: 2px 8px; border-radius: 4px;">/docs</code> on your deployment</li>
-                <li><strong>Repository README:</strong> <a href="https://github.com/CBoon99/Capital-Shield/blob/main/boonmindx_capital_shield/README.md" style="color: var(--accent);" target="_blank" rel="noopener noreferrer">boonmindx_capital_shield/README.md</a></li>
+                <li><strong>Further reading:</strong> <a href="technical.html" style="color: var(--accent);">Technical appendix</a> · <a href="whitepaper.html" style="color: var(--accent);">Methodology brief</a></li>
             </ul>
 
             <h2 style="font-size: 22px; margin: 32px 0 16px;">Authentication</h2>
@@ -160,20 +160,23 @@ def route_through_shield(asset: str, action: str, prices: list[float], shadow: b
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
-                <div class="footer-brand">
-                    <span class="logo-text">BoonMindX</span>
-                    <span class="product-name">Capital Shield</span>
+                <div class="footer-brand footer-brand-lockup">
+                    <svg class="brand-shield-icon footer-shield-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="28" height="28" aria-hidden="true"><rect width="100" height="100" rx="14" fill="#2EA8FF"/><path d="M50 20 L30 50 L50 45 L70 50 Z" fill="#071225"/><rect x="40" y="50" width="20" height="30" fill="#071225"/></svg>
+                    <div class="footer-brand-titles">
+                        <span class="product-name">Coerentis</span>
+                        <span class="footer-suite-line"><a href="https://boonmind.io/" target="_blank" rel="noopener noreferrer">BoonMind</a> suite · <a href="https://boonmind.io/" target="_blank" rel="noopener noreferrer">boonmind.io</a></span>
+                    </div>
                 </div>
                 <div class="footer-links">
                     <a href="index.html">Home</a>
                     <a href="integration.html">Integration</a>
-                    <a href="whitepaper.html">Whitepaper</a>
+                    <a href="whitepaper.html">Brief (PDF)</a>
                     <a href="technical.html">Technical</a>
-                    <a href="https://github.com/CBoon99/Capital-Shield" target="_blank" rel="noopener noreferrer">GitHub</a>
+                    <a href="https://boonmind.io/" target="_blank" rel="noopener noreferrer">BoonMind</a>
                 </div>
             </div>
             <div class="footer-copyright">
-                <p>&copy; 2026 BoonMindX. <span style="color: var(--text-muted);">Capital Shield — patent pending.</span></p>
+                <p>&copy; 2026 BoonMindX. <span style="color: var(--text-muted);">Coerentis™ — patent pending.</span></p>
             </div>
         </div>
     </footer>

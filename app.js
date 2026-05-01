@@ -1,13 +1,10 @@
 /**
- * BoonMindX Capital Shield Landing Page JavaScript
+ * Coerentis (BoonMind) landing page JavaScript
  * Smooth scrolling, copy functionality, and basic interactions
  */
 
 (function() {
     'use strict';
-
-    // GitHub repository URL
-    const GITHUB_REPO_URL = 'https://github.com/CBoon99/Capital-Shield';
 
     // Smooth scroll for anchor links
     function initSmoothScroll() {

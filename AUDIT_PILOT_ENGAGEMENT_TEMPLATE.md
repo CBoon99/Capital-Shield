@@ -8,7 +8,7 @@
 
 ## Parties
 
-- **Provider:** BoonMindX / Capital Shield (entity name, registration, address).
+- **Provider:** BoonMindX / Coerentis (entity name, registration, address).
 - **Customer:** [Legal name], [registration no.], [address].
 
 ## Commercial tier
@@ -24,7 +24,7 @@ The parties acknowledge that marketing materials may refer to a **â€œ25k-styleâ€
 - [ ] Kickoff call and stack review (duration: ____).
 - [ ] Audit-log schema / field mapping workshop(s): ____.
 - [ ] Report templates or export format: ____ (e.g. CSV, PDF, SIEM).
-- [ ] Working sessions for mapping Capital Shield decision codes to internal controls: ____.
+- [ ] Working sessions for mapping Coerentis decision codes to internal controls: ____.
 - [ ] Documented runbook for internal compliance review: ____.
 - [ ] Sandbox or shadow evaluation support for ____ weeks.
 

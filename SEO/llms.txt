@@ -1,10 +1,10 @@
-# Capital Shield
+# Coerentis
 
 > Risk-first trading infrastructure for algorithmic trading systems. Strategy-agnostic, deterministic safety gates that sit between trading signals and market execution.
 
-## About Capital Shield
+## About Coerentis
 
-Capital Shield is a deterministic safety layer for algorithmic trading. It does NOT generate trading signals or predict markets. It enforces hard risk limits (max drawdown, regime guards, health checks) with structured rejection reasons, providing a validation harness to measure the cost of safety before deployment.
+Coerentis is a deterministic safety layer for algorithmic trading. It does NOT generate trading signals or predict markets. It enforces hard risk limits (max drawdown, regime guards, health checks) with structured rejection reasons, providing a validation harness to measure the cost of safety before deployment.
 
 **What it is:**
 - Execution and risk gateway
@@ -20,10 +20,11 @@ Capital Shield is a deterministic safety layer for algorithmic trading. It does 
 
 ## Core Documentation
 
-- [Product Overview](https://capital-shield.netlify.app/): Main landing page with full product description
-- [Technical Architecture](https://capital-shield.netlify.app/technical): Detailed technical documentation
-- [Interactive Demo](https://capital-shield.netlify.app/demo): Live demonstration of safety gates
-- [GitHub Repository](https://github.com/CBoon99/Capital-Shield): Source code and documentation
+- [Product Overview](https://coerentis.co/): Main landing page with full product description
+- [Technical Architecture](https://coerentis.co/technical): Detailed technical documentation
+- [Integration guide](https://coerentis.co/integration): API overview and wiring patterns
+- [Interactive Demo](https://coerentis.co/demo): Live demonstration of safety gates
+- [BoonMind](https://boonmind.io/): Parent company and suite context
 
 ## Key Features
 
@@ -67,27 +68,26 @@ Capital Shield is a deterministic safety layer for algorithmic trading. It does 
 - **Email**: info@boonmind.io
 - **Location**: Manchester, UK
 - **Status**: Controlled Beta (Public release Q1 2026)
-- **Website**: https://capital-shield.netlify.app/
+- **Website**: https://coerentis.co/
 
 ## Frequently Asked Questions
 
-**Is Capital Shield a trading bot?**
+**Is Coerentis a trading bot?**
 No. It is risk-first trading infrastructure that sits between your strategy and execution. It does not generate buy/sell signals.
 
 **Does it generate alpha or guarantee profits?**
 No. It reduces risk and enforces deterministic execution constraints. It makes no claims about profitability.
 
 **How does it integrate with trading strategies?**
-Via REST API. Your strategy sends signals, Capital Shield evaluates against safety rails, returns allow/block decision with structured rejection reasons.
+Via REST API. Your strategy sends signals, Coerentis evaluates against safety rails, returns allow/block decision with structured rejection reasons.
 
 **What is a runaway algorithm?**
-An automated trading system that continues executing trades beyond acceptable risk parameters, often leading to catastrophic losses. Capital Shield prevents this by blocking trades before execution.
+An automated trading system that continues executing trades beyond acceptable risk parameters, often leading to catastrophic losses. Coerentis prevents this by blocking trades before execution.
 
 **Why does risk-first architecture matter?**
 It separates safety enforcement from signal generation, allowing validation of safety rails independently and measuring the cost of safety before deployment.
 
 ## Optional Resources
 
-- [Quickstart Guide](https://github.com/CBoon99/Capital-Shield/blob/main/boonmindx_capital_shield/QUICKSTART.md)
-- [Infrastructure Inventory](https://github.com/CBoon99/Capital-Shield/blob/main/boonmindx_capital_shield/INFRASTRUCTURE_INVENTORY.md)
-- [Product Overview Document](https://github.com/CBoon99/Capital-Shield/blob/main/boonmindx_capital_shield/PRODUCT_PITCH_ONEPAGER.md)
+- [Methodology brief (PDF)](https://coerentis.co/whitepaper)
+- [Audit pilot scope template](https://coerentis.co/AUDIT_PILOT_ENGAGEMENT_TEMPLATE.md) (Markdown; counsel review)

@@ -1,5 +1,5 @@
 /**
- * Capital Shield Crisis Simulation Script
+ * Coerentis Crisis Simulation Script
  * Fetches real historical data and runs unshielded vs shielded simulations
  */
 
@@ -44,7 +44,7 @@ function fetchPriceData(coinId, fromTimestamp, toTimestamp, crisisKey) {
         
         const options = {
             headers: {
-                'User-Agent': 'Capital-Shield-Simulation/1.0'
+                'User-Agent': 'Coerentis-Simulation/1.0'
             }
         };
         
@@ -111,7 +111,7 @@ function generateSignals(data) {
     }));
 }
 
-// Run simulation WITHOUT Capital Shield
+// Run simulation WITHOUT Coerentis
 function runUnshieldedSimulation(signals) {
     let capital = STARTING_CAPITAL;
     let position = 0;
@@ -154,7 +154,7 @@ function runUnshieldedSimulation(signals) {
     };
 }
 
-// Run simulation WITH Capital Shield
+// Run simulation WITH Coerentis
 function runShieldedSimulation(signals) {
     let capital = STARTING_CAPITAL;
     let position = 0;
@@ -170,7 +170,7 @@ function runShieldedSimulation(signals) {
         const totalValue = capital + position;
         const currentDrawdown = (totalValue - peakCapital) / peakCapital;
         
-        // CAPITAL SHIELD CHECK
+        // COERENTIS CHECK
         let blocked = false;
         let blockReason = null;
         let blockCode = null;

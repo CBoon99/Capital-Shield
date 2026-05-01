@@ -1,5 +1,5 @@
 <!-- 
-  CAPITAL SHIELD - SCHEMA MARKUP
+  COERENTIS - SCHEMA MARKUP
   Copy and paste this entire block into the <head> section of index.html
   All JSON-LD structured data for SEO and AI visibility
 -->
@@ -9,11 +9,11 @@
 {
   "@context": "https://schema.org",
   "@type": "WebApplication",
-  "@id": "https://capital-shield.netlify.app/#software",
-  "name": "Capital Shield",
-  "alternateName": "BoonMindX Capital Shield",
+  "@id": "https://coerentis.co/#software",
+  "name": "Coerentis",
+  "alternateName": "BoonMindX Coerentis",
   "description": "Risk-first trading infrastructure and deterministic safety layer for algorithmic trading systems. Strategy-agnostic API that enforces max drawdown limits, regime guards, and execution constraints. Patent pending.",
-  "url": "https://capital-shield.netlify.app/",
+  "url": "https://coerentis.co/",
   "applicationCategory": "FinanceApplication",
   "operatingSystem": "All",
   "browserRequirements": "Requires JavaScript and HTML5 support",
@@ -73,9 +73,9 @@
   },
   "creator": {
     "@type": "Organization",
-    "@id": "https://capital-shield.netlify.app/#organization",
+    "@id": "https://coerentis.co/#organization",
     "name": "BoonMindX",
-    "url": "https://capital-shield.netlify.app/",
+    "url": "https://coerentis.co/",
     "email": "info@boonmind.io"
   },
   "audience": {
@@ -90,9 +90,9 @@
 {
   "@context": "https://schema.org",
   "@type": "Organization",
-  "@id": "https://capital-shield.netlify.app/#organization",
+  "@id": "https://coerentis.co/#organization",
   "name": "BoonMindX",
-  "url": "https://capital-shield.netlify.app/",
+  "url": "https://coerentis.co/",
   "email": "info@boonmind.io",
   "founder": {
     "@type": "Person",
@@ -104,7 +104,8 @@
     "addressCountry": "United Kingdom"
   },
   "sameAs": [
-    "https://github.com/CBoon99/Capital-Shield"
+    "https://coerentis.co/",
+    "https://boonmind.io/"
   ],
   "contactPoint": {
     "@type": "ContactPoint",
@@ -125,7 +126,7 @@
       "name": "How do Shadow, Audit, and Enforcement differ in the execution path and in log space?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Shadow is for observation: you capture Capital Shield decisions in logs or parallel calls without letting those decisions gate live orders. Audit (licensed) emphasizes durable logging, exports, and reporting suitable for compliance and internal review; your stack may still route orders as you configure, but the audit trail is production-grade. Enforcement (enterprise) is deployed so a BLOCK decision prevents the order from reaching brokers or internal OMS, with middleware wired to honor the gate. Log space means immutable or exportable records of each decision, timestamps, and structured codes; execution path means what actually reaches the market."
+        "text": "Shadow is for observation: you capture Coerentis decisions in logs or parallel calls without letting those decisions gate live orders. Audit (licensed) emphasizes durable logging, exports, and reporting suitable for compliance and internal review; your stack may still route orders as you configure, but the audit trail is production-grade. Enforcement (enterprise) is deployed so a BLOCK decision prevents the order from reaching brokers or internal OMS, with middleware wired to honor the gate. Log space means immutable or exportable records of each decision, timestamps, and structured codes; execution path means what actually reaches the market."
       }
     },
     {
@@ -133,12 +134,12 @@
       "name": "What is log space versus the execution path?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "The execution path is the chain that turns a strategy intent into a routed order. Log space is the parallel record of what Capital Shield decided (ALLOW/BLOCK), with reasons and metadata. Shadow and Audit prioritize proving and storing that record; Enforcement extends the same API semantics so the execution path cannot bypass a BLOCK when configured."
+        "text": "The execution path is the chain that turns a strategy intent into a routed order. Log space is the parallel record of what Coerentis decided (ALLOW/BLOCK), with reasons and metadata. Shadow and Audit prioritize proving and storing that record; Enforcement extends the same API semantics so the execution path cannot bypass a BLOCK when configured."
       }
     },
     {
       "@type": "Question",
-      "name": "If we are on Licensed — Audit, must we block trades when Capital Shield returns BLOCK?",
+      "name": "If we are on Licensed — Audit, must we block trades when Coerentis returns BLOCK?",
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "Not by the tier name alone. Licensed — Audit is a commercial package centered on compliance logging, forensic exports, and documentation. Many teams still choose to honor ALLOW/BLOCK in production, but the contractual emphasis is on auditability. Enterprise — Enforcement is aimed at organisations that require the execution path to respect BLOCK under deployment and support terms. Exact obligations are in your order or engagement letter."
@@ -146,15 +147,15 @@
     },
     {
       "@type": "Question",
-      "name": "Is Capital Shield a trading bot?",
+      "name": "Is Coerentis a trading bot?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "No. Capital Shield is risk-first trading infrastructure, not a trading bot. It does not generate buy or sell signals, seek alpha, or execute trades. It evaluates proposed trades or signals against deterministic safety rails and returns structured allow or block decisions."
+        "text": "No. Coerentis is risk-first trading infrastructure, not a trading bot. It does not generate buy or sell signals, seek alpha, or execute trades. It evaluates proposed trades or signals against deterministic safety rails and returns structured allow or block decisions."
       }
     },
     {
       "@type": "Question",
-      "name": "Does Capital Shield generate alpha or guarantee profits?",
+      "name": "Does Coerentis generate alpha or guarantee profits?",
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "No. It is infrastructure to constrain fat-tail and runaway outcomes. It makes no claims about profitability, alpha, or future performance. Past simulations do not guarantee future results."
@@ -162,10 +163,10 @@
     },
     {
       "@type": "Question",
-      "name": "What is a runaway algorithm and how does Capital Shield help?",
+      "name": "What is a runaway algorithm and how does Coerentis help?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "A runaway algorithm keeps submitting or sizing trades outside acceptable risk bounds. Capital Shield applies configurable gates such as drawdown and volatility limits and returns explicit rejection codes before problematic trades reach execution when you deploy enforcement-style wiring."
+        "text": "A runaway algorithm keeps submitting or sizing trades outside acceptable risk bounds. Coerentis applies configurable gates such as drawdown and volatility limits and returns explicit rejection codes before problematic trades reach execution when you deploy enforcement-style wiring."
       }
     },
     {
@@ -173,7 +174,7 @@
       "name": "What is the difference between max drawdown protection and a stop-loss?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "A typical stop-loss reacts after loss on a position. Max drawdown style gates in Capital Shield evaluate proposed trades against a portfolio or strategy drawdown threshold before execution, aiming to block deterioration that would breach the limit."
+        "text": "A typical stop-loss reacts after loss on a position. Max drawdown style gates in Coerentis evaluate proposed trades against a portfolio or strategy drawdown threshold before execution, aiming to block deterioration that would breach the limit."
       }
     },
     {
@@ -186,7 +187,7 @@
     },
     {
       "@type": "Question",
-      "name": "How does Capital Shield integrate with trading strategies?",
+      "name": "How does Coerentis integrate with trading strategies?",
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "Via REST APIs such as the filter path: your system sends proposed actions and context, receives allow or block with structured reasons, and your middleware decides routing in Shadow or Audit, or enforces in Enterprise deployments."
@@ -202,7 +203,7 @@
     },
     {
       "@type": "Question",
-      "name": "Is Capital Shield machine learning or fully deterministic?",
+      "name": "Is Coerentis machine learning or fully deterministic?",
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "Safety decisions are driven by explicit rules and thresholds you configure, not by opaque predictive models. The goal is explainable, repeatable outcomes suitable for audit."
@@ -210,7 +211,7 @@
     },
     {
       "@type": "Question",
-      "name": "Can we self-host the Capital Shield API?",
+      "name": "Can we self-host the Coerentis API?",
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "The stack is designed to run on your infrastructure from the open repository; deployment, networking, and secrets are your responsibility unless you use a managed offering described in contract."
@@ -218,7 +219,7 @@
     },
     {
       "@type": "Question",
-      "name": "What are the pricing tiers for Capital Shield?",
+      "name": "What are the pricing tiers for Coerentis?",
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "Free Shadow for observation without emphasis on enforcement; Licensed Audit from about 199 GBP monthly for audit-grade logging and reporting; Enterprise Enforcement with custom pricing for middleware and live constraint enforcement. Annual billing may apply for licensed tiers."
@@ -242,7 +243,7 @@
     },
     {
       "@type": "Question",
-      "name": "Who is Capital Shield for?",
+      "name": "Who is Coerentis for?",
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "Quant and execution engineers, heads of risk or technology at funds and prop firms, and architects who need deterministic risk gates and defensible logs, not retail hobby traders."
@@ -250,7 +251,7 @@
     },
     {
       "@type": "Question",
-      "name": "Capital Shield is patent pending — what should customers know?",
+      "name": "Coerentis is patent pending — what should customers know?",
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "Features and claims may evolve; nothing on the website is legal or patent advice. Performance descriptions should be reviewed by counsel before formal regulatory or marketing filings."
@@ -261,7 +262,7 @@
       "name": "How should we handle API keys and log data?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Treat API keys as secrets, rotate them, avoid browsers in production, and classify logs under your data policy. Capital Shield decisions may contain sensitive trading metadata."
+        "text": "Treat API keys as secrets, rotate them, avoid browsers in production, and classify logs under your data policy. Coerentis decisions may contain sensitive trading metadata."
       }
     }
   ]
@@ -273,18 +274,18 @@
 {
   "@context": "https://schema.org",
   "@type": "WebPage",
-  "@id": "https://capital-shield.netlify.app/#webpage",
-  "url": "https://capital-shield.netlify.app/",
-  "name": "Capital Shield - Risk-First Trading Infrastructure | Runaway Algorithm Protection",
+  "@id": "https://coerentis.co/#webpage",
+  "url": "https://coerentis.co/",
+  "name": "Coerentis - Risk-First Trading Infrastructure | Runaway Algorithm Protection",
   "description": "Block runaway algorithms before execution. Enforce max drawdown, volatility, and regime risk rules with our API-first, strategy-agnostic risk gateway.",
   "isPartOf": {
     "@type": "WebSite",
-    "@id": "https://capital-shield.netlify.app/#website",
-    "name": "Capital Shield",
-    "url": "https://capital-shield.netlify.app/"
+    "@id": "https://coerentis.co/#website",
+    "name": "Coerentis",
+    "url": "https://coerentis.co/"
   },
   "mainEntity": {
-    "@id": "https://capital-shield.netlify.app/#software"
+    "@id": "https://coerentis.co/#software"
   },
   "breadcrumb": {
     "@type": "BreadcrumbList",
@@ -293,7 +294,7 @@
         "@type": "ListItem",
         "position": 1,
         "name": "Home",
-        "item": "https://capital-shield.netlify.app/"
+        "item": "https://coerentis.co/"
       }
     ]
   }
@@ -305,11 +306,11 @@
 {
   "@context": "https://schema.org",
   "@type": "WebSite",
-  "@id": "https://capital-shield.netlify.app/#website",
-  "name": "Capital Shield",
-  "url": "https://capital-shield.netlify.app/",
+  "@id": "https://coerentis.co/#website",
+  "name": "Coerentis",
+  "url": "https://coerentis.co/",
   "publisher": {
-    "@id": "https://capital-shield.netlify.app/#organization"
+    "@id": "https://coerentis.co/#organization"
   }
 }
 </script>

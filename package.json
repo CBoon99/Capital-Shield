@@ -1,0 +1,9 @@
+{
+  "name": "coerentis-site",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Static marketing site for Coerentis (Netlify + optional Neon form archive)",
+  "dependencies": {
+    "@neondatabase/serverless": "^0.10.4"
+  }
+}

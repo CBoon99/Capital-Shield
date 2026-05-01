@@ -1,12 +1,12 @@
 /**
- * Capital Shield API Integration Demo Simulator
- * Client-side simulation of Capital Shield API logic
+ * Coerentis API Integration Demo Simulator
+ * Client-side simulation of Coerentis API logic
  */
 
 (function() {
     'use strict';
 
-    // Simulate Capital Shield API check
+    // Simulate Coerentis API check
     function checkTrade(signal, asset, currentDrawdown, volatility24h, maxDDLimit, maxVolLimit) {
         // Convert percentages to decimals for comparison
         const drawdownDecimal = currentDrawdown / 100;

@@ -3,7 +3,7 @@
   
   <!-- Homepage -->
   <url>
-    <loc>https://capital-shield.netlify.app/</loc>
+    <loc>https://coerentis.co/</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
@@ -11,7 +11,7 @@
   
   <!-- Technical Documentation -->
   <url>
-    <loc>https://capital-shield.netlify.app/technical</loc>
+    <loc>https://coerentis.co/technical</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
@@ -19,7 +19,7 @@
 
   <!-- Integration guide -->
   <url>
-    <loc>https://capital-shield.netlify.app/integration</loc>
+    <loc>https://coerentis.co/integration</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
@@ -27,7 +27,7 @@
 
   <!-- Methodology / whitepaper landing -->
   <url>
-    <loc>https://capital-shield.netlify.app/whitepaper</loc>
+    <loc>https://coerentis.co/whitepaper</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
@@ -35,15 +35,7 @@
   
   <!-- Interactive Demo -->
   <url>
-    <loc>https://capital-shield.netlify.app/demo</loc>
-    <lastmod>2026-05-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  
-  <!-- SEO Landing Page: Runaway Algorithm Protection -->
-  <url>
-    <loc>https://capital-shield.netlify.app/runaway-algorithm-protection/</loc>
+    <loc>https://coerentis.co/demo</loc>
     <lastmod>2026-05-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>

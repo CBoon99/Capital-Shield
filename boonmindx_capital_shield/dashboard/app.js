@@ -1,5 +1,5 @@
 /**
- * BoonMindX Capital Shield Dashboard - Live Data Layer
+ * BoonMindX Coerentis Dashboard - Live Data Layer
  * 
  * Polls /healthz and /metrics endpoints every 10 seconds
  * Updates dashboard UI with live data
@@ -26,7 +26,7 @@ let drawdownChart = null;
  * Initialize dashboard
  */
 function init() {
-    console.log('BoonMindX Capital Shield Dashboard initialized');
+    console.log('BoonMindX Coerentis Dashboard initialized');
     
     // Initialize charts
     initCharts();

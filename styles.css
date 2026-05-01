@@ -1,4 +1,4 @@
-/* BoonMindX Capital Shield Landing Page Styles */
+/* BoonMindX Coerentis Landing Page Styles */
 
 :root {
     --bg-primary: #071225;
@@ -296,7 +296,7 @@ body {
     padding: 0 24px;
 }
 
-.capital-shield-diagram {
+.coerentis-diagram {
     width: 100%;
     height: auto;
     max-width: 900px;
@@ -932,6 +932,70 @@ body {
     gap: 8px;
 }
 
+.nav-brand-lockup {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: inherit;
+}
+
+.nav-brand-lockup:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 4px;
+    border-radius: 8px;
+}
+
+.brand-shield-icon {
+    flex-shrink: 0;
+    display: block;
+}
+
+.nav-product-name {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--accent);
+    letter-spacing: -0.02em;
+}
+
+.footer-brand-lockup {
+    align-items: flex-start;
+    gap: 12px;
+    max-width: min(100%, 400px);
+}
+
+.footer-brand-titles {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.footer-brand-lockup .product-name {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--accent);
+}
+
+.footer-suite-line {
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--text-muted);
+    line-height: 1.45;
+}
+
+.footer-suite-line a {
+    color: var(--accent);
+    text-decoration: none;
+}
+
+.footer-suite-line a:hover {
+    text-decoration: underline;
+}
+
+.footer-shield-icon {
+    margin-top: 2px;
+}
+
 .footer-links {
     display: flex;
     gap: 32px;
@@ -1259,7 +1323,7 @@ body {
         overflow-x: auto;
     }
     
-    .capital-shield-diagram {
+    .coerentis-diagram {
         min-width: 800px;
     }
     

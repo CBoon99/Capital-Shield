@@ -1,4 +1,4 @@
-# Capital Shield - robots.txt
+# Coerentis - robots.txt
 # Optimized for search engines AND AI crawlers
 # Last updated: May 2026
 
@@ -135,4 +135,4 @@ Disallow: /_redirects
 # SITEMAPS
 # ===========================================
 
-Sitemap: https://capital-shield.netlify.app/sitemap.xml
+Sitemap: https://coerentis.co/sitemap.xml

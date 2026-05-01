@@ -1,5 +1,5 @@
 /**
- * Capital Shield Interactive Demo
+ * Coerentis Interactive Demo
  * Deterministic Risk Scenario Simulator
  */
 
@@ -214,7 +214,7 @@
         };
     }
 
-    // Run Capital Shield evaluation
+    // Run Coerentis evaluation
     function runCapitalShield() {
         const inputs = getInputs();
         const result = evaluateGates(inputs);
