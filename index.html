@@ -1134,24 +1134,29 @@
                         </li>
                     </ul>
                     <a href="#contact" class="btn btn-secondary" style="width: 100%; margin-top: 24px;" aria-label="Contact sales for Enterprise Enforcement">Contact Sales</a>
+                    <button type="button" class="btn btn-secondary stripe-checkout-btn" style="width: 100%; margin-top: 12px;" data-stripe-plan="enterprise-deposit" aria-label="Pay enterprise scoping deposit with Stripe">Pay scoping deposit (Stripe)</button>
+                    <p style="font-size: 11px; color: var(--text-muted); margin: 10px 0 0 0; line-height: 1.45; text-align: center;">Covers discovery and solutioning; full fees and SLA stay in your signed order or SOW.</p>
                 </div>
             </div>
 
             <!-- Simulation-Only Option -->
             <div style="text-align: center; margin-top: 48px; padding: 24px; background: var(--bg-surface); border: 1px solid var(--border); border-radius: 12px; max-width: 600px; margin-left: auto; margin-right: auto;">
                 <h3 style="font-size: 20px; font-weight: 600; margin-bottom: 12px;">Simulation-only add-on</h3>
-                <p style="color: var(--text-muted); margin-bottom: 16px;">
+                <p style="color: var(--text-muted); margin-bottom: 8px;">
                     Historical simulation and validation workloads alongside your commercial tier. Quote based on scope.
                 </p>
-                <div style="display: flex; justify-content: center; gap: 32px; flex-wrap: wrap;">
-                    <div>
-                        <strong style="color: var(--accent);">From £19/month</strong>
-                        <span style="color: var(--text-muted); font-size: 14px;"> or </span>
-                        <strong style="color: var(--accent);">£149 one-time</strong>
-                        <span style="color: var(--text-muted); font-size: 13px; display: block; margin-top: 8px;">Illustrative; confirm in contract</span>
-                    </div>
+                <p style="margin-bottom: 8px;">
+                    <strong style="color: var(--accent);">From £19/month</strong>
+                    <span style="color: var(--text-muted); font-size: 14px;"> or </span>
+                    <strong style="color: var(--accent);">£149 one-time</strong>
+                    <span style="color: var(--text-muted); font-size: 13px; display: block; margin-top: 8px;">Illustrative — your Stripe Product prices may differ</span>
+                </p>
+                <div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; margin-top: 20px; align-items: center;">
+                    <button type="button" class="btn btn-primary btn-small stripe-checkout-btn" data-stripe-plan="simulation-monthly" aria-label="Subscribe to simulation monthly add-on">Simulation — monthly (Stripe)</button>
+                    <button type="button" class="btn btn-secondary btn-small stripe-checkout-btn" data-stripe-plan="simulation-onetime" aria-label="Pay one-time simulation fee">Simulation — one-time (Stripe)</button>
                     <a href="#contact" class="btn btn-secondary btn-small" aria-label="Ask about simulation-only options">Ask about simulation</a>
                 </div>
+                <p style="font-size: 11px; color: var(--text-muted); margin: 14px 0 0 0; line-height: 1.45;">Configure recurring and one-time prices in Stripe; map them in Netlify env to match the buttons above.</p>
             </div>
 
             <!-- Overage Info -->

@@ -1,17 +1,37 @@
 /**
- * Stripe Checkout — creates a subscription session for Licensed — Audit (monthly or annual).
- * Env: STRIPE_SECRET_KEY, STRIPE_PRICE_AUDIT_MONTHLY, STRIPE_PRICE_AUDIT_ANNUAL
- * Netlify sets URL / DEPLOY_PRIME_URL for success/cancel redirects.
+ * Stripe Checkout — subscriptions + one-time payments for Coerentis SKUs.
+ *
+ * Subscriptions: audit-monthly, audit-annual, simulation-monthly
+ * One-time: simulation-onetime, enterprise-deposit (scoping / engagement deposit — SOW still governs)
+ *
+ * Env:
+ *   STRIPE_SECRET_KEY (required)
+ *   STRIPE_PRICE_AUDIT_MONTHLY, STRIPE_PRICE_AUDIT_ANNUAL
+ *   STRIPE_PRICE_SIMULATION_MONTHLY, STRIPE_PRICE_SIMULATION_ONETIME
+ *   STRIPE_PRICE_ENTERPRISE_DEPOSIT
+ * Optional: STRIPE_ENABLE_AUTOMATIC_TAX=true (Stripe Tax)
+ *
+ * Netlify: URL / DEPLOY_PRIME_URL for redirect origins.
  */
 const Stripe = require('stripe');
 
-const PRICE_IDS = {
-  'audit-monthly': process.env.STRIPE_PRICE_AUDIT_MONTHLY,
-  'audit-annual': process.env.STRIPE_PRICE_AUDIT_ANNUAL,
+/** @type {Record<string, { mode: 'subscription' | 'payment', envKey: string }>} */
+const PLAN_CONFIG = {
+  'audit-monthly': { mode: 'subscription', envKey: 'STRIPE_PRICE_AUDIT_MONTHLY' },
+  'audit-annual': { mode: 'subscription', envKey: 'STRIPE_PRICE_AUDIT_ANNUAL' },
+  'simulation-monthly': { mode: 'subscription', envKey: 'STRIPE_PRICE_SIMULATION_MONTHLY' },
+  'simulation-onetime': { mode: 'payment', envKey: 'STRIPE_PRICE_SIMULATION_ONETIME' },
+  'enterprise-deposit': { mode: 'payment', envKey: 'STRIPE_PRICE_ENTERPRISE_DEPOSIT' },
 };
 
 function jsonHeaders() {
   return { 'Content-Type': 'application/json' };
+}
+
+function getPriceId(plan) {
+  const cfg = PLAN_CONFIG[plan];
+  if (!cfg) return null;
+  return process.env[cfg.envKey];
 }
 
 exports.handler = async function createCheckoutSession(event) {
@@ -48,13 +68,16 @@ exports.handler = async function createCheckoutSession(event) {
   }
 
   const plan = body.plan;
-  const priceId = PRICE_IDS[plan];
-  if (!priceId || typeof priceId !== 'string' || !priceId.startsWith('price_')) {
+  const cfg = PLAN_CONFIG[plan];
+  const priceId = getPriceId(plan);
+
+  if (!cfg || !priceId || typeof priceId !== 'string' || !priceId.startsWith('price_')) {
     return {
       statusCode: 400,
       headers: jsonHeaders(),
       body: JSON.stringify({
-        error: 'Unknown or unconfigured plan. Set STRIPE_PRICE_AUDIT_MONTHLY and STRIPE_PRICE_AUDIT_ANNUAL.',
+        error:
+          'Unknown plan or missing Stripe Price ID. Set env for this SKU (e.g. STRIPE_PRICE_SIMULATION_MONTHLY).',
       }),
     };
   }
@@ -63,19 +86,21 @@ exports.handler = async function createCheckoutSession(event) {
   const stripe = new Stripe(secret);
 
   try {
+    /** @type {Record<string, unknown>} */
     const params = {
-      mode: 'subscription',
+      mode: cfg.mode,
       line_items: [{ price: priceId, quantity: 1 }],
       success_url: `${origin}/thanks/stripe/?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${origin}/#pricing`,
       allow_promotion_codes: true,
       billing_address_collection: 'required',
       tax_id_collection: { enabled: true },
-      subscription_data: {
-        metadata: { coerentis_plan: plan },
-      },
       metadata: { coerentis_plan: plan },
     };
+
+    if (cfg.mode === 'subscription') {
+      params.subscription_data = { metadata: { coerentis_plan: plan } };
+    }
 
     if (process.env.STRIPE_ENABLE_AUTOMATIC_TAX === 'true') {
       params.automatic_tax = { enabled: true };

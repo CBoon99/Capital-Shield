@@ -258,12 +258,17 @@
     function initStripeCheckout() {
         document.querySelectorAll('[data-stripe-plan]').forEach(function(btn) {
             btn.addEventListener('click', function() {
-                var planKey = btn.getAttribute('data-stripe-plan');
-                if (planKey !== 'audit') return;
+                var raw = btn.getAttribute('data-stripe-plan');
+                if (!raw) return;
 
-                var toggle = document.getElementById('pricing-toggle');
-                var annual = toggle && toggle.checked;
-                var plan = annual ? 'audit-annual' : 'audit-monthly';
+                var plan;
+                if (raw === 'audit') {
+                    var toggle = document.getElementById('pricing-toggle');
+                    var annual = toggle && toggle.checked;
+                    plan = annual ? 'audit-annual' : 'audit-monthly';
+                } else {
+                    plan = raw;
+                }
 
                 var original = btn.textContent;
                 btn.disabled = true;
