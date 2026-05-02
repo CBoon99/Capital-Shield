@@ -4,6 +4,7 @@
   "version": "1.0.0",
   "description": "Static marketing site for Coerentis (Netlify + optional Neon form archive)",
   "dependencies": {
-    "@neondatabase/serverless": "^0.10.4"
+    "@neondatabase/serverless": "^0.10.4",
+    "stripe": "^17.5.0"
   }
 }

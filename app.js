@@ -255,7 +255,49 @@
         msgDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }
 
-    // Pricing toggle function (monthly/annual)
+    function initStripeCheckout() {
+        document.querySelectorAll('[data-stripe-plan]').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                var planKey = btn.getAttribute('data-stripe-plan');
+                if (planKey !== 'audit') return;
+
+                var toggle = document.getElementById('pricing-toggle');
+                var annual = toggle && toggle.checked;
+                var plan = annual ? 'audit-annual' : 'audit-monthly';
+
+                var original = btn.textContent;
+                btn.disabled = true;
+                btn.textContent = 'Redirecting…';
+
+                fetch('/.netlify/functions/create-checkout-session', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ plan: plan })
+                })
+                    .then(function(res) {
+                        return res.json().then(function(data) {
+                            return { ok: res.ok, data: data };
+                        });
+                    })
+                    .then(function(result) {
+                        if (result.data && result.data.url) {
+                            window.location.href = result.data.url;
+                            return;
+                        }
+                        var msg = (result.data && result.data.error) ? result.data.error : 'Checkout could not start.';
+                        alert(msg);
+                        btn.disabled = false;
+                        btn.textContent = original;
+                    })
+                    .catch(function() {
+                        alert('Network error. Try again or email info@boonmind.io.');
+                        btn.disabled = false;
+                        btn.textContent = original;
+                    });
+            });
+        });
+    }
+
     function togglePricing() {
         const toggle = document.getElementById('pricing-toggle');
         const monthlyElements = document.querySelectorAll('.pricing-monthly');
@@ -301,6 +343,7 @@
         initScrollAnimations();
         prefillTierFromQuery();
         initContactForm();
+        initStripeCheckout();
     }
 
     // Run on DOMContentLoaded
