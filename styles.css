@@ -774,6 +774,34 @@ body {
     font-size: 14px;
 }
 
+.disclaimer .disclaimer-title {
+    color: var(--text-primary);
+    font-size: 15px;
+    margin-bottom: 16px;
+}
+
+.disclaimer ul {
+    text-align: left;
+    margin: 0;
+    padding-left: 1.25em;
+    color: var(--text-muted);
+    font-size: 13px;
+    line-height: 1.65;
+}
+
+.disclaimer li {
+    margin-bottom: 12px;
+}
+
+.disclaimer li:last-child {
+    margin-bottom: 0;
+}
+
+.disclaimer li strong {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
 /* Contact Form */
 .contact-section {
     background: linear-gradient(180deg, transparent 0%, rgba(11, 27, 51, 0.3) 100%);
