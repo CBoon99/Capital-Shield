@@ -71,7 +71,7 @@ If any rule is violated, the trade is blocked with a structured rejection reason
 
 ### Implementation Example
 
-Capital Shield is an implementation of the gateway approach, providing a strategy-agnostic API that sits between trading strategies and execution systems. It enforces deterministic risk rules and provides explicit rejection reasons for blocked trades.
+Coerentis is an implementation of the gateway approach, providing a strategy-agnostic API that sits between trading strategies and execution systems. It evaluates deterministic risk rules and provides explicit rejection reasons for blocked trades.
 
 ## Prevention Strategies
 

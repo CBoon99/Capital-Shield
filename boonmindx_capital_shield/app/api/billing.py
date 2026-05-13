@@ -45,7 +45,7 @@ def create_api_key_for_subscription(stripe_customer_id: str, tier: str) -> str:
     """
     api_key = generate_api_key()
     
-    # In production, this would be stored in a database
+    # In controlled operational environments, this would be stored in a database
     # For now, we'll add it to the in-memory API_KEYS dict
     API_KEYS[api_key] = {
         "tier": tier,
@@ -134,7 +134,7 @@ def handle_subscription_created(subscription_data: dict):
     # Create API key for this subscription
     api_key = create_api_key_for_subscription(customer_id, tier)
     
-    # Store subscription info (in production, use database)
+    # Store subscription info (in controlled operational environments, use database)
     logger.info(f"Subscription created: {subscription_id}, tier: {tier}, API key: {api_key[:20]}...")
 
 
@@ -162,7 +162,7 @@ def handle_subscription_deleted(subscription_data: dict):
     subscription_id = subscription_data.get('id')
     
     # Disable API keys for this customer
-    # In production, mark as inactive rather than deleting
+    # In controlled operational environments, mark as inactive rather than deleting
     keys_to_remove = []
     for api_key, key_info in API_KEYS.items():
         if key_info.get('stripe_customer_id') == customer_id:

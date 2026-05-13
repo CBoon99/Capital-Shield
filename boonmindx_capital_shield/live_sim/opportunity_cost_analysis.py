@@ -17,7 +17,7 @@ ASSUMPTIONS (Important):
 - No commissions
 - Frictionless fills
 - Hedge is synthetic / approximate
-- This is exploratory analysis, not a production-grade execution model
+- This is exploratory analysis, not an operational execution model
 """
 import pandas as pd
 import numpy as np
@@ -511,7 +511,7 @@ def generate_opportunity_cost_summary(
         "- ❌ **No slippage** - All trades execute at exact prices",
         "- ❌ **No commissions** - Zero transaction costs",
         "- ❌ **Frictionless fills** - Instant execution",
-        "- ⚠️ **Hedge is synthetic** - Approximate model, not production-grade",
+        "- ⚠️ **Hedge is synthetic** - Approximate model, not operational execution infrastructure",
         "- ⚠️ **Exploratory analysis** - Sanity-check level, not final institutional proof",
         "",
         "---",

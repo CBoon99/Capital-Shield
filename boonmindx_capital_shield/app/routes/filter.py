@@ -1,5 +1,5 @@
 """
-Filter Endpoint - BoonMindX Capital Shield Trade Gatekeeper
+Filter Endpoint - BoonMindX Coerentis Trade Gatekeeper
 """
 import time
 from fastapi import APIRouter, Request, Depends
@@ -23,9 +23,9 @@ async def filter_trade_endpoint(
     api_key_info: dict = Depends(verify_api_key)
 ):
     """
-    BoonMindX Capital Shield trade filter - Binary decision on whether trade is allowed
+    BoonMindX Coerentis trade filter - binary decision on whether trade is allowed
     
-    This is the core BoonMindX Capital Shield endpoint that prevents bad trades.
+    This is the core BoonMindX Coerentis endpoint for controlled beta risk evaluation.
     Even if engine says "GO", safety rails can veto the trade.
     """
     start_time = time.time()
@@ -50,7 +50,7 @@ async def filter_trade_endpoint(
         volume_history=filter_request.volume_history
     )
     
-    # Apply safety rails (even if engine says "GO", BoonMindX Capital Shield can veto)
+    # Apply safety rails (even if engine says "GO", Coerentis can veto)
     safety_allowed, safety_reason = check_safety_rails(
         asset=filter_request.asset,
         action=filter_request.action,

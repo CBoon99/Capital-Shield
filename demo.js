@@ -176,7 +176,7 @@
         
         form.addEventListener('submit', function(e) {
             e.preventDefault();
-            runCapitalShield();
+            runCoerentis();
         });
     }
 
@@ -215,7 +215,7 @@
     }
 
     // Run Coerentis evaluation
-    function runCapitalShield() {
+    function runCoerentis() {
         const inputs = getInputs();
         const result = evaluateGates(inputs);
         renderOutput(result, inputs);

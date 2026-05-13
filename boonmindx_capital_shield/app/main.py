@@ -1,5 +1,5 @@
 """
-BoonMindX Capital Shield API - Main Application
+BoonMindX Coerentis API - Main Application
 """
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
@@ -16,7 +16,7 @@ import os
 app = FastAPI(
     title=API_TITLE,
     version=VERSION,
-    description="Deterministic Risk Filtering API for Quant Funds"
+    description="Controlled beta deterministic risk filtering API"
 )
 
 # CORS middleware

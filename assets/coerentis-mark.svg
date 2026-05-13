@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-hidden="true">
+  <defs>
+    <linearGradient id="coerentis-shield-face" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4DB8FF"/>
+      <stop offset="55%" stop-color="#2590E8"/>
+      <stop offset="100%" stop-color="#1565C0"/>
+    </linearGradient>
+    <linearGradient id="coerentis-shield-rim" x1="50%" y1="0%" x2="50%" y2="100%">
+      <stop offset="0%" stop-color="#7C9BA8" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#030810" stop-opacity="0.5"/>
+    </linearGradient>
+  </defs>
+  <!-- Institutional shield (symmetric heater) -->
+  <path d="M50 6 L14 26 V50 C14 68 26 84 50 94 C74 84 86 68 86 50 V26 Z"
+        fill="url(#coerentis-shield-face)" stroke="#061018" stroke-width="1.25"/>
+  <path d="M50 6 L14 26 V50 C14 68 26 84 50 94 C74 84 86 68 86 50 V26 Z"
+        fill="none" stroke="url(#coerentis-shield-rim)" stroke-width="0.75" opacity="0.85"/>
+  <!-- Inner depth -->
+  <path d="M50 16 L26 29 V50 C26 64 35 76 50 82 C65 76 74 64 74 50 V29 Z"
+        fill="#071225"/>
+  <!-- Ascending guard rails (capital / risk bands) -->
+  <rect x="36" y="58" width="9" height="16" rx="2" fill="#2EA8FF"/>
+  <rect x="46.5" y="48" width="9" height="26" rx="2" fill="#2EA8FF" opacity="0.92"/>
+  <rect x="57" y="38" width="9" height="36" rx="2" fill="#8B72F0"/>
+</svg>

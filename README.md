@@ -2,13 +2,13 @@
 
 **Risk-first trading infrastructure and execution safety framework for algorithmic trading systems**
 
-Coerentis is a strategy-agnostic deterministic risk controls framework that sits between trading signal generators and market execution. This risk-first trading infrastructure enforces hard execution constraints (max drawdown limits, regime guards, health checks) with structured rejection reasons, providing a validation harness to measure the cost of safety before deployment. Designed for integration into existing quantitative trading infrastructure, not as a profitable trading bot or alpha engine.
+Coerentis is a strategy-agnostic deterministic risk controls framework that sits between trading signal generators and market execution. This risk-first trading infrastructure evaluates configurable constraints (max drawdown limits, regime guards, health checks) with structured rejection reasons, providing a validation harness to measure the cost of safety before controlled deployment. Designed for integration into existing quantitative trading infrastructure, not as a profitable trading bot or alpha engine.
 
 ---
 
 ## What Coerentis Is: Risk-First Trading Infrastructure
 
-**BoonMindX Coerentis** is a deterministic safety gateway that sits between trading signal generators and market execution. It enforces hard risk limits (max drawdown, regime guards, health checks) with structured rejection reasons, providing a validation harness to measure the cost of safety before deployment. The system is strategy-agnostic, API-first, and designed for integration into existing quantitative trading infrastructure.
+**BoonMindX Coerentis** is a deterministic safety gateway that sits between trading signal generators and market execution. It evaluates configurable risk limits (max drawdown, regime guards, health checks) with structured rejection reasons, providing a validation harness to measure the cost of safety before controlled deployment. The system is strategy-agnostic, API-first, and designed for integration into existing quantitative trading infrastructure.
 
 **Key Differentiator**: Unlike alpha-seeking bots, signal sellers, or black-box strategies, Coerentis is pure infrastructure. It enforces deterministic execution constraints regardless of trading signals. You bring your own strategy; Coerentis enforces the safety rails.
 
@@ -27,7 +27,7 @@ Coerentis is a strategy-agnostic deterministic risk controls framework that sits
 
 ## Why It Exists
 
-The post-alpha era demands **risk-first infrastructure**. Coerentis provides deterministic safety gates that integrate into any trading stack, with validation tooling to measure the cost of safety before deployment. It is strategy-agnostic: bring your own signals, and Coerentis enforces the safety rails.
+The post-alpha era demands **risk-first infrastructure**. Coerentis provides deterministic safety gates that integrate into any trading stack, with validation tooling to measure the cost of safety before controlled deployment. It is strategy-agnostic: bring your own signals, and Coerentis evaluates the safety rails.
 
 **Core Value**: Prevents bad trades from reaching execution, with empirical validation to measure the cost of safety.
 
@@ -210,7 +210,7 @@ Coerentis is **strategy-agnostic**. It does not generate trading signals. Instea
 
 ## Beta Status
 
-**Controlled Beta**: Core API + safety rails are production-grade. Simulation adapters and deployment runbooks are under refinement.
+**Controlled Beta**: Core deterministic safety rails are implemented and available for controlled beta evaluation. Deployment hardening, adapters, and operational infrastructure remain under active refinement.
 
 **Public Release**: Q1 2026
 
@@ -229,7 +229,7 @@ Coerentis is **strategy-agnostic**. It does not generate trading signals. Instea
 
 - **API Key Authentication** — Tiered access control
 - **IP-based Rate Limiting** — 10 req/s default (configurable)
-- **Structured Logging** — JSON logs for production monitoring
+- **Structured Logging** — JSON logs for controlled evaluation and monitoring
 - **CORS Support** — Configurable cross-origin policies
 - **Input Validation** — Pydantic schemas for all endpoints
 
@@ -258,12 +258,12 @@ This software is proprietary and protected by copyright. All rights reserved.
 ### Evaluation License
 
 - **Allowed**: Local/internal testing and development
-- **Not Allowed**: Production deployment, public hosting, redistribution, resale
+- **Not Allowed**: Operational deployment, public hosting, redistribution, resale without a commercial agreement
 
-### Production License
+### Operational License
 
 **Commercial licensing required** for:
-- Production deployment
+- Operational deployment
 - Public hosting
 - Redistribution
 - Resale
@@ -275,7 +275,7 @@ Contact **info@boonmind.io** for licensing inquiries.
 
 **License Types**:
 - **Evaluation** — Internal testing and development
-- **Production** — Single deployment license
+- **Operational** — Single controlled deployment license
 - **Enterprise** — Multi-system / organization-wide
 
 ### Disclaimer
@@ -299,7 +299,7 @@ See `boonmindx_capital_shield/docs/DOCS_INDEX.md` for complete documentation ind
 ## Contact
 
 - **Email**: info@boonmind.io
-- **Website**: [Landing Page](index.html) (local) / [Netlify](https://coerentis.co) (when deployed)
+- **Website**: [Landing Page](index.html) (local) / [Coerentis](https://coerentis.co)
 - **Contact Form**: Available on landing page
 
 For beta access, licensing inquiries, or technical questions, please contact us.
@@ -310,7 +310,7 @@ For beta access, licensing inquiries, or technical questions, please contact us.
 
 **No Financial Advice**: This is infrastructure software, not investment advice.
 
-**No Performance Guarantees**: Coerentis reduces risk but does not guarantee profits or returns.
+**No Performance Guarantees**: Coerentis provides experimental analytical signals and does not guarantee profits, returns, or loss prevention.
 
 **Use at Your Own Risk**: Users are responsible for their own trading decisions.
 

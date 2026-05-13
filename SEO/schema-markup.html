@@ -12,13 +12,13 @@
   "@id": "https://coerentis.co/#software",
   "name": "Coerentis",
   "alternateName": "BoonMindX Coerentis",
-  "description": "Risk-first trading infrastructure and deterministic safety layer for algorithmic trading systems. Strategy-agnostic API that enforces max drawdown limits, regime guards, and execution constraints. Patent pending.",
+  "description": "Controlled beta risk infrastructure and deterministic safety layer for algorithmic trading systems. Strategy-agnostic API that evaluates configurable max drawdown limits, regime guards, and execution constraints. Patent pending.",
   "url": "https://coerentis.co/",
   "applicationCategory": "FinanceApplication",
   "operatingSystem": "All",
   "browserRequirements": "Requires JavaScript and HTML5 support",
-  "softwareVersion": "1.0.0",
-  "releaseNotes": "Controlled Beta - Public release Q1 2026",
+  "softwareVersion": "beta",
+  "releaseNotes": "Controlled beta evaluation with selected testers and research collaborators",
   "featureList": [
     "Max Drawdown Protection",
     "Regime Guard",
@@ -38,7 +38,7 @@
       {
         "@type": "Offer",
         "name": "Free — Shadow mode",
-        "description": "Observe policy outcomes and evaluation; no live enforcement on your execution stack",
+        "description": "Observe policy outcomes during controlled evaluation; no live enforcement on your execution stack",
         "price": "0",
         "priceCurrency": "GBP",
         "priceSpecification": {
@@ -52,7 +52,7 @@
       {
         "@type": "Offer",
         "name": "Licensed — Audit mode",
-        "description": "Compliance-oriented reporting, forensic logging, and regulatory documentation support",
+        "description": "Compliance-oriented reporting, forensic logging, and documentation support for selected beta participants",
         "price": "199",
         "priceCurrency": "GBP",
         "priceSpecification": {
@@ -66,7 +66,7 @@
       {
         "@type": "Offer",
         "name": "Enterprise — Enforcement mode",
-        "description": "Live constraint enforcement and full middleware deployment; custom commercial terms",
+        "description": "Contracted enforcement wiring and operational integration review; custom commercial terms",
         "priceCurrency": "GBP"
       }
     ]
@@ -126,7 +126,7 @@
       "name": "How do Shadow, Audit, and Enforcement differ in the execution path and in log space?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Shadow is for observation: you capture Coerentis decisions in logs or parallel calls without letting those decisions gate live orders. Audit (licensed) emphasizes durable logging, exports, and reporting suitable for compliance and internal review; your stack may still route orders as you configure, but the audit trail is production-grade. Enforcement (enterprise) is deployed so a BLOCK decision prevents the order from reaching brokers or internal OMS, with middleware wired to honor the gate. Log space means immutable or exportable records of each decision, timestamps, and structured codes; execution path means what actually reaches the market."
+        "text": "Shadow is for observation: you capture Coerentis decisions in logs or parallel calls without letting those decisions gate live orders. Audit (licensed) emphasizes durable logging, exports, and reporting suitable for compliance and internal review during controlled evaluation. Enforcement (enterprise) means contracted wiring can make a BLOCK decision binding before an order reaches brokers or internal OMS under an agreed architecture. Log space means immutable or exportable records of each decision, timestamps, and structured codes; execution path means what actually reaches the market."
       }
     },
     {
@@ -142,7 +142,7 @@
       "name": "If we are on Licensed — Audit, must we block trades when Coerentis returns BLOCK?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Not by the tier name alone. Licensed — Audit is a commercial package centered on compliance logging, forensic exports, and documentation. Many teams still choose to honor ALLOW/BLOCK in production, but the contractual emphasis is on auditability. Enterprise — Enforcement is aimed at organisations that require the execution path to respect BLOCK under deployment and support terms. Exact obligations are in your order or engagement letter."
+        "text": "Not by the tier name alone. Licensed — Audit is a commercial package centered on compliance logging, forensic exports, and documentation. Many teams may choose to honor ALLOW/BLOCK in controlled environments, but the contractual emphasis is on auditability. Enterprise — Enforcement is aimed at organisations that require the execution path to respect BLOCK under agreed implementation and support terms. Exact obligations are in your order or engagement letter."
       }
     },
     {
@@ -190,7 +190,7 @@
       "name": "How does Coerentis integrate with trading strategies?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Via REST APIs such as the filter path: your system sends proposed actions and context, receives allow or block with structured reasons, and your middleware decides routing in Shadow or Audit, or enforces in Enterprise deployments."
+        "text": "Via REST APIs such as the filter path: your system sends proposed actions and context, receives allow or block with structured reasons, and your middleware decides routing in Shadow or Audit, or enforces under contracted Enterprise wiring."
       }
     },
     {
@@ -214,7 +214,7 @@
       "name": "Can we self-host the Coerentis API?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "The stack is designed to run on your infrastructure from the open repository; deployment, networking, and secrets are your responsibility unless you use a managed offering described in contract."
+        "text": "The stack is designed to run on your infrastructure from the open repository; deployment hardening, networking, and secrets are your responsibility unless a managed or supported offering is described in contract."
       }
     },
     {
@@ -222,15 +222,15 @@
       "name": "What are the pricing tiers for Coerentis?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Free Shadow for observation without emphasis on enforcement; Licensed Audit from about 199 GBP monthly for audit-grade logging and reporting; Enterprise Enforcement with custom pricing for middleware and live constraint enforcement. Annual billing may apply for licensed tiers."
+        "text": "Free Shadow supports observation during evaluation; Licensed Audit from about 199 GBP monthly supports logging and reporting; Enterprise Enforcement uses custom pricing for contracted middleware and operational integration review. Annual billing may apply for licensed tiers."
       }
     },
     {
       "@type": "Question",
-      "name": "What is the first-10 Audit pilot and what does 25k mean?",
+      "name": "What is the selected-participant Audit bundle?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "The first ten qualified Licensed Audit customers may receive a complimentary extended onboarding and reporting bundle. 25k is informal shorthand for professional scope, not a guaranteed cash amount or fixed deliverable list; scope is agreed in writing."
+        "text": "Selected qualified Licensed Audit customers may receive a professional-scope onboarding and reporting bundle. It is not a guaranteed cash amount or fixed deliverable list; scope is agreed in writing."
       }
     },
     {
@@ -286,7 +286,7 @@
       "name": "How should we handle API keys and log data?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Treat API keys as secrets, rotate them, avoid browsers in production, and classify logs under your data policy. Coerentis decisions may contain sensitive trading metadata."
+        "text": "Treat API keys as secrets, rotate them, avoid browsers for operational enforcement, and classify logs under your data policy. Coerentis decisions may contain sensitive trading metadata."
       }
     }
   ]

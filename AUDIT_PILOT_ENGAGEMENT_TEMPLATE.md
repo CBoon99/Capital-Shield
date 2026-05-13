@@ -15,9 +15,9 @@
 
 **Licensed — Audit** under the Customer’s subscription or order form dated [DATE].
 
-## Promotional bundle (“25k-style” — informal shorthand)
+## Promotional bundle (professional-scope onboarding)
 
-The parties acknowledge that marketing materials may refer to a **“25k-style”** onboarding and reporting bundle. That label is **not** a guaranteed cash amount, a fixed sterling valuation, or an exhaustive deliverables list. **The only binding description of services is in this section and the schedules below.**
+If legacy marketing materials refer to a **“25k-style”** onboarding and reporting bundle, that label is **not** a guaranteed cash amount, a fixed sterling valuation, or an exhaustive deliverables list. **The only binding description of services is in this section and the schedules below.**
 
 ### In scope (edit per customer)
 

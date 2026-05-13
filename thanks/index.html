@@ -6,82 +6,90 @@
     <meta name="description" content="Thank you for contacting Coerentis">
     <meta name="robots" content="noindex, follow">
     <link rel="canonical" href="https://coerentis.co/thanks/">
-    <title>Thank You - Coerentis</title>
-    
+    <title>Application confirmed — Coerentis</title>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../styles.css">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%232EA8FF'/><path d='M50 20 L30 50 L50 45 L70 50 Z' fill='%23071225'/><rect x='40' y='50' width='20' height='30' fill='%23071225'/></svg>">
+    <link rel="icon" href="/assets/coerentis-mark.svg" type="image/svg+xml">
 </head>
 <body>
-    <!-- Header -->
     <header class="header" id="header">
         <nav class="nav container">
             <a href="/" class="nav-brand nav-brand-lockup" aria-label="Coerentis home">
-                <svg class="brand-shield-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="32" height="32" aria-hidden="true"><rect width="100" height="100" rx="14" fill="#2EA8FF"/><path d="M50 20 L30 50 L50 45 L70 50 Z" fill="#071225"/><rect x="40" y="50" width="20" height="30" fill="#071225"/></svg>
+                <img class="brand-shield-icon" src="/assets/coerentis-mark.svg" width="32" height="32" alt="" />
                 <span class="product-name nav-product-name">Coerentis</span>
             </a>
             <ul class="nav-links" role="navigation" aria-label="Main navigation">
-                <li><a href="../index.html">Home</a></li>
-                <li><a href="../index.html#contact">Contact</a></li>
+                <li><a href="/">Home</a></li>
+                <li><a href="/#contact">Contact</a></li>
             </ul>
         </nav>
     </header>
 
-    <!-- Thank You Message -->
     <section class="section" style="min-height: 60vh; display: flex; align-items: center;">
         <div class="container">
-            <div style="max-width: 700px; margin: 0 auto; text-align: left;">
-                <h1 class="section-title" style="margin-bottom: 16px;">Application Received</h1>
+            <div id="thanks-app-pending" style="max-width: 700px; margin: 0 auto;" hidden>
+                <h1 class="section-title" style="margin-bottom: 16px;">Confirm from your inbox</h1>
+                <p style="font-size: 16px; color: var(--text-muted); line-height: 1.7;">
+                    Applications are finalized after you click the link in our confirmation email.
+                    If you landed here without confirming, go to <a href="/thanks/contact/" style="color: var(--accent);">the check-inbox page</a> for details or start again from the <a href="/#contact" style="color: var(--accent);">contact form</a>.
+                </p>
+            </div>
+
+            <div id="thanks-app-verified" style="max-width: 700px; margin: 0 auto; text-align: left;" hidden>
+                <div class="thanks-hero" style="text-align: center;">
+                    <img class="thanks-hero-mark" src="/assets/coerentis-mark.svg" width="72" height="72" alt="" />
+                    <p class="thanks-eyebrow">Email verified</p>
+                    <h1 class="section-title" style="margin-bottom: 16px;">Application received</h1>
+                </div>
 
                 <p style="font-size: 16px; color: var(--text-muted); line-height: 1.7; margin-bottom: 16px;">
-                    Thanks for your interest in Coerentis.
+                    Thank you. Your email is confirmed and your request is with the Coerentis team.
                 </p>
 
                 <p style="font-size: 16px; color: var(--text-muted); line-height: 1.7; margin-bottom: 16px;">
-                    We'll review your application and reply within <strong>48 hours</strong> with:
+                    We typically reply within <strong>48 hours</strong> with next steps. For <strong>Licensed — Audit</strong> and pilot bundles, we may confirm eligibility separately from marketing copy on the site.
                 </p>
                 <ul style="margin-left: 20px; margin-bottom: 16px; color: var(--text-muted); font-size: 16px; line-height: 1.7;">
-                    <li>API credentials for your selected tier</li>
-                    <li>Onboarding documentation</li>
-                    <li>Direct line to support</li>
+                    <li>API access details (where applicable to your tier)</li>
+                    <li>Onboarding and integration pointers</li>
+                    <li>A direct line for technical questions</li>
                 </ul>
 
-                <p style="font-size: 16px; color: var(--text-muted); line-height: 1.7; margin-bottom: 8px;">
-                    In the meantime:
-                </p>
+                <p style="font-size: 16px; color: var(--text-muted); line-height: 1.7; margin-bottom: 8px;">While you wait:</p>
                 <ul style="margin-left: 20px; margin-bottom: 24px; color: var(--text-muted); font-size: 16px; line-height: 1.7;">
-                    <li><a href="/demo" style="color: var(--accent); text-decoration: underline;">Try the interactive demo</a></li>
-                    <li><a href="/#quickstart" style="color: var(--accent); text-decoration: underline;">Read the quickstart guide</a></li>
-                    <li><a href="integration.html" style="color: var(--accent); text-decoration: underline;">Read the integration guide</a></li>
+                    <li><a href="/demo" style="color: var(--accent);">Interactive demo</a></li>
+                    <li><a href="/#quickstart" style="color: var(--accent);">Quickstart</a></li>
+                    <li><a href="/integration.html" style="color: var(--accent);">Integration guide</a></li>
+                    <li><a href="/dashboard" style="color: var(--accent);">Operator dashboard</a> (after you have an API base URL)</li>
                 </ul>
 
                 <p style="font-size: 16px; color: var(--text-muted); line-height: 1.7; margin-bottom: 24px;">
-                    Questions? Email us directly: <a href="mailto:info@boonmind.io" style="color: var(--accent); text-decoration: underline;">info@boonmind.io</a>
+                    Questions: <a href="mailto:info@boonmind.io" style="color: var(--accent);">info@boonmind.io</a>
                 </p>
 
-                <div style="display: flex; gap: 16px; justify-content: flex-start; flex-wrap: wrap; margin-top: 8px;">
-                    <a href="../index.html" class="btn btn-primary">Return Home</a>
-                    <a href="../index.html#contact" class="btn btn-secondary">Send Another Message</a>
+                <div style="display: flex; gap: 16px; justify-content: flex-start; flex-wrap: wrap;">
+                    <a href="/" class="btn btn-primary">Return home</a>
+                    <a href="/#contact" class="btn btn-secondary">Send another message</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-brand footer-brand-lockup">
-                    <svg class="brand-shield-icon footer-shield-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="28" height="28" aria-hidden="true"><rect width="100" height="100" rx="14" fill="#2EA8FF"/><path d="M50 20 L30 50 L50 45 L70 50 Z" fill="#071225"/><rect x="40" y="50" width="20" height="30" fill="#071225"/></svg>
+                    <img class="brand-shield-icon footer-shield-icon" src="/assets/coerentis-mark.svg" width="28" height="28" alt="" />
                     <div class="footer-brand-titles">
                         <span class="product-name">Coerentis</span>
                         <span class="footer-suite-line"><a href="https://boonmind.io/" target="_blank" rel="noopener noreferrer">boonmind.io</a></span>
                     </div>
                 </div>
                 <div class="footer-links">
-                    <a href="../index.html#contact">Contact</a>
+                    <a href="/#contact">Contact</a>
                     <a href="https://boonmind.io/" target="_blank" rel="noopener noreferrer">BoonMind</a>
                 </div>
             </div>
@@ -90,5 +98,13 @@
             </div>
         </div>
     </footer>
+    <script>
+        (function () {
+            var v = new URLSearchParams(location.search).get('verified');
+            var verified = v === '1';
+            document.getElementById('thanks-app-verified').hidden = !verified;
+            document.getElementById('thanks-app-pending').hidden = verified;
+        })();
+    </script>
 </body>
 </html>

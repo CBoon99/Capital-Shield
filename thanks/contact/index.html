@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, follow">
+    <link rel="canonical" href="https://coerentis.co/thanks/contact/">
+    <title>Check your inbox — Coerentis</title>
+    <meta name="description" content="Confirm your email to complete your Coerentis application.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../styles.css">
+    <link rel="icon" href="/assets/coerentis-mark.svg" type="image/svg+xml">
+</head>
+<body>
+    <header class="header" id="header">
+        <nav class="nav container">
+            <a href="/" class="nav-brand nav-brand-lockup" aria-label="Coerentis home">
+                <img class="brand-shield-icon" src="/assets/coerentis-mark.svg" width="32" height="32" alt="" />
+                <span class="product-name nav-product-name">Coerentis</span>
+            </a>
+            <ul class="nav-links" role="navigation" aria-label="Main navigation">
+                <li><a href="/">Home</a></li>
+                <li><a href="/#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="section" style="min-height: 58vh; display: flex; align-items: center;">
+        <div class="container">
+            <div style="max-width: 640px; margin: 0 auto;">
+                <div id="thanks-contact-error" class="thanks-alert" hidden role="alert"></div>
+                <div class="thanks-hero" style="padding-top: 1rem;">
+                    <img class="thanks-hero-mark" src="/assets/coerentis-mark.svg" width="72" height="72" alt="" />
+                    <p class="thanks-eyebrow">Almost there</p>
+                    <h1 class="section-title" style="margin-bottom: 12px;">Confirm your email</h1>
+                </div>
+                <p style="font-size: 16px; color: var(--text-muted); line-height: 1.7; margin-bottom: 16px;">
+                    We’ve sent a <strong>confirmation link</strong> to the address you entered (best practice for financial applications — it keeps inboxes safe and proves the request came from you).
+                </p>
+                <p style="font-size: 16px; color: var(--text-muted); line-height: 1.7; margin-bottom: 24px;">
+                    After you click <strong>Confirm email address</strong> in that message, we’ll deliver your application to our team and send you the usual receipt note. The link expires in <strong>72 hours</strong>.
+                </p>
+                <p style="font-size: 14px; color: var(--text-muted); line-height: 1.65; margin-bottom: 24px;">
+                    No email? Check spam or promotions folders. Still stuck: <a href="mailto:info@boonmind.io" style="color: var(--accent);">info@boonmind.io</a>
+                </p>
+                <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+                    <a href="/" class="btn btn-primary">Back to home</a>
+                    <a href="/integration.html" class="btn btn-secondary">Integration guide</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-copyright">
+                <p style="text-align: center;">&copy; 2026 BoonMindX. <span style="color: var(--text-muted);">Coerentis™</span></p>
+            </div>
+        </div>
+    </footer>
+    <script>
+        (function () {
+            var err = new URLSearchParams(location.search).get('error');
+            var el = document.getElementById('thanks-contact-error');
+            if (!err || !el) return;
+            var msg = {
+                invalid: 'This confirmation link is invalid or has already been used. If you already confirmed, check your inbox for our follow-up or start a new application from the site.',
+                expired: 'This confirmation link has expired (links last 72 hours). Please submit the form again on coerentis.co and we’ll send a fresh message.',
+                server: 'We couldn’t complete confirmation right now. Please try again in a few minutes or email info@boonmind.io and we’ll help manually.'
+            }[err];
+            if (msg) {
+                el.textContent = msg;
+                el.hidden = false;
+            }
+        })();
+    </script>
+</body>
+</html>

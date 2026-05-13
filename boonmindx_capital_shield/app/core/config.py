@@ -1,11 +1,11 @@
 """
-Configuration for BoonMindX Capital Shield API
+Configuration for BoonMindX Coerentis API
 """
 import os
 from typing import Dict, List
 
 # API Configuration
-API_TITLE = "BoonMindX Capital Shield API"
+API_TITLE = "BoonMindX Coerentis API"
 API_VERSION = "1.0.0"
 API_PREFIX = "/api/v1"
 
@@ -79,12 +79,20 @@ DEBUG = os.getenv("SHIELD_API_DEBUG", "false").lower() == "true"
 LOG_LEVEL = os.getenv("LOG_LEVEL", "INFO")
 LOG_FORMAT = "json"  # Structured JSON logging
 
-# CORS
-ALLOWED_ORIGINS = [
+# CORS — set ALLOWED_ORIGINS (comma-separated) for controlled deployments; see ENVIRONMENT_VARIABLES_TEMPLATE.env
+_default_cors = [
     "http://localhost:3000",
     "http://localhost:8080",
-    "https://bearhuntercapital.com"
+    "http://127.0.0.1:5500",
+    "https://bearhuntercapital.com",
+    "https://coerentis.co",
+    "https://www.coerentis.co",
 ]
+_cors_env = os.getenv("ALLOWED_ORIGINS", "").strip()
+if _cors_env:
+    ALLOWED_ORIGINS: List[str] = [o.strip() for o in _cors_env.split(",") if o.strip()]
+else:
+    ALLOWED_ORIGINS = list(_default_cors)
 
 # Engine Mode: "MOCK" or "LIVE"
 ENGINE_MODE = os.getenv("ENGINE_MODE", "MOCK").upper()  # Default to MOCK for safety
@@ -92,7 +100,7 @@ ENGINE_MODE = os.getenv("ENGINE_MODE", "MOCK").upper()  # Default to MOCK for sa
 # BearHunter Engine Paths
 BEARHUNTER_ENGINE_PATH = os.getenv("BEARHUNTER_ENGINE_PATH", "testing_area")
 
-# Capital Shield Mode: "STRICT" or "PERMISSIVE"
+# Coerentis mode: "STRICT" or "PERMISSIVE" (env var kept stable for compatibility)
 CAPITAL_SHIELD_MODE = os.getenv("CAPITAL_SHIELD_MODE", os.getenv("SHIELD_MODE", "PERMISSIVE")).upper()
 
 # Safety Rails Configuration
@@ -110,4 +118,4 @@ STRIPE_WEBHOOK_SECRET = os.getenv("STRIPE_WEBHOOK_SECRET", "")
 STRIPE_PUBLISHABLE_KEY = os.getenv("STRIPE_PUBLISHABLE_KEY", "")
 
 # Database Configuration (for usage tracking)
-DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///./capital_shield.db")  # SQLite for beta, PostgreSQL for production
+DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///./capital_shield.db")  # SQLite for beta, PostgreSQL for managed environments

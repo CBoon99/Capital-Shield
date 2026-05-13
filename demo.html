@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Coerentis Interactive Demo: Risk Scenario Simulator demonstrating deterministic safety gates for algorithmic trading systems.">
-    <meta name="keywords" content="trading risk simulator, capital shield demo, risk management demo, algorithmic trading safety gates">
+    <meta name="keywords" content="trading risk simulator, Coerentis demo, risk management demo, algorithmic trading safety gates">
     
     <!-- Open Graph -->
     <meta property="og:title" content="Coerentis - Interactive Risk Scenario Simulator">
@@ -18,7 +18,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%232EA8FF'/><path d='M50 20 L30 50 L50 45 L70 50 Z' fill='%23071225'/><rect x='40' y='50' width='20' height='30' fill='%23071225'/></svg>">
+    <link rel="icon" href="/assets/coerentis-mark.svg" type="image/svg+xml">
     <style>
         .demo-section {
             padding: 120px 0 80px;
@@ -348,7 +348,7 @@
     <header class="header" id="header">
         <nav class="nav container">
             <a href="/" class="nav-brand nav-brand-lockup" aria-label="Coerentis home">
-                <svg class="brand-shield-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="32" height="32" aria-hidden="true"><rect width="100" height="100" rx="14" fill="#2EA8FF"/><path d="M50 20 L30 50 L50 45 L70 50 Z" fill="#071225"/><rect x="40" y="50" width="20" height="30" fill="#071225"/></svg>
+                <img class="brand-shield-icon" src="/assets/coerentis-mark.svg" width="32" height="32" alt="" />
                 <span class="product-name nav-product-name">Coerentis</span>
             </a>
             <ul class="nav-links" role="navigation" aria-label="Main navigation">
@@ -371,7 +371,7 @@
             </div>
             
             <div class="demo-disclaimer">
-                <p><strong>What this demo shows:</strong> This demo shows how Coerentis reacts to different risk conditions before trades reach execution. It uses simplified inputs for clarity — production systems integrate directly via API.</p>
+                <p><strong>What this demo shows:</strong> This demo shows how Coerentis reacts to different risk conditions before trades reach execution. It uses simplified inputs for clarity; controlled beta systems integrate directly via API.</p>
                 <p style="margin-top: 8px;"><strong>Note:</strong> This demo demonstrates deterministic safety gates only. No claims of profitability or trading performance.</p>
             </div>
             
@@ -478,7 +478,7 @@
                 </div>
 
                 <div class="demo-disclaimer" style="margin-top: 32px;">
-                    <p><strong>Note:</strong> This is a client-side simulation demonstrating Coerentis's logic. Production systems use the REST API endpoint.</p>
+                    <p><strong>Note:</strong> This is a client-side simulation demonstrating Coerentis's logic. Controlled beta systems use the REST API endpoint.</p>
                 </div>
 
                 <div class="demo-layout" style="margin-top: 32px;">
@@ -553,8 +553,8 @@
                     <p style="color: var(--text-muted); margin-bottom: 16px; font-size: 14px;">
                         Coerentis integrates with just a few lines of code:
                     </p>
-                    <pre style="background: rgba(7, 18, 37, 0.8); padding: 20px; border-radius: 8px; overflow-x: auto; font-size: 13px; line-height: 1.6; color: #e0e0e0; font-family: 'Monaco', 'Menlo', 'Courier New', monospace;"><code># 3 lines to protect your capital
-from capital_shield import SafetyGate
+                    <pre style="background: rgba(7, 18, 37, 0.8); padding: 20px; border-radius: 8px; overflow-x: auto; font-size: 13px; line-height: 1.6; color: #e0e0e0; font-family: 'Monaco', 'Menlo', 'Courier New', monospace;"><code># 3 lines to evaluate proposed exposure
+from coerentis import SafetyGate
 
 gate = SafetyGate(max_drawdown=-0.10, max_volatility=0.80)
 
@@ -584,7 +584,7 @@ else:
         <div class="container">
             <div class="footer-content">
                 <div class="footer-brand footer-brand-lockup">
-                    <svg class="brand-shield-icon footer-shield-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="28" height="28" aria-hidden="true"><rect width="100" height="100" rx="14" fill="#2EA8FF"/><path d="M50 20 L30 50 L50 45 L70 50 Z" fill="#071225"/><rect x="40" y="50" width="20" height="30" fill="#071225"/></svg>
+                    <img class="brand-shield-icon footer-shield-icon" src="/assets/coerentis-mark.svg" width="28" height="28" alt="" />
                     <div class="footer-brand-titles">
                         <span class="product-name">Coerentis</span>
                         <span class="footer-suite-line"><a href="https://boonmind.io/" target="_blank" rel="noopener noreferrer">BoonMind</a> suite</span>
@@ -599,6 +599,7 @@ else:
             </div>
             <div class="footer-copyright">
                 <p>&copy; 2026 BoonMindX. <span style="color: var(--text-muted);">Coerentis™ — patent pending.</span></p>
+                <p style="margin-top: 8px; font-size: 12px; color: var(--text-muted);">Framework outputs are experimental analytical signals intended for research, evaluation, and controlled operational testing.</p>
             </div>
         </div>
     </footer>

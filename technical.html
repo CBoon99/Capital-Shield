@@ -4,8 +4,8 @@
     <!-- Primary Meta Tags -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coerentis - Algorithmic Trading System Architecture & Risk Management API</title>
-    <meta name="description" content="Coerentis technical architecture: Algorithmic trading system architecture, risk management API, deterministic safety rails, and strategy-agnostic execution framework. Infrastructure overview for technical due diligence.">
+    <title>Coerentis - Controlled Beta Architecture & Risk Management API</title>
+    <meta name="description" content="Coerentis technical architecture: controlled beta risk management API, deterministic safety rails, and strategy-agnostic execution framework. Infrastructure overview for technical due diligence.">
     <meta name="keywords" content="algorithmic trading system architecture, risk management API, trading infrastructure architecture, deterministic risk controls, trading system safety rails, capital protection API architecture">
     <meta name="author" content="BoonMindX">
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
@@ -16,8 +16,8 @@
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://coerentis.co/technical">
-    <meta property="og:title" content="Coerentis - Algorithmic Trading System Architecture & Risk Management API">
-    <meta property="og:description" content="Technical architecture overview: Risk-first trading infrastructure, deterministic safety rails, and strategy-agnostic execution framework for algorithmic trading systems.">
+    <meta property="og:title" content="Coerentis - Controlled Beta Architecture & Risk Management API">
+    <meta property="og:description" content="Technical architecture overview: controlled beta risk infrastructure, deterministic safety rails, and strategy-agnostic execution framework for algorithmic trading systems.">
     <meta property="og:image" content="https://coerentis.co/assets/og-image.png">
     <meta property="og:site_name" content="Coerentis">
     <meta property="og:locale" content="en_GB">
@@ -41,14 +41,14 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%232EA8FF'/><path d='M50 20 L30 50 L50 45 L70 50 Z' fill='%23071225'/><rect x='40' y='50' width='20' height='30' fill='%23071225'/></svg>">
+    <link rel="icon" href="/assets/coerentis-mark.svg" type="image/svg+xml">
 </head>
 <body>
     <!-- Header -->
     <header class="header" id="header">
         <nav class="nav container">
             <a href="/" class="nav-brand nav-brand-lockup" aria-label="Coerentis home">
-                <svg class="brand-shield-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="32" height="32" aria-hidden="true"><rect width="100" height="100" rx="14" fill="#2EA8FF"/><path d="M50 20 L30 50 L50 45 L70 50 Z" fill="#071225"/><rect x="40" y="50" width="20" height="30" fill="#071225"/></svg>
+                <img class="brand-shield-icon" src="/assets/coerentis-mark.svg" width="32" height="32" alt="" />
                 <span class="product-name nav-product-name">Coerentis</span>
             </a>
             <ul class="nav-links" role="navigation" aria-label="Main navigation">
@@ -71,7 +71,7 @@
                 </p>
                 <p class="tech-last-updated">Last updated: 2025-11-16</p>
                 <div class="tech-note-box">
-                    <p>This project is commercially licensed for production use. See README for terms.</p>
+                    <p>Core deterministic safety rails are implemented and available for controlled beta evaluation. Deployment hardening, adapters, and operational infrastructure remain under active refinement.</p>
                 </div>
             </div>
         </div>
@@ -108,13 +108,13 @@
                         <td><strong>API Service</strong></td>
                         <td>FastAPI REST API with authentication, rate limiting, structured logging</td>
                         <td><code>app/</code></td>
-                        <td><span class="maturity-badge maturity-production">PRODUCTION</span></td>
+                        <td><span class="maturity-badge maturity-production">IMPLEMENTED</span></td>
                     </tr>
                     <tr>
                         <td><strong>Safety Rails / Risk Gates</strong></td>
                         <td>Deterministic hard limits (max drawdown, regime guard, health check)</td>
                         <td><code>app/core/safety_rails.py</code></td>
-                        <td><span class="maturity-badge maturity-production">PRODUCTION</span></td>
+                        <td><span class="maturity-badge maturity-production">IMPLEMENTED</span></td>
                     </tr>
                     <tr>
                         <td><strong>Simulation Engine</strong></td>
@@ -126,7 +126,7 @@
                         <td><strong>Strategy Plug-in Interface</strong></td>
                         <td>Plugin interface for external trading strategies</td>
                         <td><code>strategies/</code></td>
-                        <td><span class="maturity-badge maturity-production">PRODUCTION</span></td>
+                        <td><span class="maturity-badge maturity-production">IMPLEMENTED</span></td>
                     </tr>
                     <tr>
                         <td><strong>Data Adapters</strong></td>
@@ -138,7 +138,7 @@
                         <td><strong>Monitoring / Metrics</strong></td>
                         <td>Health checks, performance metrics, structured logging</td>
                         <td><code>app/routes/healthz.py</code>, <code>app/routes/metrics.py</code></td>
-                        <td><span class="maturity-badge maturity-production">PRODUCTION</span></td>
+                        <td><span class="maturity-badge maturity-production">IMPLEMENTED</span></td>
                     </tr>
                     <tr>
                         <td><strong>Dashboard</strong></td>
@@ -165,7 +165,7 @@
             <div class="stats-grid">
                 <div class="stat-card">
                     <div class="stat-value">67</div>
-                    <div class="stat-label">Production Python Files</div>
+                    <div class="stat-label">Application Python Files</div>
                 </div>
                 <div class="stat-card">
                     <div class="stat-value">7</div>
@@ -183,7 +183,7 @@
 
             <div class="tech-note-box">
                 <strong>Counting Method:</strong> File counts derived from repository structure scan (November 2025). 
-                Production files counted from <code>boonmindx_capital_shield/</code> excluding tests, reports, and data files. 
+                Application files counted from <code>boonmindx_capital_shield/</code> excluding tests, reports, and data files.
                 API endpoints counted from FastAPI route decorators in <code>app/routes/</code>. 
                 Test count includes all <code>test_*.py</code> files in <code>tests/</code> directory. 
                 Safety rules counted from <code>app/core/safety_rails.py</code>: max drawdown check, health check, regime guard.
@@ -200,7 +200,7 @@
 
             <h3 class="tech-h3">Strategy Plugin Interface</h3>
             <p class="tech-p-muted">
-                Plugin interface for external trading strategies. Includes one example strategy (demo only, not for production).
+                Plugin interface for external trading strategies. Includes one example strategy (demo only, not for operational use).
             </p>
         </div>
     </section>
@@ -252,6 +252,7 @@
                 <li><strong>Explicit rejection reasons</strong> - Machine-readable codes for all blocked trades</li>
                 <li><strong>Separation of concerns</strong> - Risk enforcement before execution, not during</li>
                 <li><strong>Infrastructure before optimization</strong> - Focus on correctness and safety over performance</li>
+                <li><strong>Modular calibration</strong> - Risk weighting, Greeks, thresholds, and structural filters may vary across deployment contexts</li>
             </ul>
         </div>
     </section>
@@ -294,7 +295,7 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-brand footer-brand-lockup">
-                    <svg class="brand-shield-icon footer-shield-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="28" height="28" aria-hidden="true"><rect width="100" height="100" rx="14" fill="#2EA8FF"/><path d="M50 20 L30 50 L50 45 L70 50 Z" fill="#071225"/><rect x="40" y="50" width="20" height="30" fill="#071225"/></svg>
+                    <img class="brand-shield-icon footer-shield-icon" src="/assets/coerentis-mark.svg" width="28" height="28" alt="" />
                     <div class="footer-brand-titles">
                         <span class="product-name">Coerentis</span>
                         <span class="footer-suite-line">Part of the <a href="https://boonmind.io/" target="_blank" rel="noopener noreferrer">BoonMind</a> suite · <a href="https://boonmind.io/" target="_blank" rel="noopener noreferrer">boonmind.io</a></span>
@@ -323,12 +324,12 @@
         "name": "Coerentis",
         "applicationCategory": "FinancialTechnology",
         "operatingSystem": "Web",
-        "description": "Algorithmic trading system architecture: Risk-first trading infrastructure, deterministic safety rails, and strategy-agnostic execution framework for algorithmic trading systems.",
+            "description": "Algorithmic trading system architecture: controlled beta risk infrastructure, deterministic safety rails, and strategy-agnostic execution framework for algorithmic trading systems.",
         "offers": {
             "@type": "Offer",
             "priceCurrency": "USD",
             "availability": "https://schema.org/PreOrder",
-            "description": "Commercial licensing available for production use"
+            "description": "Commercial terms available for controlled beta evaluation"
         },
         "creator": {
             "@type": "Organization",

@@ -567,7 +567,7 @@ def generate_fp_summary(results: Dict[str, Any]) -> str:
     # Interpretation
     global_fpr = fpr_metrics['global']['fpr']
     if global_fpr < 5:
-        interpretation = "✅ Excellent (institutional-grade)"
+        interpretation = "Excellent under simulation criteria"
     elif global_fpr < 12:
         interpretation = "⚠️ Acceptable depending on preset"
     else:
@@ -582,7 +582,7 @@ def generate_fp_summary(results: Dict[str, Any]) -> str:
         f"**Assessment**: {interpretation}",
         "",
         "**Guidelines** (from FP_TEST_PROTOCOL.md):",
-        "- FPR < 5% = Excellent (institutional-grade)",
+        "- FPR < 5% = Excellent under simulation criteria",
         "- FPR between 5–12% = Acceptable depending on preset",
         "- FPR > 15% = Too restrictive; requires tuning",
         "",

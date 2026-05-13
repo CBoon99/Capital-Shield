@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BoonMindX Coerentis Dashboard</title>
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <title>Coerentis - controlled beta operator dashboard</title>
     <link rel="stylesheet" href="styles.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 </head>
@@ -12,9 +14,11 @@
     <header class="header">
         <div class="header-content">
             <div class="logo">
-                <span class="logo-icon">🛡️</span>
-                <h1>BoonMindX Coerentis</h1>
-                <p class="tagline">Precision intelligence for a volatile world.</p>
+                <img class="logo-mark" src="/assets/coerentis-mark.svg" width="44" height="44" alt="" />
+                <div class="logo-text">
+                    <h1>Coerentis</h1>
+                    <p class="tagline">Controlled beta dashboard · risk telemetry</p>
+                </div>
             </div>
             <div class="header-status">
                 <span id="system-status" class="status-badge">Checking...</span>
@@ -25,6 +29,30 @@
 
     <!-- Main Content -->
     <main class="main-content">
+        <section id="connection-panel" class="connection-panel" style="margin-bottom: 24px; padding: 20px; background: var(--bg-surface, #0B1B33); border: 1px solid var(--border, rgba(120, 170, 255, 0.2)); border-radius: 12px; max-width: 100%;">
+            <h2 style="font-size: 18px; font-weight: 600; margin: 0 0 8px; color: var(--text-primary, #EAF2FF);">Connect your API</h2>
+            <p style="font-size: 13px; color: var(--text-muted, rgba(234,242,255,0.65)); margin: 0 0 16px; line-height: 1.5;">
+                This page is served from <strong>coerentis.co</strong> (or your Netlify URL). Point it at your <strong>self-hosted Coerentis</strong> beta environment. All calls use <strong>HTTPS</strong> from the browser to your origin. Prefer <strong>session-only</strong> API keys — check “remember” only on trusted devices.
+            </p>
+            <div style="display: grid; gap: 12px; grid-template-columns: 1fr; max-width: 720px;">
+                <label style="font-size: 12px; color: var(--text-muted);">API origin (no path, must be HTTPS)
+                    <input type="url" id="conn-api-origin" placeholder="https://your-coerentis-host.example" autocomplete="off" style="width:100%;margin-top:6px;padding:10px 12px;border-radius:8px;border:1px solid rgba(120,170,255,0.25);background:#071225;color:#EAF2FF;font-size:14px;" />
+                </label>
+                <label style="font-size: 12px; color: var(--text-muted);">API key (for usage — optional for health/metrics)
+                    <input type="password" id="conn-api-key" placeholder="cs_…" autocomplete="off" style="width:100%;margin-top:6px;padding:10px 12px;border-radius:8px;border:1px solid rgba(120,170,255,0.25);background:#071225;color:#EAF2FF;font-size:14px;" />
+                </label>
+                <label style="font-size: 13px; color: var(--text-primary); display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                    <input type="checkbox" id="conn-remember" /> Remember on this device (stores key in localStorage)
+                </label>
+                <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+                    <button type="button" id="conn-save" class="btn-save" style="padding:10px 18px;border-radius:8px;border:none;background:#2EA8FF;color:#071225;font-weight:600;cursor:pointer;">Save &amp; connect</button>
+                    <button type="button" id="conn-clear" style="padding:10px 18px;border-radius:8px;border:1px solid rgba(120,170,255,0.35);background:transparent;color:#EAF2FF;cursor:pointer;">Clear stored credentials</button>
+                    <a href="https://coerentis.co/integration.html" style="align-self:center;color:#2EA8FF;font-size:14px;">Integration guide</a>
+                    <a href="https://coerentis.co/" style="align-self:center;color:#7ccfff;font-size:14px;">Marketing site</a>
+                </div>
+                <p id="conn-status" style="font-size: 12px; color: var(--accent-2, #7C5CFF); margin: 0; min-height: 1.2em;" role="status"></p>
+            </div>
+        </section>
         <!-- Top Stats Bar -->
         <section class="stats-grid">
             <div class="stat-card">

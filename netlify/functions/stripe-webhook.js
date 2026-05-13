@@ -44,6 +44,28 @@ exports.handler = async function stripeWebhook(event) {
 
   console.log('stripe-webhook', stripeEvent.type, stripeEvent.id);
 
+  if (stripeEvent.type === 'checkout.session.completed') {
+    try {
+      const session = stripeEvent.data.object;
+      const email =
+        (session.customer_details && session.customer_details.email) ||
+        session.customer_email;
+      const planKey =
+        (session.metadata && session.metadata.coerentis_plan) || '';
+      if (email && process.env.RESEND_API_KEY) {
+        const { sendEmail, stripeWelcomeHtml, planLabelFromKey } = require('./lib/transactional-email');
+        await sendEmail({
+          to: email,
+          subject: 'Coerentis — payment received, next steps',
+          html: stripeWelcomeHtml(planLabelFromKey(planKey)),
+        });
+        console.log('stripe-webhook: welcome email queued for', email);
+      }
+    } catch (e) {
+      console.error('stripe-webhook: welcome email failed', e.message || e);
+    }
+  }
+
   return {
     statusCode: 200,
     headers: { 'Content-Type': 'application/json' },

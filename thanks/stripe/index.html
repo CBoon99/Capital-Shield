@@ -2,45 +2,69 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <meta name="robots" content="noindex, follow">
     <link rel="canonical" href="https://coerentis.co/thanks/stripe/">
-    <title>Subscription started — Coerentis</title>
-    <meta name="description" content="Your Coerentis checkout completed. Next steps for Licensed — Audit.">
+    <title>Payment received — Coerentis</title>
+    <meta name="description" content="Your Coerentis checkout completed. Stripe receipt, integration, and dashboard next steps.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../../styles.css">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='12' fill='%232EA8FF'/><path d='M50 20 L30 50 L50 45 L70 50 Z' fill='%23071225'/><rect x='40' y='50' width='20' height='30' fill='%23071225'/></svg>">
+    <link rel="icon" href="/assets/coerentis-mark.svg" type="image/svg+xml">
 </head>
 <body>
     <header class="header" id="header">
         <nav class="nav container">
             <a href="/" class="nav-brand nav-brand-lockup" aria-label="Coerentis home">
-                <svg class="brand-shield-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="32" height="32" aria-hidden="true"><rect width="100" height="100" rx="14" fill="#2EA8FF"/><path d="M50 20 L30 50 L50 45 L70 50 Z" fill="#071225"/><rect x="40" y="50" width="20" height="30" fill="#071225"/></svg>
+                <img class="brand-shield-icon" src="/assets/coerentis-mark.svg" width="32" height="32" alt="" />
                 <span class="product-name nav-product-name">Coerentis</span>
             </a>
             <ul class="nav-links" role="navigation" aria-label="Main navigation">
-                <li><a href="../../index.html">Home</a></li>
-                <li><a href="../../index.html#contact">Contact</a></li>
+                <li><a href="/">Home</a></li>
+                <li><a href="/integration.html">Integration</a></li>
+                <li><a href="/dashboard">Dashboard</a></li>
             </ul>
         </nav>
     </header>
 
-    <section class="section" style="min-height: 55vh; display: flex; align-items: center;">
+    <section class="section" style="min-height: 56vh;">
         <div class="container">
-            <div style="max-width: 640px; margin: 0 auto;">
-                <h1 class="section-title" style="margin-bottom: 16px;">Checkout complete</h1>
-                <p style="font-size: 16px; color: var(--text-muted); line-height: 1.7; margin-bottom: 16px;">
-                    Thanks — your <strong>Stripe</strong> checkout finished successfully (subscription or payment, depending on what you chose).
-                    You’ll receive a receipt from Stripe. For <strong>Licensed — Audit</strong>, <strong>simulation</strong>, or <strong>enterprise deposit</strong> onboarding, we may follow up at the billing email if we need anything else.
+            <div class="thanks-hero">
+                <img class="thanks-hero-mark" src="/assets/coerentis-mark.svg" width="80" height="80" alt="" />
+                <p class="thanks-eyebrow">Checkout complete</p>
+                <h1 class="section-title" style="margin-bottom: 10px;">Thank you</h1>
+                <p style="font-size: 17px; color: var(--text-muted); line-height: 1.65; max-width: 520px; margin: 0 auto;">
+                    Your payment was processed by <strong>Stripe</strong>. You should receive a <strong>receipt</strong> from Stripe at your billing email. This page mirrors what we send by email after the webhook fires.
                 </p>
-                <p style="font-size: 14px; color: var(--text-muted); line-height: 1.65; margin-bottom: 24px;">
-                    Questions or pilot eligibility: <a href="mailto:info@boonmind.io" style="color: var(--accent);">info@boonmind.io</a>.
-                    Coerentis™ — patent pending.
-                </p>
-                <a href="../../index.html" class="btn btn-primary">Back to home</a>
-                <a href="../../integration.html" class="btn btn-secondary" style="margin-left: 12px;">Integration guide</a>
+            </div>
+
+            <div class="thanks-card-grid" style="max-width: 900px; margin-left: auto; margin-right: auto;">
+                <div class="thanks-step-card">
+                    <h3>1 · Receipt &amp; records</h3>
+                    <p>Keep your Stripe receipt with your finance records. Commercial rights and deliverables follow your order, statement of work, or licence — not marketing copy on this site.</p>
+                </div>
+                <div class="thanks-step-card">
+                    <h3>2 · Integrate</h3>
+                    <p>Follow the <a href="/integration.html" style="color: var(--accent);">integration guide</a> to wire the API and safety rails into your stack.</p>
+                </div>
+                <div class="thanks-step-card">
+                    <h3>3 · Dashboard</h3>
+                    <p>Open the <a href="/dashboard" style="color: var(--accent);">operator dashboard</a>, enter your <strong>HTTPS API origin</strong> and API key to poll health, metrics, and usage.</p>
+                </div>
+                <div class="thanks-step-card">
+                    <h3>4 · Human support</h3>
+                    <p>For onboarding, pilot eligibility, or enterprise scoping: <a href="mailto:info@boonmind.io" style="color: var(--accent);">info@boonmind.io</a></p>
+                </div>
+            </div>
+
+            <p style="text-align: center; font-size: 13px; color: var(--text-muted); max-width: 560px; margin: 2rem auto 0; line-height: 1.55;">
+                Coerentis™ · patent pending · informational only; not investment or legal advice.
+            </p>
+
+            <div style="text-align: center; margin-top: 1.75rem;">
+                <a href="/" class="btn btn-primary">Back to home</a>
+                <a href="/integration.html" class="btn btn-secondary" style="margin-left: 12px;">Integration guide</a>
             </div>
         </div>
     </section>

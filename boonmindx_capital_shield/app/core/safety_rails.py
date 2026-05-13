@@ -1,6 +1,6 @@
 """
-BoonMindX Capital Shield Safety Rails - Hard limits to prevent bad trades
-Even in LIVE mode, BoonMindX Capital Shield has veto power
+BoonMindX Coerentis Safety Rails - deterministic limits for controlled beta risk evaluation
+Even in LIVE mode, Coerentis has veto power
 """
 from typing import Tuple, Optional, Dict, Any
 import app.core.config as config_module

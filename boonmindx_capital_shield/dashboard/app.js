@@ -5,12 +5,109 @@
  * Updates dashboard UI with live data
  */
 
-// Configuration
-const API_BASE = '/api/v1';
-const HEALTH_URL = `${API_BASE}/healthz`;
-const DASHBOARD_METRICS_URL = `${API_BASE}/dashboard/metrics`;
-const USAGE_STATS_URL = `${API_BASE}/billing/usage`; // Note: Requires API key in production
+// Remote API: query ?api=https://your-host, sessionStorage, or optional localStorage (remember)
+const STORAGE_ORIGIN = 'coerentis_api_origin';
+const STORAGE_KEY = 'coerentis_api_key';
+const STORAGE_REMEMBER = 'coerentis_remember_credentials';
+const LEGACY_KEY = 'api_key';
+
+let API_BASE = '/api/v1';
+let HEALTH_URL = `${API_BASE}/healthz`;
+let DASHBOARD_METRICS_URL = `${API_BASE}/dashboard/metrics`;
+
 const POLL_INTERVAL = 10000; // 10 seconds
+
+function rebuildEndpoints() {
+    const origin = getApiBaseUrl();
+    API_BASE = origin ? `${origin.replace(/\/$/, '')}/api/v1` : '/api/v1';
+    HEALTH_URL = `${API_BASE}/healthz`;
+    DASHBOARD_METRICS_URL = `${API_BASE}/dashboard/metrics`;
+}
+
+function getApiBaseUrl() {
+    try {
+        const params = new URLSearchParams(window.location.search);
+        const q = params.get('api');
+        if (q) return q.trim().replace(/\/$/, '');
+    } catch (e) { /* ignore */ }
+    try {
+        const fromSession = sessionStorage.getItem(STORAGE_ORIGIN);
+        if (fromSession) return fromSession.replace(/\/$/, '');
+        if (localStorage.getItem(STORAGE_REMEMBER) === '1') {
+            const o = localStorage.getItem(STORAGE_ORIGIN);
+            if (o) return o.replace(/\/$/, '');
+        }
+    } catch (e) { /* ignore */ }
+    return '';
+}
+
+function saveConnectionSettings(origin, apiKey, remember) {
+    const o = origin.replace(/\/$/, '');
+    sessionStorage.setItem(STORAGE_ORIGIN, o);
+    sessionStorage.setItem(STORAGE_KEY, apiKey);
+    if (remember) {
+        localStorage.setItem(STORAGE_REMEMBER, '1');
+        localStorage.setItem(STORAGE_ORIGIN, o);
+        localStorage.setItem(STORAGE_KEY, apiKey);
+    } else {
+        localStorage.removeItem(STORAGE_REMEMBER);
+        localStorage.removeItem(STORAGE_ORIGIN);
+        localStorage.removeItem(STORAGE_KEY);
+    }
+    rebuildEndpoints();
+}
+
+function clearConnectionSettings() {
+    sessionStorage.removeItem(STORAGE_ORIGIN);
+    sessionStorage.removeItem(STORAGE_KEY);
+    localStorage.removeItem(STORAGE_REMEMBER);
+    localStorage.removeItem(STORAGE_ORIGIN);
+    localStorage.removeItem(STORAGE_KEY);
+    localStorage.removeItem(LEGACY_KEY);
+    rebuildEndpoints();
+}
+
+function initConnectionPanel() {
+    const originInput = document.getElementById('conn-api-origin');
+    const keyInput = document.getElementById('conn-api-key');
+    const rememberInput = document.getElementById('conn-remember');
+    const statusEl = document.getElementById('conn-status');
+    const base = getApiBaseUrl();
+    rebuildEndpoints();
+    if (originInput) originInput.value = base || '';
+    if (keyInput) keyInput.value = getApiKeyFromStorage() || '';
+    if (rememberInput) rememberInput.checked = localStorage.getItem(STORAGE_REMEMBER) === '1';
+
+    document.getElementById('conn-save')?.addEventListener('click', () => {
+        const origin = (originInput?.value || '').trim();
+        const key = (keyInput?.value || '').trim();
+        if (!origin || !/^https:\/\//i.test(origin)) {
+            if (statusEl) statusEl.textContent = 'Enter a valid HTTPS API origin (e.g. https://api.example.com).';
+            return;
+        }
+        saveConnectionSettings(origin, key, !!rememberInput?.checked);
+        if (statusEl) {
+            statusEl.textContent = key
+                ? 'Saved. Polling your API…'
+                : 'API origin saved. Add an API key to load usage/billing stats.';
+        }
+        document.querySelector('.usage-section')?.style &&
+            (document.querySelector('.usage-section').style.display = key ? 'block' : 'none');
+        pollHealth();
+        pollMetrics();
+        pollUsageStats();
+    });
+    document.getElementById('conn-clear')?.addEventListener('click', () => {
+        clearConnectionSettings();
+        if (originInput) originInput.value = '';
+        if (keyInput) keyInput.value = '';
+        if (rememberInput) rememberInput.checked = false;
+        if (statusEl) statusEl.textContent = 'Credentials cleared.';
+        pollHealth();
+        pollMetrics();
+        pollUsageStats();
+    });
+}
 
 // State
 let equityHistory = [];
@@ -26,8 +123,10 @@ let drawdownChart = null;
  * Initialize dashboard
  */
 function init() {
-    console.log('BoonMindX Coerentis Dashboard initialized');
-    
+    console.log('Coerentis operator dashboard initialized');
+    rebuildEndpoints();
+    initConnectionPanel();
+
     // Initialize charts
     initCharts();
     
@@ -105,12 +204,12 @@ async function pollMetrics() {
 
 /**
  * Poll usage stats endpoint
- * Note: In production, this would require API key authentication
+ * Note: In controlled operations, this requires API key authentication
  */
 async function pollUsageStats() {
     try {
         // For demo purposes, try to get usage stats
-        // In production, this would require the user's API key
+        // In controlled operations, this requires the user's API key
         // For now, we'll skip if no API key is available
         const apiKey = getApiKeyFromStorage();
         if (!apiKey) {
@@ -122,7 +221,7 @@ async function pollUsageStats() {
             return;
         }
         
-        const response = await fetch(`${USAGE_STATS_URL}/${apiKey}`);
+        const response = await fetch(`${API_BASE}/billing/usage/${encodeURIComponent(apiKey)}`);
         if (!response.ok) {
             // If 404, user might not have billing set up yet
             if (response.status === 404) {
@@ -142,12 +241,19 @@ async function pollUsageStats() {
 
 /**
  * Get API key from localStorage (for demo purposes)
- * In production, this would be handled via authentication
+ * In controlled operations, this is handled via authentication
  */
 function getApiKeyFromStorage() {
-    // Check if API key is stored in localStorage
-    // This is a placeholder - real implementation would use proper auth
-    return localStorage.getItem('api_key') || null;
+    try {
+        const k = sessionStorage.getItem(STORAGE_KEY);
+        if (k) return k;
+        if (localStorage.getItem(STORAGE_REMEMBER) === '1') {
+            return localStorage.getItem(STORAGE_KEY);
+        }
+        const legacy = localStorage.getItem(LEGACY_KEY);
+        if (legacy) return legacy;
+    } catch (e) { /* ignore */ }
+    return null;
 }
 
 /**

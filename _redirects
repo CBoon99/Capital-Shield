@@ -2,3 +2,6 @@
 /integration  /integration.html  200
 /whitepaper  /whitepaper.html  200
 /technical  /technical.html  200
+/dashboard  /boonmindx_capital_shield/dashboard/index.html  200
+/dashboard/  /boonmindx_capital_shield/dashboard/index.html  200
+/dashboard/*  /boonmindx_capital_shield/dashboard/:splat  200

@@ -4,7 +4,7 @@
 
 ## About Coerentis
 
-Coerentis is a deterministic safety layer for algorithmic trading. It does NOT generate trading signals or predict markets. It enforces hard risk limits (max drawdown, regime guards, health checks) with structured rejection reasons, providing a validation harness to measure the cost of safety before deployment.
+Coerentis is a controlled beta deterministic safety layer for algorithmic trading. It does NOT generate trading signals or predict markets. It evaluates configurable risk limits (max drawdown, regime guards, health checks) with structured rejection reasons, providing a validation harness to measure the cost of safety before controlled deployment.
 
 **What it is:**
 - Execution and risk gateway
@@ -49,9 +49,9 @@ Coerentis is a deterministic safety layer for algorithmic trading. It does NOT g
 - API key authentication
 
 ### Pricing Tiers
-- **Starter**: £49/month (£490/year) - 10,000 API calls/day
-- **Professional**: £199/month (£1,990/year) - 100,000 API calls/day
-- **Enterprise**: Custom pricing - Unlimited calls, SLA, dedicated support
+- **Free - Shadow**: observation and evaluation access
+- **Licensed - Audit**: £199/month (£1,990/year) - logging, reporting, and controlled beta audit workflows
+- **Enterprise - Enforcement**: custom pricing - contracted enforcement wiring and operational integration review
 
 ## Target Users
 
@@ -67,7 +67,7 @@ Coerentis is a deterministic safety layer for algorithmic trading. It does NOT g
 - **Founder**: Carl Boon
 - **Email**: info@boonmind.io
 - **Location**: Manchester, UK
-- **Status**: Controlled Beta (Public release Q1 2026)
+- **Status**: Controlled beta evaluation with selected testers and research collaborators
 - **Website**: https://coerentis.co/
 
 ## Frequently Asked Questions
@@ -85,7 +85,7 @@ Via REST API. Your strategy sends signals, Coerentis evaluates against safety ra
 An automated trading system that continues executing trades beyond acceptable risk parameters, often leading to catastrophic losses. Coerentis prevents this by blocking trades before execution.
 
 **Why does risk-first architecture matter?**
-It separates safety enforcement from signal generation, allowing validation of safety rails independently and measuring the cost of safety before deployment.
+It separates safety enforcement from signal generation, allowing validation of safety rails independently and measuring the cost of safety before controlled deployment.
 
 ## Optional Resources
 
